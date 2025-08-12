@@ -37,3 +37,44 @@ matriz_pagos = [
     [9004, 5004, "2025-08-01", 120000, "Tarjeta"],
     [9005, 5005, "2024-12-01", 98000, "Transferencia"]
 ]
+
+#Funciones
+def crear_matriz_inquilinos(cant_inquilinos):
+    inquilinos=[]
+    for i in range(cant_inquilinos):
+        id_inquilino=len(inquilinos) + 1
+        nombre= input("Nombre completo: ")
+        dni=int(input("Dni (solo numeros): "))
+        mail=input("Mail: ")
+        telefono=int(input("Telefono: "))
+        inquilino=[id_inquilino, nombre, dni, mail, telefono]
+        inquilinos.append(inquilino)
+    
+    return inquilinos
+
+def crear_matriz_Propiedades(cant_propiedades):
+    propiedades=[]
+    for i in range(cant_propiedades):
+        ID_propiedad= len(propiedades) + 1
+        dirección=input("Direccion de la propiedad:")
+        tipo=input("Tipo de propiedad:")
+        precio_alquiler=int(input("Precio de alquiler:"))
+        estado_input=input("¿La propiedad esta disponible? (s/n):").strip().lower()
+        estado=True if estado_input == "s" else False
+
+        propiedad=[ID_propiedad, dirección, tipo, precio_alquiler, estado]
+        propiedades.append(propiedad)
+
+    return propiedades
+def mostrar_matriz(encabezados, matriz):
+    filas = len(matriz)
+    columnas = len(matriz[0])
+    for titulo in encabezados: # Imprimir encabezados
+        print(titulo, end="\t")
+    print()
+    for fila in range(filas):
+        for columna in range(columnas):
+            print(matriz[fila][columna], end="\t")
+        print()
+
+#Programa principal
