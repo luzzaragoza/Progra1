@@ -1,3 +1,4 @@
+
 # Matriz de Inquilinos
 matriz_inquilinos = [
     ["ID Inquilino", "Nombre", "DNI", "Email", "Teléfono"],
@@ -52,7 +53,7 @@ def crear_matriz_inquilinos(cant_inquilinos):
     
     return inquilinos
 
-def crear_matriz_Propiedades(cant_propiedades):
+def crear_matriz_propiedades(cant_propiedades):
     propiedades=[]
     for i in range(cant_propiedades):
         ID_propiedad= len(propiedades) + 1
@@ -77,4 +78,31 @@ def mostrar_matriz(encabezados, matriz):
             print(matriz[fila][columna], end="\t")
         print()
 
+def crear_matriz_contrato(cant_contratos):
+    contratos=[]
+    for i in range(cant_contratos):
+        ID_contrato= len(contratos) + 1
+        id_propiedad=int(input("ID de la propiedad:"))
+        id_inquilino=int(input("ID del inquilino:"))
+        fecha_inicio=input("Fecha de inicio (YYYY-MM-DD):")
+        fecha_fin=input("Fecha de fin (YYYY-MM-DD):")
+
+        contrato=[id_propiedad, id_inquilino, fecha_inicio, fecha_fin]
+        contratos.append(contrato)
+
+    return contratos
+
+def crear_matriz_pagos(cant_pagos):
+    pagos=[]
+    for i in range(cant_pagos):
+        ID_pago= len(pagos) + 1
+        id_contrato=int(input("ID del contrato:"))
+        fecha_pago=input("Fecha de pago (YYYY-MM-DD):")
+        monto=int(input("Monto del pago:"))
+        metodo=input("Metodo de pago:")
+
+        pago=[ID_pago, id_contrato, fecha_pago, monto, metodo]
+        pagos.append(pago)
+
+    return pagos
 #Programa principal
