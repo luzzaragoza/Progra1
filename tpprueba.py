@@ -50,6 +50,8 @@ def crear_matriz_inquilinos(cant_inquilinos):
         telefono=int(input("Telefono: "))
         inquilino=[id_inquilino, nombre, dni, mail, telefono]
         inquilinos.append(inquilino)
+        estado_input=input("¿El usuario esta activo? (s/n):").strip().lower()
+        estado=True if estado_input == "s" else False
     
     return inquilinos
 
@@ -86,6 +88,8 @@ def crear_matriz_contrato(cant_contratos):
         id_inquilino=int(input("ID del inquilino:"))
         fecha_inicio=input("Fecha de inicio (YYYY-MM-DD):")
         fecha_fin=input("Fecha de fin (YYYY-MM-DD):")
+        estado_input=input("¿El contrato esta activo? (s/n):").strip().lower()
+        estado=True if estado_input == "s" else False
 
         contrato=[id_propiedad, id_inquilino, fecha_inicio, fecha_fin]
         contratos.append(contrato)
