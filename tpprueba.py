@@ -106,3 +106,22 @@ def crear_matriz_pagos(cant_pagos):
 
     return pagos
 #Programa principal
+
+# Matriz de Inquilinos con campo Estado
+matriz_inquilinos = [
+    ["ID Inquilino", "Nombre", "DNI", "Email", "Teléfono", "Estado"],
+    [1, "Juan Pérez", "30123456", "juan@mail.com", "+54 11 4567-8901", "Activo"],
+    [2, "María López", "28999888", "maria@mail.com", "+54 9 351 555-1111", "Activo"],
+    [3, "Carlos Díaz", "31222333", "carlos@mail.com", "+54 11 4444-2222", "Activo"],
+    [4, "Ana Torres", "30111222", "ana@mail.com", "+54 341 555-3333", "Activo"],
+    [5, "Luis Gómez", "30333444", "luis@mail.com", "+54 261 444-5555", "Activo"]
+]
+
+# Función de baja lógica
+def baja_logica_inquilino(matriz, id_inquilino):
+    for fila in matriz[1:]:  
+        if fila[0] == id_inquilino:
+            fila[5] = "Inactivo"
+            print(f"Inquilino con ID {id_inquilino} dado de baja lógicamente.")
+            return
+    print("ID no encontrado.")
