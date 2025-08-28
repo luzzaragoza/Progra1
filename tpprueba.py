@@ -377,6 +377,7 @@ def gestion_pagos():
         nuevos_pagos = crear_matriz_pagos(cant_pagos)
         matriz_pagos.extend(nuevos_pagos)
         print("Pagos creados exitosamente.")
+
     elif opcion == '2':
         mostrar_matriz(matriz_pagos[0], matriz_pagos[1:])
     elif opcion == '3':
@@ -389,25 +390,26 @@ def gestion_pagos():
 #Programa principal
 
 def menu():
-    print("----- Menú de Gestión de Alquileres -----")
-    print("1. Gestión de Inquilinos")
-    print("2. Gestión de Propiedades")
-    print("3. Gestión de Contratos")
-    print("4. Gestión de Pagos")
-    print("5. Salir")
-    opcion = input("Seleccione una opción (1-5): ")
-    if opcion == '1':
-        gestion_inqiuilinos()
-    elif opcion == '2':
-        gestion_propiedades()
-    elif opcion == '3':
-        gestion_contratos()
-    elif opcion == '4':
-        gestion_pagos()
-    elif opcion == '5':
-        print("Saliendo del programa...")
-        exit()
-    else:
-        print("Opción no válida. Intente nuevamente.")
-        menu()
+    while True:
+        print("----- Menú de Gestión de Alquileres -----")
+        print("1. Gestión de Inquilinos")
+        print("2. Gestión de Propiedades")
+        print("3. Gestión de Contratos")
+        print("4. Gestión de Pagos")
+        print("5. Salir")
+        opcion = input("Seleccione una opción (1-5): ")
+        if opcion == '1':
+            gestion_inqiuilinos()
+        elif opcion == '2':
+            gestion_propiedades()
+        elif opcion == '3':
+            gestion_contratos()
+        elif opcion == '4':
+            gestion_pagos()
+        elif opcion == '5':
+            print("Saliendo del programa...")
+            break
+        else:
+            print("Opción no válida. Intente nuevamente.")
 
+menu()
