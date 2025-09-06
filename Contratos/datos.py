@@ -1,5 +1,5 @@
+encabezados_contratos=["ID Contrato", "ID Propiedad", "ID Inquilino", "Fecha Inicio", "Fecha Fin"]
 matriz_contratos = [
-    ["ID Contrato", "ID Propiedad", "ID Inquilino", "Fecha Inicio", "Fecha Fin"],
     [5001, 101, 1, "2025-03-01", "2026-02-28"],
     [5002, 102, 2, "2024-05-15", "2025-05-14"],
     [5003, 103, 3, "2025-01-10", "2026-01-09"],

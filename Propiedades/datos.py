@@ -1,5 +1,5 @@
+ebcabezados_propiedades=["ID Propiedad", "Dirección", "Tipo", "Precio Alquiler", "Estado"]
 matriz_propiedades = [
-    ["ID Propiedad", "Dirección", "Tipo", "Precio Alquiler", "Estado"],
     [101, "Av. Siempre Viva 742", "Departamento", 75000, "Libre"],
     [102, "Calle Falsa 123", "Casa", 95000, "Ocupada"],
     [103, "Belgrano 456", "Departamento", 80000, "Libre"],

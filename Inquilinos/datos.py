@@ -1,5 +1,6 @@
+encabezado_inquilinos=["ID Inquilino", "Nombre", "DNI", "Email", "Teléfono"]
+
 matriz_inquilinos = [
-    ["ID Inquilino", "Nombre", "DNI", "Email", "Teléfono"],
     [1, "Juan Pérez", "30123456", "juan@mail.com", "+54 11 4567-8901"],
     [2, "María López", "28999888", "maria@mail.com", "+54 9 351 555-1111"],
     [3, "Carlos Díaz", "31222333", "carlos@mail.com", "+54 11 4444-2222"],

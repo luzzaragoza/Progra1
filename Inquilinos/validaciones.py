@@ -34,11 +34,11 @@ def validar_telefono(valor):
     else:
         return False
 
-def validar_inquilino(fila, encabezados):               #para verificar si los inquilinos están bien subidos
-    i_id  = encabezados.index("ID Inquilino")
-    i_nom = encabezados.index("Nombre")
-    i_dni = encabezados.index("DNI")
-    i_tel = encabezados.index("Teléfono")
+def validar_inquilino(fila, encabezados_inquilinos):               #para verificar si los inquilinos están bien subidos
+    i_id  = encabezados_inquilinos.index("ID Inquilino")
+    i_nom = encabezados_inquilinos.index("Nombre")
+    i_dni = encabezados_inquilinos.index("DNI")
+    i_tel = encabezados_inquilinos.index("Teléfono")
 
     if not validar_id(fila[i_id]):
         return False
