@@ -1,12 +1,12 @@
 # --- IMPORTS ---
 from Inquilinos.datos import matriz_inquilinos
 from Inquilinos.crear import crear_matriz_inquilinos
-#from Inquilinos.modificar import modificar_inquilino
+from Inquilinos.modificar import modificar_inquilino
 from Inquilinos.busqueda import busqueda_inquilino
 
 from Propiedades.datos import matriz_propiedades
 from Propiedades.crear import crear_matriz_propiedades
-#from Propiedades.modificar import modificar_propiedad
+from Propiedades.modificar import modificar_propiedad
 from Propiedades.busqueda import busqueda_propiedad
 
 from Contratos.datos import matriz_contratos
