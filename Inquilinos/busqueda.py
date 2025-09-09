@@ -1,3 +1,5 @@
+
+""""
 import re
 from validaciones import validar_id, validar_nombre, validar_dni, validar_email, validar_telefono
 
@@ -18,7 +20,6 @@ def pedir_confirmacion(tipo, dato):
     else:
         return False
 
-""""
 def buscar_inquilino(dato, tipo, matriz):		# buscar_inquilino(dato, tipo, matriz): recibe un dato a buscar y su tipo validado ("ID"/"DNI"/"EMAIL"/"TEL"/"NOMBRE") sobre una matriz sin encabezados [ID, Nombre, DNI, Email, Tel] y devuelve True si existe al menos una coincidencia, o False si no.
 
     # Robustez básica
