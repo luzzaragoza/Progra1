@@ -18,6 +18,10 @@ from Pagos.crear import crear_matriz_pagos
 from Pagos.modificar import modificar_pago
 
 from FuncAux.mostrar import mostrar_matriz
+from FuncAux.login import validar_usuario, iniciar_sesion
+
+from Usuarios.crear import crear_usuario
+from Usuarios.modificar import modificar_usuario
 #Funciones de Menu
 
 def gestion_inqiuilinos():
@@ -103,6 +107,18 @@ def gestion_pagos():
         print("Opción no válida. Intente nuevamente.")
         gestion_pagos()
 
+def gestion_usuarios():
+    print("----- Gestión de Usuarios -----")
+    print("1. Crear Usuario")
+    print("2. Modificar Usuario")
+    opcion = input("Seleccione una opción (1-2): ")
+    if opcion == '1':
+        crear_usuario()
+    elif opcion == '2':
+        modificar_usuario()
+    else:
+        print("Opción no válida. Intente nuevamente.")
+        gestion_usuarios()
 
 #Programa principal
 
@@ -113,7 +129,8 @@ def menu():
         print("2. Gestión de Propiedades")
         print("3. Gestión de Contratos")
         print("4. Gestión de Pagos")
-        print("5. Salir")
+        print("5. Gestión de Usuarios")
+        print("6. Salir")
         opcion = input("Seleccione una opción (1-5): ")
         if opcion == '1':
             gestion_inqiuilinos()
@@ -124,9 +141,22 @@ def menu():
         elif opcion == '4':
             gestion_pagos()
         elif opcion == '5':
+            gestion_usuarios()
+        elif opcion == '6':
             print("Saliendo del programa...")
             break
         else:
             print("Opción no válida. Intente nuevamente.")
 
-menu()
+def iniciar_sistema():
+    print("----- Bienvenido al sistema -----")
+    
+    # Solo permite entrar al menú si el login es correcto
+    while not iniciar_sesion():
+        pass  # sigue pidiendo login hasta que sea correcto
+
+    # Una vez logueado, muestra el menú
+    menu()
+
+# --- EJECUCIÓN ---
+iniciar_sistema()

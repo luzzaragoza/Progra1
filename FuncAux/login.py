@@ -1,18 +1,19 @@
-def login():
-    usuario_correcto = "admin"
-    contraseña_correcta = "1234"
+from Usuarios.crear import usuarios, contraseñas
 
-    intentos = 3
-    while intentos > 0:
-        usuario = input("Usuario: ")
-        contraseña = input("Contraseña: ")
-
-        if usuario == usuario_correcto and contraseña == contraseña_correcta:
-            print("Login exitoso.\n")
+def validar_usuario(usuario, contraseña):
+    if usuario in usuarios:
+        indice = usuarios.index(usuario)
+        if contraseñas[indice] == contraseña:
             return True
-        else:
-            intentos -= 1
-            print("Usuario o contraseña incorrectos. Intentos restantes:", intentos)
-
-    print("Acceso denegado.")
     return False
+
+def iniciar_sesion():
+    print("----- Incio de sesión -----")
+    usuario = input("Usuario: ")
+    contraseña = input("Contraseña: ")
+    if validar_usuario(usuario, contraseña):
+        print("Login exitoso.\n")
+        return True
+    else:
+        print("Usuario o contraseña incorrectos, vuelva a intentar.\n")
+        return False
