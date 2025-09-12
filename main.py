@@ -179,6 +179,5 @@ def main():
 
     estadisticas.mostrar_resumen(inmuebles, contratos)
 
-
 if __name__ == "__main__":
     main()

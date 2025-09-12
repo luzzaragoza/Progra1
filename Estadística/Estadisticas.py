@@ -1,4 +1,4 @@
-# estadisticas.py
+
 
 def calcular_ocupacion(inmuebles):
     total = len(inmuebles)
