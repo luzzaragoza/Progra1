@@ -160,3 +160,25 @@ def iniciar_sistema():
 
 # --- EJECUCIÓN ---
 iniciar_sistema()
+
+
+import estadisticas 
+
+def main():
+    inmuebles = [
+        {"id": 1, "estado": "ocupado", "valor": 120000},
+        {"id": 2, "estado": "libre", "valor": 90000},
+        {"id": 3, "estado": "ocupado", "valor": 150000}
+    ]
+
+    contratos = [
+        {"mes": "Enero", "monto": 50000},
+        {"mes": "Enero", "monto": 30000},
+        {"mes": "Febrero", "monto": 40000}
+    ]
+
+    estadisticas.mostrar_resumen(inmuebles, contratos)
+
+
+if __name__ == "__main__":
+    main()
