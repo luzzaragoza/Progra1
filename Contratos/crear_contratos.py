@@ -44,7 +44,7 @@ def crear_matriz_contrato(cant_contratos):
         id_inquilino = _pedir("ID del inquilino: ", validar_id, int)
         fecha_inicio = _pedir("Fecha de inicio (YYYY-MM-DD): ", validar_fecha, str)
         fecha_fin    = _pedir("Fecha de fin (YYYY-MM-DD): ", validar_fecha, str)
-        monto        = _pedir("Monto mensual (entero): ", validar_monto, int)
+        monto_mensual= _pedir("Monto mensual (entero): ", validar_monto, int)
 
-        contratos.append([ID_contrato, id_propiedad, id_inquilino, fecha_inicio, fecha_fin, monto])
+        contratos.append([ID_contrato, id_propiedad, id_inquilino, fecha_inicio, fecha_fin, monto_mensual])
     return contratos
