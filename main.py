@@ -131,7 +131,7 @@ def menu():
         print("4. Gestión de Pagos")
         print("5. Gestión de Usuarios")
         print("6. Salir")
-        opcion = input("Seleccione una opción (1-5): ")
+        opcion = input("Seleccione una opción (1-6): ")
         if opcion == '1':
             gestion_inqiuilinos()
         elif opcion == '2':
