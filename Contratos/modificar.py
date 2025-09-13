@@ -15,6 +15,9 @@ def modificar_contrato(matriz):
             fecha_fin = input("Nueva fecha de fin (YYYY-MM-DD): ")
             if fecha_fin:
                 contrato[4] = fecha_fin
+            if monto: 
+                monto = int(input("Nuevo monto mensual (entero): ")) 
+                contrato[5] = monto
 
             print("Contrato modificado exitosamente.")
             return
