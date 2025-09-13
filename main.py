@@ -9,9 +9,9 @@ from Propiedades.crear import crear_matriz_propiedades
 from Propiedades.modificar import modificar_propiedad
 from Propiedades.busqueda import busqueda_propiedad
 
-from Contratos.datos import matriz_contratos
-from Contratos.crear import crear_matriz_contrato
-from Contratos.modificar import modificar_contrato
+from Contratos.datos_contratos import matriz_contratos
+from Contratos.crear_contratos import crear_matriz_contrato  
+from Contratos.modificar_contratos import modificar_contrato
 
 from Pagos.datos import matriz_pagos
 from Pagos.crear import crear_matriz_pagos
