@@ -1,19 +1,19 @@
 # --- IMPORTS ---
-from Inquilinos.datos import matriz_inquilinos
+from Inquilinos.datos import encabezado_inquilinos, matriz_inquilinos
 from Inquilinos.crear import crear_matriz_inquilinos
 from Inquilinos.modificar import modificar_inquilino
 from Inquilinos.busqueda import busqueda_inquilino
 
-from Propiedades.datos import matriz_propiedades
+from Propiedades.datos import encabezados_propiedades, matriz_propiedades
 from Propiedades.crear import crear_matriz_propiedades
 from Propiedades.modificar import modificar_propiedad
 from Propiedades.busqueda import busqueda_propiedad
 
-from Contratos.datos_contratos import matriz_contratos
+from Contratos.datos_contratos import encabezados_contratos, matriz_contratos
 from Contratos.crear_contratos import crear_matriz_contrato  
 from Contratos.modificar_contratos import modificar_contrato
 
-from Pagos.datos import matriz_pagos
+from Pagos.datos import encabezados_pagos, matriz_pagos
 from Pagos.crear import crear_matriz_pagos
 from Pagos.modificar import modificar_pago
 
@@ -37,9 +37,9 @@ def gestion_inqiuilinos():
         matriz_inquilinos.extend(nuevos_inquilinos)
         print("Inquilinos creados exitosamente.")
     elif opcion == '2':
-        mostrar_matriz(matriz_inquilinos[0], matriz_inquilinos[1:])
+        mostrar_matriz(encabezado_inquilinos, matriz_inquilinos[0:])
     elif opcion == '3':
-        modificar_inquilino(matriz_inquilinos[1:])
+        modificar_inquilino(matriz_inquilinos[0:])
     elif opcion == '4':
         busqueda_inquilino(matriz_inquilinos)
     else:
@@ -59,11 +59,11 @@ def gestion_propiedades():
         matriz_propiedades.extend(nuevas_propiedades)
         print("Propiedades creadas exitosamente.")
     elif opcion == '2':
-        mostrar_matriz(matriz_propiedades[0], matriz_propiedades[1:])
+        mostrar_matriz(encabezados_propiedades, matriz_propiedades[0:], pos_mil={3})
     elif opcion == '3':
-        modificar_propiedad(matriz_propiedades[1:])
+        modificar_propiedad(matriz_propiedades[0:])
     elif opcion == '4':
-        busqueda_propiedad(matriz_propiedades[1:])
+        busqueda_propiedad(matriz_propiedades[0:])
     else:
         print("Opción no válida. Intente nuevamente.")
         gestion_propiedades()
@@ -80,9 +80,9 @@ def gestion_contratos():
         matriz_contratos.extend(nuevos_contratos)
         print("Contratos creados exitosamente.")
     elif opcion == '2':
-        mostrar_matriz(matriz_contratos[0], matriz_contratos[1:])
+        mostrar_matriz(encabezados_contratos, matriz_contratos[0:], pos_mil={5})
     elif opcion == '3':
-        modificar_contrato(matriz_contratos[1:])
+        modificar_contrato(matriz_contratos[0:])
     else:
         print("Opción no válida. Intente nuevamente.")
         gestion_contratos()
@@ -100,9 +100,9 @@ def gestion_pagos():
         print("Pagos creados exitosamente.")
 
     elif opcion == '2':
-        mostrar_matriz(matriz_pagos[0], matriz_pagos[1:])
+        mostrar_matriz(encabezados_pagos, matriz_pagos[0:],pos_mil={3})
     elif opcion == '3':
-        modificar_pago(matriz_pagos[1:])
+        modificar_pago(matriz_pagos[0:])
     else:
         print("Opción no válida. Intente nuevamente.")
         gestion_pagos()
@@ -159,10 +159,10 @@ def iniciar_sistema():
     menu()
 
 # --- EJECUCIÓN ---
-iniciar_sistema()
 
 
-import estadisticas 
+
+"""import estadisticas 
 
 def main():
     inmuebles = [
@@ -177,8 +177,8 @@ def main():
         {"mes": "Febrero", "monto": 40000}
     ]
 
-    estadisticas.mostrar_resumen(inmuebles, contratos)
+    estadisticas.mostrar_resumen(inmuebles, contratos) """
 
 
 if __name__ == "__main__":
-    main()
+    iniciar_sistema()
