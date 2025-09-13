@@ -1,4 +1,4 @@
-from Contratos.validaciones_contratos import validar_id, validar_fecha, validar_monto
+from .validaciones_contratos import validar_id, validar_fecha, validar_monto_mensual
 
 # posiciones en la lista contrato (constantes globales)
 POS_ID        = 0
@@ -40,7 +40,7 @@ def modificar_contrato(matriz):
             _editar_campo(contrato, POS_INQUILINO, "Nuevo ID Inquilino (ENTER = igual): ", validar_id, int)
             _editar_campo(contrato, POS_FECHA_INI, "Nueva Fecha Inicio (YYYY-MM-DD, ENTER = igual): ", validar_fecha, str)
             _editar_campo(contrato, POS_FECHA_FIN, "Nueva Fecha Fin (YYYY-MM-DD, ENTER = igual): ", validar_fecha, str)
-            _editar_campo(contrato, POS_MONTO, "Nuevo Monto (entero, ENTER = igual): ", validar_monto, int)
+            _editar_campo(contrato, POS_MONTO, "Nuevo Monto (entero, ENTER = igual): ", validar_monto_mensual, int)
 
             print("Contrato modificado exitosamente.")
             return

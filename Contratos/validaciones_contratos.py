@@ -7,7 +7,7 @@ def validar_id(valor):
     texto = str(valor).strip()
     return re.match(r"^[0-9]+$", texto) is not None
 
-def validar_monto(valor):
+def validar_monto_mensual(valor):
     """
     Valida que el monto sea un número entero positivo.
     """
@@ -32,13 +32,13 @@ def validar_contrato(fila, encabezados_contratos):
     i_inq   = encabezados_contratos.index("ID Inquilino")
     i_ini   = encabezados_contratos.index("Fecha Inicio")
     i_fin   = encabezados_contratos.index("Fecha Fin")
-    i_monto = encabezados_contratos.index("Monto")
+    i_monto = encabezados_contratos.index("Monto mensual")
 
     if not validar_id(fila[i_id]):      return False
     if not validar_id(fila[i_prop]):    return False
     if not validar_id(fila[i_inq]):     return False
     if not validar_fecha(fila[i_ini]):  return False
     if not validar_fecha(fila[i_fin]):  return False
-    if not validar_monto(fila[i_monto]):return False
+    if not validar_monto_mensual(fila[i_monto]):return False
 
     return True
