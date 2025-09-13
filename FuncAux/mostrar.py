@@ -10,6 +10,19 @@ def convertir_a_texto(valor):
         return f"{int(entrada):,}".replace(",",".")
     return entrada
 
+def estado_a_texto(b):
+    """
+    Convierte un valor booleano en una representación textual del estado.
+    Parámetros:
+        b (boolean): valor booleano que indica el estado lógico.
+                  True  -> el registro está activo
+                  False -> el registro está inactivo
+
+    Retorna:
+        string: "Activo" si b es True, "Inactivo" si b es False.
+    """
+    return "Activo" if b else "Inactivo"
+
 def linea_tabla(anchos, sep_izq="+", sep_med="+", sep_der="+", relleno="-"):
     """
     Genera una línea separadora de la tabla según los anchos de columna.
@@ -39,10 +52,13 @@ def mostrar_matriz(encabezados, matriz, pos_mil=None):
     anchos=[]
 
     for c in range(num_cols):     #c de columna en numeros de columnas
-        ancho_col=len(str(encabezados[c]))
+        ancho_col = len(str(encabezados[c]))
         for fila in filas:
-            ancho_col= max(ancho_col, len(convertir_a_texto(fila[c])))
-        anchos.append(ancho_col)    
+            valor = fila[c]
+            if valor is True or valor is False:           # <-- convierte booleans
+                valor = estado_a_texto(valor)
+            ancho_col = max(ancho_col, len(convertir_a_texto(valor)))
+        anchos.append(ancho_col)   
 
     #Encabezado 
     print(linea_tabla(anchos))
@@ -54,8 +70,11 @@ def mostrar_matriz(encabezados, matriz, pos_mil=None):
     for fila in filas:
         celdas=[]
         for j in range(num_cols):
-            crudo=str(fila[j]) 
-            es_num=crudo.isdigit()                #Se decide como se alinea según el valor original
+            valor = fila[j]
+            if valor is True or valor is False:                    # <-- convierte booleans
+                valor = estado_a_texto(valor)
+            crudo = str(valor)
+            es_num = crudo.isdigit()                   #Se decide como se alinea según el valor original
             if j in pos_mil and es_num:
                 texto = convertir_a_texto(crudo)
             else:
