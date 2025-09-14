@@ -1,21 +1,48 @@
 def modificar_propiedad(matriz):
     id_propiedad = int(input("Ingrese el ID de la propiedad a modificar: "))
+    
     for propiedad in matriz:
         if propiedad[0] == id_propiedad:
-            actualizar = lambda i, msg, cast=str: propiedad.__setitem__(i, cast(nuevo)) if (nuevo := input(msg)) else None
+            # Dirección
+            print(f"Dirección actual: {propiedad[1]}")
+            nuevo = input("Nueva dirección (Enter para dejar igual): ")
+            if nuevo != "":
+                propiedad[1] = nuevo
 
-            actualizar(1, "Nueva dirección: ")
-            actualizar(2, "Nuevo tipo de propiedad: ")
-            actualizar(3, "Nuevo precio de alquiler: ", int)
+            print(f"Tipo actual: {propiedad[2]}")
+            while True:
+                nuevo = input("Nuevo tipo de propiedad (Casa [0] / Departamento [1] / Enter para dejar igual): ")
+                if nuevo == "0":
+                    propiedad[2] = "Casa"
+                    break
+                elif nuevo == "1":
+                    propiedad[2] = "Departamento"
+                    break
+                elif nuevo == "":
+                    break  
+                else:
+                    print("Opción no válida. Vuelva a intentar.")
 
-            estado = input("Si desea dar de baja la propiedad ingrese [1] y si desea volver a activarla [0]: ")
-            if estado == "1":
-                propiedad[4] = "Ocupada"
-            elif estado == "0":
-                propiedad[4] = "Libre"
-            else:
-                print("Opción no válida. El estado no se modificará.")
+            print(f"Precio actual: {propiedad[3]}")
+            nuevo = input("Nuevo precio de alquiler (Enter para dejar igual): ")
+            if nuevo != "":
+                propiedad[3] = int(nuevo)
 
-            print("Propiedad modificada exitosamente.")
+            print(f"Estado actual: {propiedad[4]}")
+            while True:
+                estado = input("Dar de baja [1], activar [0], Enter para no cambiar: ")
+                if estado == "1":
+                    propiedad[4] = "Ocupada"
+                    break
+                elif estado == "0":
+                    propiedad[4] = "Libre"
+                    break
+                elif estado == "":
+                    break  
+                else:
+                    print("Opción inválida. Vuelva a intentar.")
+
+            print("\n✅ Propiedad modificada exitosamente.")
             return
-    print("Propiedad no encontrada.")
+    
+    print("❌ Propiedad no encontrada.")

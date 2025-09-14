@@ -9,9 +9,8 @@ from Propiedades.crear import crear_matriz_propiedades
 from Propiedades.modificar import modificar_propiedad
 from Propiedades.busqueda import busqueda_propiedad
 
-from Contratos.datos_contratos import encabezados_contratos, matriz_contratos
-from Contratos.crear_contratos import crear_matriz_contrato  
-from Contratos.modificar_contratos import modificar_contrato
+from Contratos.datos import encabezados_contratos, matriz_contratos
+from Contratos.crear import crear_matriz_contrato  
 
 from Pagos.datos import encabezados_pagos, matriz_pagos
 from Pagos.crear import crear_matriz_pagos
@@ -81,8 +80,6 @@ def gestion_contratos():
         print("Contratos creados exitosamente.")
     elif opcion == '2':
         mostrar_matriz(encabezados_contratos, matriz_contratos[0:], pos_mil={5})
-    elif opcion == '3':
-        modificar_contrato(matriz_contratos[0:])
     else:
         print("Opción no válida. Intente nuevamente.")
         gestion_contratos()
@@ -151,33 +148,13 @@ def menu():
 def iniciar_sistema():
     print("----- Bienvenido al sistema -----")
     
-    # Solo permite entrar al menú si el login es correcto
     while not iniciar_sesion():
         pass  # sigue pidiendo login hasta que sea correcto
 
-    # Una vez logueado, muestra el menú
     menu()
 
 # --- EJECUCIÓN ---
 
-
-
-"""import estadisticas 
-
-def main():
-    inmuebles = [
-        {"id": 1, "estado": "ocupado", "valor": 120000},
-        {"id": 2, "estado": "libre", "valor": 90000},
-        {"id": 3, "estado": "ocupado", "valor": 150000}
-    ]
-
-    contratos = [
-        {"mes": "Enero", "monto": 50000},
-        {"mes": "Enero", "monto": 30000},
-        {"mes": "Febrero", "monto": 40000}
-    ]
-
-    estadisticas.mostrar_resumen(inmuebles, contratos) """
 
 if __name__ == "__main__":
     iniciar_sistema()
