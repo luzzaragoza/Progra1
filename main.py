@@ -29,7 +29,8 @@ def gestion_inqiuilinos():
     print("2. Mostrar Inquilinos")
     print("3. Modificar Inquilinos")
     print("4. Buscar Inquilinos")
-    opcion = input("Seleccione una opción (1-4): ")
+    print("5. Salir")
+    opcion = input("Seleccione una opción (1-5): ")
     if opcion == '1':
         cant_inquilinos = int(input("¿Cuántos inquilinos desea crear? "))
         nuevos_inquilinos = crear_matriz_inquilinos(cant_inquilinos)
@@ -41,6 +42,9 @@ def gestion_inqiuilinos():
         modificar_inquilino(matriz_inquilinos[0:])
     elif opcion == '4':
         busqueda_inquilino(matriz_inquilinos)
+    elif opcion == '5':
+            print("Saliendo al menu principal...")
+            menu()
     else:
         print("Opción no válida. Intente nuevamente.")
         gestion_inqiuilinos()
@@ -51,7 +55,8 @@ def gestion_propiedades():
     print("2. Mostrar Propiedades")
     print("3. Modificar Propiedades")
     print("4. Buscar Propiedades")
-    opcion = input("Seleccione una opción (1-4): ")
+    print("5. Salir")
+    opcion = input("Seleccione una opción (1-5): ")
     if opcion == '1':
         cant_propiedades = int(input("¿Cuántas propiedades desea crear? "))
         nuevas_propiedades = crear_matriz_propiedades(cant_propiedades)
@@ -63,6 +68,9 @@ def gestion_propiedades():
         modificar_propiedad(matriz_propiedades[0:])
     elif opcion == '4':
         busqueda_propiedad(matriz_propiedades[0:])
+    elif opcion == '5':
+            print("Saliendo al menu principal...")
+            menu()
     else:
         print("Opción no válida. Intente nuevamente.")
         gestion_propiedades()
@@ -72,7 +80,8 @@ def gestion_contratos():
     print("1. Crear Contratos")
     print("2. Mostrar Contratos")
     print("3. Modificar Contratos")
-    opcion = input("Seleccione una opción (1-3): ")
+    print("4. Salir")
+    opcion = input("Seleccione una opción (1-4): ")
     if opcion == '1':
         cant_contratos = int(input("¿Cuántos contratos desea crear? "))
         nuevos_contratos = crear_matriz_contrato(cant_contratos)
@@ -80,6 +89,9 @@ def gestion_contratos():
         print("Contratos creados exitosamente.")
     elif opcion == '2':
         mostrar_matriz(encabezados_contratos, matriz_contratos[0:], pos_mil={5})
+    elif opcion == '4':
+            print("Saliendo al menu principal...")
+            menu()
     else:
         print("Opción no válida. Intente nuevamente.")
         gestion_contratos()
@@ -89,17 +101,20 @@ def gestion_pagos():
     print("1. Crear Pagos")
     print("2. Mostrar Pagos")
     print("3. Modificar Pagos")
-    opcion = input("Seleccione una opción (1-3): ")
+    print("4. Salir")
+    opcion = input("Seleccione una opción (1-4): ")
     if opcion == '1':
         cant_pagos = int(input("¿Cuántos pagos desea crear? "))
         nuevos_pagos = crear_matriz_pagos(cant_pagos)
         matriz_pagos.extend(nuevos_pagos)
         print("Pagos creados exitosamente.")
-
     elif opcion == '2':
         mostrar_matriz(encabezados_pagos, matriz_pagos[0:],pos_mil={3})
     elif opcion == '3':
         modificar_pago(matriz_pagos[0:])
+    elif opcion == '4':
+            print("Saliendo al menu principal...")
+            menu()
     else:
         print("Opción no válida. Intente nuevamente.")
         gestion_pagos()
@@ -108,11 +123,15 @@ def gestion_usuarios():
     print("----- Gestión de Usuarios -----")
     print("1. Crear Usuario")
     print("2. Modificar Usuario")
+    print("3. Salir")
     opcion = input("Seleccione una opción (1-2): ")
     if opcion == '1':
         crear_usuario()
     elif opcion == '2':
         modificar_usuario()
+    elif opcion == '3':
+            print("Saliendo al menu principal...")
+            menu()
     else:
         print("Opción no válida. Intente nuevamente.")
         gestion_usuarios()

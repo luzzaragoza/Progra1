@@ -10,18 +10,7 @@ def convertir_a_texto(valor):
         return f"{int(entrada):,}".replace(",",".")
     return entrada
 
-def estado_a_texto(b):
-    """
-    Convierte un valor booleano en una representación textual del estado.
-    Parámetros:
-        b (boolean): valor booleano que indica el estado lógico.
-                  True  -> el registro está activo
-                  False -> el registro está inactivo
 
-    Retorna:
-        string: "Activo" si b es True, "Inactivo" si b es False.
-    """
-    return "Activo" if b else "Inactivo"
 
 def linea_tabla(anchos, sep_izq="+", sep_med="+", sep_der="+", relleno="-"):
     """
