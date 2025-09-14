@@ -3,7 +3,7 @@ def crear_inquilino(id_inquilino):
     dni = int(input("DNI (solo números): "))
     mail = input("Mail: ")
     telefono = int(input("Teléfono: "))
-    estado = "Activo"  # Estado por defecto
+    estado = "Activo" 
     
     return [id_inquilino, nombre, dni, mail, telefono, estado]
 
