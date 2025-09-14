@@ -1,7 +1,16 @@
-def crear_matriz_pagos(cant_pagos):
-    pagos = []
+ultimo_id_pago = 0  
+
+def crear_matriz_pagos(cant_pagos, pagos_existentes=None):
+    global ultimo_id_pago
+    
+    if pagos_existentes is None:
+        pagos_existentes = []
+    
+    pagos = pagos_existentes[:]
+    
     for i in range(cant_pagos):
-        ID_pago = len(pagos) + 1
+        ultimo_id_pago += 1
+        ID_pago = ultimo_id_pago
         id_contrato = int(input("ID del contrato: "))
         fecha_pago = input("Fecha de pago (YYYY-MM-DD): ")
         monto = int(input("Monto del pago: "))

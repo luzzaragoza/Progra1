@@ -13,3 +13,28 @@ def crear_matriz_propiedades(cant_propiedades):
         propiedad = crear_propiedad(id_propiedad)
         propiedades.append(propiedad)
     return propiedades
+
+
+'''def crear_propiedad(id_propiedad):
+    direccion = input("Dirección de la propiedad: ")
+    ciudad = input("Ciudad: ")
+    valor = float(input("Valor del alquiler: "))
+    estado = "Disponible"
+    return [id_propiedad, direccion, ciudad, valor, estado]
+
+
+def crear_matriz_propiedades(cant_propiedades, propiedades=None):
+    if propiedades is None:
+        propiedades = []
+    for _ in range(cant_propiedades):
+        id_propiedad = generar_id(propiedades)
+        propiedad = crear_propiedad(id_propiedad)
+        propiedades.append(propiedad)
+    return propiedades
+
+
+def imprimir_propiedades(propiedades):
+    print("{:<4} {:<30} {:<15} {:<10} {:<12}".format("ID","DIRECCIÓN","CIUDAD","ALQ","ESTADO"))
+    for p in propiedades:
+        print("{:<4} {:<30} {:<15} {:<10} {:<12}".format(p[0], p[1], p[2], p[3], p[4]))
+'''
