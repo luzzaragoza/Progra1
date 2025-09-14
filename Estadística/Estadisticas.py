@@ -51,14 +51,14 @@ def mostrar_ocupacion(inmuebles):
 
 def mostrar_ingresos(contratos):
     ingresos = ingreso_mensual(contratos)
-    print("\n💰 INGRESOS POR MES")
+    print("\n INGRESOS POR MES")
     for mes, monto in ingresos.items():
         print(f"{mes}: ${monto}")
 
 
 def mostrar_valores(inmuebles):
     valores = valores_inmuebles(inmuebles)
-    print("\n🏠 VALORES DE INMUEBLES")
+    print("\n VALORES DE INMUEBLES")
     print(f"Más alto: ${valores['max']}")
     print(f"Más bajo: ${valores['min']}")
 
