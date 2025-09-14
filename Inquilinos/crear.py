@@ -16,6 +16,7 @@ def crear_matriz_inquilinos(cant_inquilinos):
         inquilinos.append(inquilino)
     return inquilinos
 
+
 '''def generar_id(lista):
     """Devuelve el siguiente ID basado en la última fila de la lista.
     Suponemos que cada elemento tiene el ID en la posición 0."""
