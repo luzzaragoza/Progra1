@@ -1,13 +1,28 @@
 def crear_matriz_pagos(cant_pagos):
-    pagos=[]
+    pagos = []
     for i in range(cant_pagos):
-        ID_pago= len(pagos) + 1
-        id_contrato=int(input("ID del contrato:"))
-        fecha_pago=input("Fecha de pago (YYYY-MM-DD):")
-        monto=int(input("Monto del pago:"))
-        metodo=input("Metodo de pago:")
+        ID_pago = len(pagos) + 1
+        id_contrato = int(input("ID del contrato: "))
+        fecha_pago = input("Fecha de pago (YYYY-MM-DD): ")
+        monto = int(input("Monto del pago: "))
 
-        pago=[ID_pago, id_contrato, fecha_pago, monto, metodo]
+        print("Seleccione el método de pago:")
+        print("1 - Tarjeta")
+        print("2 - Efectivo")
+        print("3 - Transferencia")
+        opcion = input("Opción: ")
+
+        if opcion == "1":
+            metodo = "Tarjeta"
+        elif opcion == "2":
+            metodo = "Efectivo"
+        elif opcion == "3":
+            metodo = "Transferencia"
+        else:
+            print("Opción inválida. Se registrará como 'Otro'.")
+            metodo = "Otro"
+
+        pago = [ID_pago, id_contrato, fecha_pago, monto, metodo]
         pagos.append(pago)
 
     return pagos

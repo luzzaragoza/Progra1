@@ -22,6 +22,9 @@ from FuncAux.login import validar_usuario, iniciar_sesion
 
 from Usuarios.crear import crear_usuario
 from Usuarios.modificar import modificar_usuario
+
+from Estadisticas import mostrar_resumen
+
 #Funciones de Menu
 
 def gestion_inqiuilinos():
@@ -30,7 +33,9 @@ def gestion_inqiuilinos():
     print("2. Mostrar Inquilinos")
     print("3. Modificar Inquilinos")
     print("4. Buscar Inquilinos")
-    opcion = input("Seleccione una opción (1-4): ")
+    print("5. Resumen Estadístico")
+
+    opcion = input("Seleccione una opción (1-5): ")
     if opcion == '1':
         cant_inquilinos = int(input("¿Cuántos inquilinos desea crear? "))
         nuevos_inquilinos = crear_matriz_inquilinos(cant_inquilinos)
@@ -42,6 +47,9 @@ def gestion_inqiuilinos():
         modificar_inquilino(matriz_inquilinos[0:])
     elif opcion == '4':
         busqueda_inquilino(matriz_inquilinos)
+    elif opcion == '5':
+        mostrar_resumen(matriz_propiedades, matriz_contratos)
+
     else:
         print("Opción no válida. Intente nuevamente.")
         gestion_inqiuilinos()

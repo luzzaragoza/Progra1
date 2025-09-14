@@ -2,7 +2,7 @@
 
 def calcular_ocupacion(inmuebles):
     total = len(inmuebles)
-    ocupados = sum(1 for i in inmuebles if i.get("estado") == "ocupado")
+    ocupados = sum(1 for i in inmuebles if i["estado"] == "ocupado")
     libres = total - ocupados
 
     return {
@@ -17,9 +17,12 @@ def calcular_ocupacion(inmuebles):
 def ingreso_mensual(contratos):
     ingresos = {}
     for c in contratos:
-        mes = c.get("mes")
-        monto = c.get("monto", 0)
-        ingresos[mes] = ingresos.get(mes, 0) + monto
+        mes = c["mes"]
+        monto = c["monto"] if "monto" in c else 0
+        if mes in ingresos:
+            ingresos[mes] += monto
+        else:
+            ingresos[mes] = monto
     return ingresos
 
 
@@ -27,7 +30,7 @@ def valores_inmuebles(inmuebles):
     if not inmuebles:
         return {"max": None, "min": None}
 
-    valores = [i.get("valor", 0) for i in inmuebles]
+    valores = [i["valor"] if "valor" in i else 0 for i in inmuebles]
     return {"max": max(valores), "min": min(valores)}
 
 
@@ -38,15 +41,12 @@ def resumen_estadistico(inmuebles, contratos):
         "valores": valores_inmuebles(inmuebles),
     }
 
-
-
-
 def mostrar_ocupacion(inmuebles):
-    stats = calcular_ocupacion(inmuebles)
+    resultado = calcular_ocupacion(inmuebles)
     print("ESTADO DE INMUEBLES")
-    print(f"Total: {stats['total']}")
-    print(f"Ocupados: {stats['ocupados']} ({stats['porc_ocupados']:.2f}%)")
-    print(f"Libres: {stats['libres']} ({stats['porc_libres']:.2f}%)")
+    print(f"Total: {resultado['total']}")
+    print(f"Ocupados: {resultado['ocupados']} ({resultado['porc_ocupados']:.2f}%)")
+    print(f"Libres: {resultado['libres']} ({resultado['porc_libres']:.2f}%)")
 
 
 def mostrar_ingresos(contratos):
