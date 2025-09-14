@@ -10,7 +10,7 @@ def modificar_contrato(matriz):
 
             if opcion == "1":
                 contrato[6] = "Finalizado"
-                print("✅ Contrato finalizado correctamente.")
+                print("Contrato finalizado correctamente.")
             
             elif opcion == "2":
                 contrato[6] = "Rescindido"
