@@ -22,7 +22,7 @@ from FuncAux.login import validar_usuario, iniciar_sesion
 from Usuarios.crear import crear_usuario
 from Usuarios.modificar import modificar_usuario
 
-from Estadisticas import mostrar_resumen
+from estadisticas import mostrar_resumen
 
 #Funciones de Menu
 
@@ -150,7 +150,8 @@ def menu():
         print("3. Gestión de Contratos")
         print("4. Gestión de Pagos")
         print("5. Gestión de Usuarios")
-        print("6. Salir")
+        print("6. Resumen Estadístico")
+        print("7. Salir")
         opcion = input("Seleccione una opción (1-6): ")
         if opcion == '1':
             gestion_inqiuilinos()
@@ -163,6 +164,8 @@ def menu():
         elif opcion == '5':
             gestion_usuarios()
         elif opcion == '6':
+            mostrar_resumen(matriz_inmuebles, matriz_contratos)
+        elif opcion == '7':
             print("Saliendo del programa...")
             break
         else:

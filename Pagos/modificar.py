@@ -14,19 +14,22 @@ def modificar_pago(matriz):
             if monto:
                 pago[3] = int(monto)
 
+            # Diccionario de métodos de pago
+            metodos = {
+                "1": "Tarjeta",
+                "2": "Efectivo",
+                "3": "Transferencia"
+            }
+
             print("Seleccione el nuevo método de pago (o Enter para no modificar):")
-            print("1 - Tarjeta")
-            print("2 - Efectivo")
-            print("3 - Transferencia")
-            opcion = input("Opción: ")
-            if opcion == "1":
-                pago[4] = "Tarjeta"
-            elif opcion == "2":
-                pago[4] = "Efectivo"
-            elif opcion == "3":
-                pago[4] = "Transferencia"
-            elif opcion.strip() == "":
-                pass  # No modifica el método si se deja vacío
+            for k, v in metodos.items():
+                print(f"{k} - {v}")
+
+            opcion = input("Opción: ").strip()
+            if opcion in metodos:
+                pago[4] = metodos[opcion]
+            elif opcion == "":
+                pass  # No modifica el método
             else:
                 print("Opción inválida. El método no se modificará.")
 
