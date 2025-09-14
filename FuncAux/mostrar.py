@@ -10,15 +10,13 @@ def convertir_a_texto(valor):
         return f"{int(entrada):,}".replace(",",".")
     return entrada
 
-
-
 def linea_tabla(anchos, sep_izq="+", sep_med="+", sep_der="+", relleno="-"):
     """
     Genera una línea separadora de la tabla según los anchos de columna.
     """
     return sep_izq + sep_med.join(relleno * (ancho + 2) for ancho in anchos) + sep_der
 
-def mostrar_matriz(encabezados, matriz, pos_mil=None):
+def mostrar_matriz(encabezados, matriz, pos_mil=None, censurar=None):
     """
     Muestra una matriz como tabla con bordes, encabezados y columnas alineadas.
     Texto alineado a la izquierda.
@@ -32,6 +30,8 @@ def mostrar_matriz(encabezados, matriz, pos_mil=None):
         return
     if pos_mil is None:
         pos_mil=set()
+    if censurar is None:
+        censurar = set()
     
     num_cols= len(encabezados)
     filas=[fila[:num_cols]+[""] * max(0, num_cols - len(fila)) for fila in matriz]
@@ -44,8 +44,14 @@ def mostrar_matriz(encabezados, matriz, pos_mil=None):
         ancho_col = len(str(encabezados[c]))
         for fila in filas:
             valor = fila[c]
-            if valor is True or valor is False:           # <-- convierte booleans
-                valor = estado_a_texto(valor)
+            if c in censurar:
+                texto = "****"
+            else:
+                s= str(fila[c])
+                if c in pos_mil and s.isdigit():
+                    texto = convertir_a_texto(s)
+                else:
+                    texto= s
             ancho_col = max(ancho_col, len(convertir_a_texto(valor)))
         anchos.append(ancho_col)   
 
@@ -59,15 +65,17 @@ def mostrar_matriz(encabezados, matriz, pos_mil=None):
     for fila in filas:
         celdas=[]
         for j in range(num_cols):
-            valor = fila[j]
-            if valor is True or valor is False:                    # <-- convierte booleans
-                valor = estado_a_texto(valor)
-            crudo = str(valor)
-            es_num = crudo.isdigit()                   #Se decide como se alinea según el valor original
-            if j in pos_mil and es_num:
-                texto = convertir_a_texto(crudo)
+            if j in censurar:
+                texto = "****"
+                es_num = False
             else:
-                texto = crudo
+                crudo = str(fila[j])
+                if j in pos_mil and crudo.isdigit():
+                    texto = convertir_a_texto(crudo)
+                    es_num = True
+                else:
+                    texto = crudo
+                    es_num = texto.isdigit()
             celdas.append(texto.rjust(anchos[j]) if es_num else texto.ljust(anchos[j]))
         print("| " + " | ".join(celdas) + " |")
 

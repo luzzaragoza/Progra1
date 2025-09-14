@@ -88,7 +88,7 @@ def gestion_contratos():
         matriz_contratos.extend(nuevos_contratos)
         print("Contratos creados exitosamente.")
     elif opcion == '2':
-        mostrar_matriz(encabezados_contratos, matriz_contratos[0:], pos_mil={5})
+        mostrar_matriz(encabezados_contratos, matriz_contratos[0:], pos_mil={5}, censurar={1,2})
     elif opcion == '4':
             print("Saliendo al menu principal...")
             menu()
