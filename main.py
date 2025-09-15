@@ -22,7 +22,8 @@ from FuncAux.login import validar_usuario, iniciar_sesion
 from Usuarios.crear import crear_usuario
 from Usuarios.modificar import modificar_usuario
 
-from estadisticas import mostrar_resumen
+from estadistica.estadisticas import mostrar_resumen
+
 
 #Funciones de Menu
 
@@ -48,10 +49,9 @@ def gestion_inqiuilinos():
         busqueda_inquilino(matriz_inquilinos)
     elif opcion == '5':
         mostrar_resumen(matriz_propiedades, matriz_contratos)
-
     else:
         print("Opción no válida. Intente nuevamente.")
-        gestion_inqiuilinos()
+    gestion_inqiuilinos()
 
 def gestion_propiedades():
     print("----- Gestión de Propiedades -----")
@@ -152,7 +152,7 @@ def menu():
         print("5. Gestión de Usuarios")
         print("6. Resumen Estadístico")
         print("7. Salir")
-        opcion = input("Seleccione una opción (1-6): ")
+        opcion = input("Seleccione una opción (1-7): ")
         if opcion == '1':
             gestion_inqiuilinos()
         elif opcion == '2':
@@ -164,7 +164,7 @@ def menu():
         elif opcion == '5':
             gestion_usuarios()
         elif opcion == '6':
-            mostrar_resumen(matriz_inmuebles, matriz_contratos)
+            mostrar_resumen(matriz_propiedades, matriz_contratos)
         elif opcion == '7':
             print("Saliendo del programa...")
             break
