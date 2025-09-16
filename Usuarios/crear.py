@@ -13,7 +13,7 @@ def crear_usuario():
         print("El usuario ya existe. Intente con otro.")
         usuario = input("Ingrese nuevo usuario: ")
     contraseña = input("Ingrese nueva contraseña: ")
-    estado = "activo"
+    estado = "Activo"
 
     estado_usuarios.append(estado)
     usuarios.append(usuario)

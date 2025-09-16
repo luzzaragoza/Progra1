@@ -1,11 +1,11 @@
-def crear_contrato(id_propiedad):
+def crear_contrato(id_contrato):
     id_propiedad = input("ID de la propiedad: ").strip()
     id_inquilino = input("ID del inquilino: ").strip()
     fecha_inicio = input("Fecha de inicio (YYYY-MM-DD): ").strip()
     fecha_fin    = input("Fecha de fin (YYYY-MM-DD): ").strip()
     monto_mensual= input("Monto mensual: ").strip()
     
-    return [id_propiedad, id_inquilino, fecha_inicio, fecha_fin, monto_mensual, True]
+    return [id_propiedad, id_inquilino, fecha_inicio, fecha_fin, monto_mensual]
 
 
 
@@ -19,8 +19,8 @@ def crear_matriz_contrato(cant_contratos):
     contratos = []
 
     for i in range(cant_contratos):
-        ID_contrato = len(contratos) + 1  
-        contrato = crear_contrato(ID_contrato)
+        id_contrato = len(contratos) + 1  
+        contrato = crear_contrato(id_contrato)
 
         contratos.append(contrato)
 
