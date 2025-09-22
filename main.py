@@ -157,7 +157,7 @@ def menu():
             gestion_inqiuilinos()
         elif opcion == '2':
             gestion_propiedades()
-        elif opcion == '3':
+        elif opcion == '3': 
             gestion_contratos()
         elif opcion == '4':
             gestion_pagos()
