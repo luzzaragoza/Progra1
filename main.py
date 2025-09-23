@@ -19,7 +19,7 @@ from Pagos.modificar import modificar_pago
 from FuncAux.mostrar import mostrar_matriz
 from FuncAux.login import iniciar_sesion
 
-from Usuarios.crear import crear_usuario, crear_cant_usuario
+from Usuarios.crear import crear_cant_usuario
 from Usuarios.modificar import cambiar_contrasenia as modificar_usuario
 from Usuarios.mostrar import mostrar_usuarios
 
@@ -132,7 +132,8 @@ def gestion_usuarios():
     print("4. Salir")
     opcion = input("Seleccione una opción (1-4): ")
     if opcion == '1':
-        crear_usuario()
+        cantidad_usuarios = int(input("¿Cuántos usuarios desea crear? "))
+        crear_cant_usuario(cantidad_usuarios)
     elif opcion == '2':
         modificar_usuario()
     elif opcion == '3':
