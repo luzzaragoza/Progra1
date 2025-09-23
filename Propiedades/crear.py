@@ -1,52 +1,53 @@
-def crear_propiedad(id_propiedad):
-    direccion = input("Dirección de la propiedad: ")
+from Propiedades.datos import propiedades
+
+norm = lambda s: s.strip().lower() # Normaliza strings para comparaciones
+pwd_ok = lambda s: len(s) >= 4 # Valida que la contraseña tenga al menos 4 caracteres
+nonempty = lambda s: len(s.strip()) > 0 # Valida que el string no esté vacío
+
+def tipo_propiedad(opcion):
+    tipo = ""
+    if opcion == "0":
+        tipo = "Casa"
+    elif opcion == "1":
+        tipo = "Departamento"
+    elif opcion == "2":
+        tipo = input("Ingrese el tipo de propiedad: ").strip()
+    else:
+        print("Opción no válida, vuelva a intentar.")
     
-    while True:
-        opcion_tipo = input("Tipo de propiedad (Casa [0] / Departamento [1]): ")
-        if opcion_tipo == "0":
-            tipo = "Casa"
-            break
-        elif opcion_tipo == "1":
-            tipo = "Departamento"
-            break
-        else:
-            print("Opción no válida, vuelva a intentar.")
+    return tipo
+
+def crear_propiedad(id_propiedad):
+    direccion = input("Dirección de la propiedad (Calle y número): ").strip()
+    while not nonempty(direccion):
+        print("La dirección no puede estar vacía. Intente nuevamente.")
+        direccion = input("Dirección de la propiedad (Calle y número): ").strip()
+    
+    print("Seleccione el tipo de propiedad:")
+    print("0 - Casa")
+    print("1 - Departamento")
+    print("2 - Otro")
+    opcion = input("Opción: ").strip()
+    tipo = tipo_propiedad(opcion)
+    
     
     precio_alquiler = int(input("Precio de alquiler (USD): "))
-    estado = "Libre" 
+    while precio_alquiler <= 0:
+        print("El precio de alquiler debe ser un número positivo. Intente nuevamente.")
+        precio_alquiler = int(input("Precio de alquiler (USD): "))
+
+    propiedades[id_propiedad] = {f"Direccion": direccion, "Tipo": tipo, "PrecioAlquiler": precio_alquiler, "Estado": "Disponible"}
+    print(f"Propiedad con ID {id_propiedad} creada exitosamente.\n")
     
-    return [id_propiedad, direccion, tipo, precio_alquiler, estado]
+    return propiedades
 
 
-def crear_matriz_propiedades(cant_propiedades):
-    propiedades = []
+def crear_cant_propiedades(cant_propiedades):
+    creados = []
     for i in range(cant_propiedades):
+        print(f"--- Ingresando datos de la propiedad {i + 1} ---")
         id_propiedad = len(propiedades) + 1
-        propiedad = crear_propiedad(id_propiedad)
-        propiedades.append(propiedad)
-    return propiedades
-
-
-'''def crear_propiedad(id_propiedad):
-    direccion = input("Dirección de la propiedad: ")
-    ciudad = input("Ciudad: ")
-    valor = float(input("Valor del alquiler: "))
-    estado = "Disponible"
-    return [id_propiedad, direccion, ciudad, valor, estado]
-
-
-def crear_matriz_propiedades(cant_propiedades, propiedades=None):
-    if propiedades is None:
-        propiedades = []
-    for _ in range(cant_propiedades):
-        id_propiedad = generar_id(propiedades)
-        propiedad = crear_propiedad(id_propiedad)
-        propiedades.append(propiedad)
-    return propiedades
-
-
-def imprimir_propiedades(propiedades):
-    print("{:<4} {:<30} {:<15} {:<10} {:<12}".format("ID","DIRECCIÓN","CIUDAD","ALQ","ESTADO"))
-    for p in propiedades:
-        print("{:<4} {:<30} {:<15} {:<10} {:<12}".format(p[0], p[1], p[2], p[3], p[4]))
-'''
+        nuevo = crear_propiedad(id_propiedad)
+        creados.append(nuevo)
+    print(f"Propiedades creadas exitosamente: ({len(creados)}) \n")
+    return creados

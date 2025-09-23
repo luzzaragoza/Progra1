@@ -5,9 +5,10 @@ from Inquilinos.modificar import modificar_inquilino
 from Inquilinos.busqueda import busqueda_inquilino
 
 from Propiedades.datos import encabezados_propiedades, propiedades as matriz_propiedades
-from Propiedades.crear import crear_matriz_propiedades
 from Propiedades.modificar import modificar_propiedad
 from Propiedades.busqueda import busqueda_propiedad
+from Propiedades.crear import crear_propiedad, crear_cant_propiedades as crear_matriz_propiedades
+from Propiedades.mostrar import mostrar_propiedades
 
 from Contratos.datos import encabezados_contratos, contratos as matriz_contratos
 from Contratos.crear import crear_matriz_contrato  
@@ -64,13 +65,11 @@ def gestion_propiedades():
     opcion = input("Seleccione una opción (1-5): ")
     if opcion == '1':
         cant_propiedades = int(input("¿Cuántas propiedades desea crear? "))
-        nuevas_propiedades = crear_matriz_propiedades(cant_propiedades)
-        matriz_propiedades.extend(nuevas_propiedades)
-        print("Propiedades creadas exitosamente.")
+        crear_matriz_propiedades(cant_propiedades)
     elif opcion == '2':
-        mostrar_matriz(encabezados_propiedades, matriz_propiedades[0:], pos_mil={3})
+        mostrar_propiedades()
     elif opcion == '3':
-        modificar_propiedad(matriz_propiedades[0:])
+        modificar_propiedad()
     elif opcion == '4':
         busqueda_propiedad(matriz_propiedades[0:])
     elif opcion == '5':

@@ -1,34 +1,34 @@
-encabezados_propiedades=["ID Propiedad", "Dirección", "Tipo", "Precio Alquiler", "Estado"]
+encabezados_propiedades=["ID Propiedad", "Direccion", "Tipo", "PrecioAlquiler", "Estado"]
 
 propiedades = {
     101: {
-        "Dirección": "Av. Siempre Viva 742",
+        "Direccion": "Av. Siempre Viva 742",
         "Tipo": "Departamento",
-        "Precio Alquiler": 75000,
+        "PrecioAlquiler": 75000,
         "Estado": "Libre"
     },
     102: {
-        "Dirección": "Calle Falsa 123",
+        "Direccion": "Calle Falsa 123",
         "Tipo": "Casa",
-        "Precio Alquiler": 95000,
+        "PrecioAlquiler": 95000,
         "Estado": "Ocupada"
     },
     103: {
-        "Dirección": "Belgrano 456",
+        "Direccion": "Belgrano 456",
         "Tipo": "Departamento",
-        "Precio Alquiler": 80000,
+        "PrecioAlquiler": 80000,
         "Estado": "Libre"
     },
     104: {
-        "Dirección": "San Martín 321",
+        "Direccion": "San Martín 321",
         "Tipo": "Local",
-        "Precio Alquiler": 120000,
+        "PrecioAlquiler": 120000,
         "Estado": "Ocupada"
     },
     105: {
-        "Dirección": "Mitre 555",
+        "Direccion": "Mitre 555",
         "Tipo": "Casa",
-        "Precio Alquiler": 98000,
+        "PrecioAlquiler": 98000,
         "Estado": "Libre"
     }
 }

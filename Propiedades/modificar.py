@@ -1,48 +1,44 @@
-def modificar_propiedad(matriz):
-    id_propiedad = int(input("Ingrese el ID de la propiedad a modificar: "))
-    
-    for propiedad in matriz:
-        if propiedad[0] == id_propiedad:
-            # Dirección
-            print(f"Dirección actual: {propiedad[1]}")
-            nuevo = input("Nueva dirección (Enter para dejar igual): ")
-            if nuevo != "":
-                propiedad[1] = nuevo
+from Propiedades.datos import propiedades  
 
-            print(f"Tipo actual: {propiedad[2]}")
-            while True:
-                nuevo = input("Nuevo tipo de propiedad (Casa [0] / Departamento [1] / Enter para dejar igual): ")
-                if nuevo == "0":
-                    propiedad[2] = "Casa"
-                    break
-                elif nuevo == "1":
-                    propiedad[2] = "Departamento"
-                    break
-                elif nuevo == "":
-                    break  
-                else:
-                    print("Opción no válida. Vuelva a intentar.")
+def modificar_propiedad():
+    print("----- Modificar Propiedad -----")
+    id_prop = int(input("Ingrese el ID de la propiedad a modificar: "))
 
-            print(f"Precio actual: {propiedad[3]}")
-            nuevo = input("Nuevo precio de alquiler (Enter para dejar igual): ")
-            if nuevo != "":
-                propiedad[3] = int(nuevo)
+    if id_prop not in propiedades:
+        print("❌ Propiedad no encontrada.\n")
+        return False
 
-            print(f"Estado actual: {propiedad[4]}")
-            while True:
-                estado = input("Dar de baja [1], activar [0], Enter para no cambiar: ")
-                if estado == "1":
-                    propiedad[4] = "Ocupada"
-                    break
-                elif estado == "0":
-                    propiedad[4] = "Libre"
-                    break
-                elif estado == "":
-                    break  
-                else:
-                    print("Opción inválida. Vuelva a intentar.")
+    p = propiedades[id_prop]
 
-            print("\n✅ Propiedad modificada exitosamente.")
-            return
-    
-    print("❌ Propiedad no encontrada.")
+    # Dirección
+    print(f"\nDirección actual: {p['Direccion']}")
+    nueva_direccion = input("Nueva dirección (Enter para dejar igual): ").strip()
+    if nueva_direccion != "":
+        p["Direccion"] = nueva_direccion
+    elif nueva_direccion == "":
+        pass
+
+    # Tipo (solo Casa / Departamento, como tu versión original)
+    print(f"Tipo actual: {p['Tipo']}")
+    nuevo_tipo = input("Nuevo tipo (Casa [0] / Departamento [1] / Otro [2] / Enter para dejar igual): ").strip()
+    if nuevo_tipo == "0":
+        p["Tipo"] = "Casa"
+    elif nuevo_tipo == "1":
+        p["Tipo"] = "Departamento"
+    elif nuevo_tipo == "2":
+        otro_tipo = input("Ingrese el tipo de propiedad: ").strip()
+        if otro_tipo != "":
+            p["Tipo"] = otro_tipo
+    elif nuevo_tipo == "":
+        pass
+
+    # Precio de alquiler
+    print(f"Precio actual: ${p['PrecioAlquiler']}")
+    nuevo_precio = input("Nuevo precio de alquiler (Enter para dejar igual): ").strip()
+    if nuevo_precio != "" and nuevo_precio.isdigit():
+        p["PrecioAlquiler"] = nuevo_precio
+    elif nuevo_precio == "":
+        pass
+
+    print("\n✅ Propiedad modificada exitosamente.\n")
+    return True

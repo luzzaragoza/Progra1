@@ -1,9 +1,10 @@
 from Usuarios.datos import usuarios
 
+# Lambdas para validaciones y normalizaciones
+
 norm = lambda s: s.strip().lower() # Normaliza strings para comparaciones
 pwd_ok = lambda s: len(s) >= 4 # Valida que la contraseña tenga al menos 4 caracteres
 nonempty = lambda s: len(s.strip()) > 0 # Valida que el string no esté vacío
-
 
 def usuario_existe(usuario):
     return norm(usuario) in (norm(u) for u in usuarios)
@@ -31,5 +32,5 @@ def crear_cant_usuario(cant_usuarios):
         print(f"--- Ingresando datos del usuario {i + 1} ---")
         nuevo = crear_usuario()
         creados.append(nuevo)
-    print(f"Usuarios creados ({len(creados)}): {', '.join(creados)}")
+    print(f"Usuarios creados exitosamente:({len(creados)}) \n")
     return creados
