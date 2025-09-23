@@ -2,7 +2,6 @@
 
 def crear_matriz_pagos(cant_pagos, pagos_existentes=None):
     ultimo_id_pago = 0 
-    global ultimo_id_pago
     
     if pagos_existentes is None:
         pagos_existentes = []

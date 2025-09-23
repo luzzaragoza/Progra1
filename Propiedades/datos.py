@@ -1,8 +1,34 @@
 encabezados_propiedades=["ID Propiedad", "Dirección", "Tipo", "Precio Alquiler", "Estado"]
-matriz_propiedades = [
-    [101, "Av. Siempre Viva 742", "Departamento", 75000, "Libre"],
-    [102, "Calle Falsa 123", "Casa", 95000, "Ocupada"],
-    [103, "Belgrano 456", "Departamento", 80000, "Libre"],
-    [104, "San Martín 321", "Local", 120000, "Ocupada"],
-    [105, "Mitre 555", "Casa", 98000, "Libre"]
-]
+
+propiedades = {
+    101: {
+        "Dirección": "Av. Siempre Viva 742",
+        "Tipo": "Departamento",
+        "Precio Alquiler": 75000,
+        "Estado": "Libre"
+    },
+    102: {
+        "Dirección": "Calle Falsa 123",
+        "Tipo": "Casa",
+        "Precio Alquiler": 95000,
+        "Estado": "Ocupada"
+    },
+    103: {
+        "Dirección": "Belgrano 456",
+        "Tipo": "Departamento",
+        "Precio Alquiler": 80000,
+        "Estado": "Libre"
+    },
+    104: {
+        "Dirección": "San Martín 321",
+        "Tipo": "Local",
+        "Precio Alquiler": 120000,
+        "Estado": "Ocupada"
+    },
+    105: {
+        "Dirección": "Mitre 555",
+        "Tipo": "Casa",
+        "Precio Alquiler": 98000,
+        "Estado": "Libre"
+    }
+}

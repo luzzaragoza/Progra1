@@ -1,26 +1,27 @@
 # --- IMPORTS ---
-from Inquilinos.datos import encabezado_inquilinos, matriz_inquilinos
+from Inquilinos.datos import encabezado_inquilinos, inquilinos as matriz_inquilinos
 from Inquilinos.crear import crear_matriz_inquilinos
 from Inquilinos.modificar import modificar_inquilino
 from Inquilinos.busqueda import busqueda_inquilino
 
-from Propiedades.datos import encabezados_propiedades, matriz_propiedades
+from Propiedades.datos import encabezados_propiedades, propiedades as matriz_propiedades
 from Propiedades.crear import crear_matriz_propiedades
 from Propiedades.modificar import modificar_propiedad
 from Propiedades.busqueda import busqueda_propiedad
 
-from Contratos.datos import encabezados_contratos, matriz_contratos
+from Contratos.datos import encabezados_contratos, contratos as matriz_contratos
 from Contratos.crear import crear_matriz_contrato  
 
-from Pagos.datos import encabezados_pagos, matriz_pagos
+from Pagos.datos import encabezados_pagos, pagos as matriz_pagos
 from Pagos.crear import crear_matriz_pagos
 from Pagos.modificar import modificar_pago
 
 from FuncAux.mostrar import mostrar_matriz
-from FuncAux.login import validar_usuario, iniciar_sesion
+from FuncAux.login import iniciar_sesion
 
-from Usuarios.crear import crear_usuario
-from Usuarios.modificar import modificar_usuario
+from Usuarios.crear import crear_usuario, crear_cant_usuario
+from Usuarios.modificar import cambiar_contrasenia as modificar_usuario
+from Usuarios.mostrar import mostrar_usuarios
 
 from estadistica.estadisticas import mostrar_resumen
 
@@ -126,14 +127,17 @@ def gestion_pagos():
 def gestion_usuarios():
     print("----- Gestión de Usuarios -----")
     print("1. Crear Usuario")
-    print("2. Modificar Usuario")
-    print("3. Salir")
-    opcion = input("Seleccione una opción (1-2): ")
+    print("2. Modificar contraseña")
+    print("3. Mostrar Usuarios")
+    print("4. Salir")
+    opcion = input("Seleccione una opción (1-4): ")
     if opcion == '1':
         crear_usuario()
     elif opcion == '2':
         modificar_usuario()
     elif opcion == '3':
+        mostrar_usuarios()
+    elif opcion == '4':
             print("Saliendo al menu principal...")
             menu()
     else:

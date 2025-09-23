@@ -1,17 +1,17 @@
-from Usuarios.crear import usuarios, contraseñas
+from Usuarios.datos import usuarios
 
-def validar_usuario(usuario, contraseña):
+def validar_usuario(usuario, contrasenia):
+    """Verifica si el usuario existe y la contraseña coincide."""
     if usuario in usuarios:
-        indice = usuarios.index(usuario)
-        if contraseñas[indice] == contraseña:
-            return True
+        return usuarios[usuario]["Contrasenia"] == contrasenia
     return False
 
 def iniciar_sesion():
-    print("----- Incio de sesión -----")
-    usuario = input("Usuario: ")
-    contraseña = input("Contraseña: ")
-    if validar_usuario(usuario, contraseña):
+    print("----- Inicio de sesión -----")
+    usuario = input("Usuario: ").strip()
+    contrasenia = input("Contrasenia: ").strip()
+
+    if validar_usuario(usuario, contrasenia):
         print("Login exitoso.\n")
         return True
     else:
