@@ -2,9 +2,6 @@ from Inquilinos.datos import inquilinos
 from FuncAux.validaciones import norm, nonempty, parse_int
 
 def crear_inquilino(id_inquilino):
-    if id_inquilino in inquilinos:
-        print("Ese ID ya existe. Elija otro.\n")
-        return None
 
     nombre = input("Nombre y Apellido: ")
     while not nonempty(nombre):
@@ -49,7 +46,7 @@ def crear_inquilino(id_inquilino):
     return id_inquilino
 
 
-def crear_matriz_inquilinos(cant_inquilinos):
+def crear_cant_inquilinos(cant_inquilinos):
     creados = []
     for i in range(cant_inquilinos):
         print(f"--- Ingresando datos del inquilino {i + 1} ---")

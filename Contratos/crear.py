@@ -1,27 +1,68 @@
+from Contratos.datos import contratos
+from FuncAux.validaciones import norm, nonempty, parse_int, parse_float, parse_date
+
 def crear_contrato(id_contrato):
-    id_propiedad = input("ID de la propiedad: ").strip()
-    id_inquilino = input("ID del inquilino: ").strip()
-    fecha_inicio = input("Fecha de inicio (YYYY-MM-DD): ").strip()
-    fecha_fin    = input("Fecha de fin (YYYY-MM-DD): ").strip()
-    monto_mensual= input("Monto mensual: ").strip()
-    
-    return [id_propiedad, id_inquilino, fecha_inicio, fecha_fin, monto_mensual]
 
+    # ID de inquilino
+    while True:
+        raw_id_inq = input("ID de inquilino: ")
+        id_inq = parse_int(raw_id_inq)
+        if id_inq is not None and id_inq > 0:
+            break
+        print("Ingrese un ID válido por favor.")
 
+    #ID de propiedad
+    while True:
+        raw_id_prop = input("ID de propiedad: ")
+        id_prop = parse_int(raw_id_prop)
+        if id_prop is not None and id_prop > 0:
+            break
+        print("Ingrese un ID válido por favor.")
 
-def crear_matriz_contrato(cant_contratos):
-    """
-    Crea una matriz con contratos según la cantidad pedida.
+    # Monto del contrato
+    while True:
+        raw_monto = input("Monto mensual (en USD): ")
+        monto = parse_float(raw_monto)
+        if monto is not None and monto > 0:
+            break
+        print("Ingrese un monto válido por favor.")
 
-    Formato de cada contrato:
-    [ID Contrato, ID Propiedad, ID Inquilino, Fecha Inicio, Fecha Fin, Monto mensual, Estado]
-    """
-    contratos = []
+    # Fecha de inicio
+    while True:
+        raw_fecha_inicio = input("Fecha de inicio (DD-MM-AAAA): ")
+        fecha_inicio = parse_date(raw_fecha_inicio)
+        if fecha_inicio is not None:
+            break
+        print("Ingrese una fecha válida por favor.")
 
+    # Fecha de fin
+    while True:
+        raw_fecha_fin = input("Fecha de fin (DD-MM-AAAA): ")
+        fecha_fin = parse_date(raw_fecha_fin)
+        if fecha_fin is not None:
+            break
+        print("Ingrese una fecha válida por favor.")
+
+    # Estado por defecto
+    estado = "Vigente"
+
+    contratos[id_contrato] = {
+        "ID_Inquilino": id_inq,
+        "ID_Propiedad": id_prop,
+        "Monto": monto,
+        "Fecha_Inicio": fecha_inicio,
+        "Fecha_Fin": fecha_fin,
+        "Estado": estado,
+    }
+    print(f"Contrato con id {id_contrato} creado exitosamente.\n")
+    return id_contrato
+
+def crear_cant_contratos(cant_contratos):
+    creados = []
     for i in range(cant_contratos):
-        id_contrato = len(contratos) + 1  
-        contrato = crear_contrato(id_contrato)
-
-        contratos.append(contrato)
-
-    return contratos
+        print(f"--- Ingresando datos del contrato {i + 1} ---")
+        id_con = len(contratos) + 1
+        nuevo = crear_contrato(id_con)
+        creados.append(nuevo)
+    print(f"Contratos creados exitosamente: ({len(creados)}) \n")
+    return creados

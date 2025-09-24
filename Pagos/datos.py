@@ -1,4 +1,3 @@
-encabezados_pagos=["ID Pago", "ID Contrato", "Fecha Pago", "Monto", "Método"]
 
 pagos = {
     9001: {

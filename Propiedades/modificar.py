@@ -1,5 +1,6 @@
 from Propiedades.datos import propiedades
 from FuncAux.validaciones import norm, nonempty, parse_int
+from Propiedades.crear import tipo_propiedad
 
 def modificar_propiedad():
     print("----- Modificar Propiedad -----")
@@ -23,18 +24,12 @@ def modificar_propiedad():
 
     # Tipo (0/1/2) con Enter para mantener
     print(f"Tipo actual: {p['Tipo']}")
-    op = input("Nuevo tipo (Casa [0] / Departamento [1] / Otro [2] / Enter para dejar igual): ")
-    op = norm(op)
-    if op == "0":
-        p["Tipo"] = "Casa"
-    elif op == "1":
-        p["Tipo"] = "Departamento"
-    elif op == "2":
-        otro = input("Ingrese el tipo de propiedad: ")
-        if nonempty(otro):
-            p["Tipo"] = norm(otro)   # guardo prolijo (sin espacios)
-    elif op != "":
-        print("Opción no válida. Se mantiene el tipo actual.")
+    op = tipo_propiedad(input("Nuevo tipo (0 - Casa, 1 - Departamento, 2 - Otro, Enter para dejar igual): ").strip())
+    if op == "Casa" or op == "Departamento":
+        p["Tipo"] = op
+    elif nonempty(op):
+        p["Tipo"] = op
+    # Si op está vacío, se mantiene el tipo actual
 
     # Precio de alquiler
     print(f"Precio actual: ${p['PrecioAlquiler']}")

@@ -11,7 +11,6 @@ def tipo_propiedad(opcion):
         tipo = input("Ingrese el tipo de propiedad: ").strip()
     else:
         print("Opción no válida, vuelva a intentar.")
-    
     return tipo
 
 def crear_propiedad(id_propiedad):

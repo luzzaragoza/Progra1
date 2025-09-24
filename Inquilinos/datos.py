@@ -1,5 +1,3 @@
-encabezado_inquilinos=["ID Inquilino", "Nombre", "DNI", "Email", "Teléfono", "Estado"]
-
 inquilinos = {
     505: {"Nombre": "Juan Pérez","DNI": "30123456","Email": "juan@mail.com","Telefono": "+54 11 4567-8901","Estado": "Activo"},
     506: {"Nombre": "María López","DNI": "28999888","Email": "maria@mail.com","Telefono": "+54 9 351 555-1111","Estado": "Activo"},

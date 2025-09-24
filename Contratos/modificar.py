@@ -1,47 +1,41 @@
-def modificar_contrato(matriz):
-    id_contrato = int(input("Ingrese el ID del contrato a gestionar: "))
-    for contrato in matriz:
-        if contrato[0] == id_contrato:
-            print("\nAcciones disponibles:")
-            print("1 - Finalizar contrato")
-            print("2 - Rescindir contrato")
-            print("3 - Renovar contrato")
-            opcion = input("Seleccione una opción: ").strip()
+from Contratos.datos import contratos
+from FuncAux.validaciones import norm, nonempty, parse_int
 
-            if opcion == "1":
-                contrato[6] = "Finalizado"
-                print("Contrato finalizado correctamente.")
-            
-            elif opcion == "2":
-                contrato[6] = "Rescindido"
-                print("Contrato rescindido correctamente.")
-            
-            elif opcion == "3":
-                # marcar el contrato viejo como finalizado
-                contrato[6] = "Finalizado"
-                
-                fecha_inicio = input("Nueva fecha de inicio (YYYY-MM-DD): ").strip()
-                fecha_fin    = input("Nueva fecha de fin (YYYY-MM-DD): ").strip()
-                monto        = input("Nuevo monto mensual: ").strip()
+def tipo_estado(opcion):
+    estado = ""
+    if opcion == "0":
+        estado = "Vigente"
+    elif opcion == "1":
+        estado = "Finalizado"
+    elif opcion == "2":
+        estado = "Cancelado"
+    else:
+        print("Opción no válida, vuelva a intentar.")
+    return estado
 
-                if fecha_inicio and fecha_fin and monto:
-                    nuevo_id = len(matriz) + 1
-                    nuevo_contrato = [
-                        nuevo_id,
-                        contrato[1],   # misma propiedad
-                        contrato[2],   # mismo inquilino
-                        fecha_inicio,
-                        fecha_fin,
-                        int(monto),
-                        "Activo"
-                    ]
-                    matriz.append(nuevo_contrato)
-                    print("Contrato renovado correctamente (nuevo ID generado).")
-                else:
-                    print("Faltan datos, no se generó renovación.")
-            
-            else:
-                print("Opción inválida.")
-            return
+def modificar_estado_contrato():
+
+    print("----- Modificar Estado del Contrato -----")
+    raw_id = input("Ingrese el ID del contrato a modificar: ")
+    id_contrato = parse_int(norm(raw_id))
+    if id_contrato is None:
+        print("ID inválido. Debe ser numérico.\n")
+        return False
     
-    print("Contrato no encontrado.")
+    if id_contrato not in contratos:
+        print("❌ Contrato no encontrado.\n")
+        return False
+
+    c = contratos[id_contrato]
+
+    # Estado (0/1/2) con Enter para mantener
+    print(f"Estado actual: {c['Estado']}")
+    op = tipo_estado(input("Nuevo estado (0 - Vigente, 1 - Finalizado, 2 - Cancelado, Enter para dejar igual): ").strip())
+    if op in ["Vigente", "Finalizado", "Cancelado"]:
+        c["Estado"] = op
+    elif nonempty(op):
+        print("Opción no válida. Se mantiene el estado actual.")
+    # Si op está vacío, se mantiene el estado actual
+
+    print("\n✅ Estado del contrato modificado exitosamente.\n")
+    return True

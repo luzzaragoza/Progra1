@@ -1,5 +1,3 @@
-encabezados_propiedades=["ID Propiedad", "Direccion", "Tipo", "PrecioAlquiler", "Estado"]
-
 propiedades = {
     101: {
         "Direccion": "Av. Siempre Viva 742",
