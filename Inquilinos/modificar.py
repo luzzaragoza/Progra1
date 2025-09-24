@@ -1,34 +1,60 @@
-def modificar_inquilino(matriz):
-    id_inquilino = int(input("Ingrese el ID del inquilino a modificar: "))
-    for inquilino in matriz:
-        if inquilino[0] == id_inquilino:
+from Inquilinos.datos import inquilinos
+from FuncAux.validaciones import norm, nonempty, parse_int
 
-            nuevo = input("Nuevo nombre (Enter para no modificar): ")
-            if nuevo != "":
-                inquilino[1] = nuevo
+def modificar_inquilino():
+    print("----- Modificar Inquilino -----")
+    raw_id = input("Ingrese el ID del inquilino a modificar: ")
+    id_inq = parse_int(norm(raw_id))
+    if id_inq is None:
+        print("ID inválido. Debe ser numérico.\n")
+        return False
 
-            nuevo = input("Nuevo DNI (Enter para no modificar): ")
-            if nuevo != "":
-                inquilino[2] = int(nuevo)  # solo convierte si no está vacío
+    if id_inq not in inquilinos:
+        print("❌ Inquilino no encontrado.\n")
+        return False
 
-            nuevo = input("Nuevo email (Enter para no modificar): ")
-            if nuevo != "":
-                inquilino[3] = nuevo
+    i = inquilinos[id_inq]
 
-            nuevo = input("Nuevo teléfono (Enter para no modificar): ")
-            if nuevo != "":
-                inquilino[4] = int(nuevo)  # solo convierte si no está vacío
+    # Nombre
+    print(f"\nNombre actual: {i['Nombre']}")
+    nuevo_nombre = input("Nuevo nombre (Enter para dejar igual): ")
+    if nonempty(nuevo_nombre):
+        i["Nombre"] = norm(nuevo_nombre)
 
-            estado = input("Si desea dar de baja al inquilino ingrese [1], para activarlo [0], o Enter para no modificar: ")
-            if estado == "1":
-                inquilino[5] = "Inactivo"
-            elif estado == "0":
-                inquilino[5] = "Activo"
-            elif estado.strip() == "":
-                pass  # no se modifica
+    # DNI
+    print(f"DNI actual: {i['DNI']}")
+    raw_dni = input("Nuevo DNI (solo números / Enter para dejar igual): ")
+    raw_dni = norm(raw_dni)
+    if nonempty(raw_dni):
+        nuevo_dni = parse_int(raw_dni)
+        if nuevo_dni is not None and nuevo_dni > 0:
+            if any(inq["DNI"] == nuevo_dni and inq_id != id_inq for inq_id, inq in inquilinos.items()):
+                print("Ese DNI ya está registrado a otro inquilino. Se mantiene el DNI actual.")
             else:
-                print("Opción no válida. El estado no se modificará.")
+                i["DNI"] = nuevo_dni
+        else:
+            print("Ingrese un DNI válido. Se mantiene el DNI actual.")
 
-            print("Inquilino modificado exitosamente.")
-            return
-    print("Inquilino no encontrado.")
+    # Email
+    print(f"Email actual: {i['Email']}")
+    nuevo_email = input("Nuevo email (Enter para dejar igual): ")
+    if nonempty(nuevo_email):
+        nuevo_email = norm(nuevo_email)
+        if "@" in nuevo_email:
+            i["Email"] = nuevo_email
+        else:
+            print("Email inválido. Se mantiene el email actual.")
+
+    # Teléfono
+    print(f"Teléfono actual: {i['Telefono']}")
+    raw_tel = input("Nuevo teléfono (solo números / Enter para dejar igual): ")
+    raw_tel = norm(raw_tel)
+    if nonempty(raw_tel):
+        nuevo_tel = parse_int(raw_tel)
+        if nuevo_tel is not None and nuevo_tel > 0:
+            i["Telefono"] = nuevo_tel
+        else:
+            print("Ingrese un teléfono válido. Se mantiene el teléfono actual.")
+    
+    print ("\n✅ Inquilino modificado exitosamente.\n")
+    return True

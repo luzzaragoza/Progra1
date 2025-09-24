@@ -1,8 +1,5 @@
 from Propiedades.datos import propiedades
-
-norm      = lambda s: s.strip().lower()
-nonempty  = lambda s: s.strip() != ""
-parse_int = lambda s: int(s) if s.isdigit() else None
+from FuncAux.validaciones import norm, parse_int
 
 def busqueda_propiedad():
     """

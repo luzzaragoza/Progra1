@@ -1,39 +1,39 @@
 encabezado_inquilinos=["ID Inquilino", "Nombre", "DNI", "Email", "Teléfono", "Estado"]
 
 inquilinos = {
-    505: {
-        "Nombre": "Juan Pérez",
-        "DNI": "30123456",
-        "Email": "juan@mail.com",
-        "Teléfono": "+54 11 4567-8901",
-        "Estado": "Activo"
-    },
-    506: {
-        "Nombre": "María López",
-        "DNI": "28999888",
-        "Email": "maria@mail.com",
-        "Teléfono": "+54 9 351 555-1111",
-        "Estado": "Activo"
-    },
-    507: {
-        "Nombre": "Carlos Díaz",
-        "DNI": "31222333",
-        "Email": "carlos@mail.com",
-        "Teléfono": "+54 11 4444-2222",
-        "Estado": "Inactivo"
-    },
-    508: {
-        "Nombre": "Ana Torres",
-        "DNI": "30111222",
-        "Email": "ana@mail.com",
-        "Teléfono": "+54 341 555-3333",
-        "Estado": "Activo"
-    },
-    509: {
-        "Nombre": "Luis Gómez",
-        "DNI": "30333444",
-        "Email": "luis@mail.com",
-        "Teléfono": "+54 261 444-5555",
-        "Estado": "Inactivo"
-    }
+    505: {"Nombre": "Juan Pérez","DNI": "30123456","Email": "juan@mail.com","Telefono": "+54 11 4567-8901","Estado": "Activo"},
+    506: {"Nombre": "María López","DNI": "28999888","Email": "maria@mail.com","Telefono": "+54 9 351 555-1111","Estado": "Activo"},
+    507: {"Nombre": "Carlos Díaz","DNI": "31222333","Email": "carlos@mail.com","Telefono": "+54 11 4444-2222","Estado": "Inactivo"},
+    508: {"Nombre": "Ana Torres", "DNI": "30111222", "Email": "ana@mail.com", "Telefono": "+54 341 555-3333", "Estado": "Activo"},
+    509: {"Nombre": "Luis Gómez", "DNI": "30333444", "Email": "luis@mail.com", "Telefono": "+54 261 444-5555","Estado": "Inactivo"},
+    510: {"Nombre": "Sofía Martínez",   "DNI": "42719853", "Email": "sofia.martinez@mail.com",   "Telefono": "+54 11 4382-9174",   "Estado": "Activo"},
+    511: {"Nombre": "Diego Fernández",  "DNI": "25348190", "Email": "diego.fernandez@mail.com",  "Telefono": "+54 9 351 6572-4410","Estado": "Activo"},
+    512: {"Nombre": "Valentina Rojas",  "DNI": "30872541", "Email": "valentina.rojas@mail.com",  "Telefono": "+54 11 4920-3386",   "Estado": "Inactivo"},
+    513: {"Nombre": "Martín Álvarez",   "DNI": "37218905", "Email": "martin.alvarez@mail.com",   "Telefono": "+54 341 4267-7751",  "Estado": "Activo"},
+    514: {"Nombre": "Camila Romero",    "DNI": "21987463", "Email": "camila.romero@mail.com",    "Telefono": "+54 11 4783-6209",   "Estado": "Activo"},
+    515: {"Nombre": "Javier Navarro",   "DNI": "40156238", "Email": "javier.navarro@mail.com",   "Telefono": "+54 261 4439-1807",  "Estado": "Inactivo"},
+    516: {"Nombre": "Carolina Domínguez","DNI":"28671954","Email": "carolina.dominguez@mail.com","Telefono": "+54 11 4517-2398",   "Estado": "Activo"},
+    517: {"Nombre": "Nicolás Herrera",  "DNI": "35982174", "Email": "nicolas.herrera@mail.com",  "Telefono": "+54 9 379 6854-9012","Estado": "Activo"},
+    518: {"Nombre": "Paula Cabrera",    "DNI": "27460519", "Email": "paula.cabrera@mail.com",    "Telefono": "+54 11 4931-7448",   "Estado": "Inactivo"},
+    519: {"Nombre": "Agustín Castro",   "DNI": "33572068", "Email": "agustin.castro@mail.com",   "Telefono": "+54 299 4478-2216",  "Estado": "Activo"},
+    520: {"Nombre": "Lucía Benítez",    "DNI": "24591876", "Email": "lucia.benitez@mail.com",    "Telefono": "+54 11 4550-0963",   "Estado": "Activo"},
+    521: {"Nombre": "Bruno Pereyra",    "DNI": "38914275", "Email": "bruno.pereyra@mail.com",    "Telefono": "+54 381 4346-5827",  "Estado": "Inactivo"},
+    522: {"Nombre": "Florencia Molina", "DNI": "26378941", "Email": "flor.molina@mail.com",      "Telefono": "+54 11 4792-1045",   "Estado": "Activo"},
+    523: {"Nombre": "Rodrigo Sosa",     "DNI": "31756482", "Email": "rodrigo.sosa@mail.com",     "Telefono": "+54 221 4501-3369",  "Estado": "Activo"},
+    524: {"Nombre": "Cecilia Acosta",   "DNI": "22897634", "Email": "cecilia.acosta@mail.com",   "Telefono": "+54 11 4827-9150",   "Estado": "Inactivo"},
+    525: {"Nombre": "Facundo Medina",   "DNI": "34719562", "Email": "facundo.medina@mail.com",   "Telefono": "+54 351 4680-7721",  "Estado": "Activo"},
+    526: {"Nombre": "Julieta Vega",     "DNI": "29654178", "Email": "julieta.vega@mail.com",     "Telefono": "+54 11 4774-5308",   "Estado": "Activo"},
+    527: {"Nombre": "Matías Ortega",    "DNI": "41325879", "Email": "matias.ortega@mail.com",    "Telefono": "+54 261 4421-6893",  "Estado": "Inactivo"},
+    528: {"Nombre": "Daniela Ponce",    "DNI": "27513496", "Email": "daniela.ponce@mail.com",    "Telefono": "+54 11 4869-2031",   "Estado": "Activo"},
+    529: {"Nombre": "Gonzalo Duarte",   "DNI": "36890215", "Email": "gonzalo.duarte@mail.com",   "Telefono": "+54 341 4390-6574",  "Estado": "Activo"},
+    530: {"Nombre": "Micaela Ruiz",     "DNI": "25471839", "Email": "micaela.ruiz@mail.com",     "Telefono": "+54 11 4891-7442",   "Estado": "Inactivo"},
+    531: {"Nombre": "Ignacio Correa",   "DNI": "33214059", "Email": "ignacio.correa@mail.com",   "Telefono": "+54 379 4821-3067",  "Estado": "Activo"},
+    532: {"Nombre": "Bianca Páez",      "DNI": "28763149", "Email": "bianca.paez@mail.com",      "Telefono": "+54 11 4972-1186",   "Estado": "Activo"},
+    533: {"Nombre": "Tomás Giménez",    "DNI": "40527318", "Email": "tomas.gimenez@mail.com",    "Telefono": "+54 221 4516-8029",  "Estado": "Inactivo"},
+    534: {"Nombre": "Lourdes Figueroa", "DNI": "26984571", "Email": "lourdes.figueroa@mail.com", "Telefono": "+54 11 4628-9473",   "Estado": "Activo"},
+    535: {"Nombre": "Emiliano Salas",   "DNI": "35861427", "Email": "emiliano.salas@mail.com",   "Telefono": "+54 351 4667-1938",  "Estado": "Activo"},
+    536: {"Nombre": "Renata Muñoz",     "DNI": "24690731", "Email": "renata.munoz@mail.com",     "Telefono": "+54 11 4987-6201",   "Estado": "Inactivo"},
+    537: {"Nombre": "Santiago Vallejos","DNI": "39452180", "Email": "santiago.vallejos@mail.com","Telefono": "+54 261 4473-0859",  "Estado": "Activo"},
+    538: {"Nombre": "Milagros Bustos",  "DNI": "27938046", "Email": "milagros.bustos@mail.com",  "Telefono": "+54 11 4321-5704",   "Estado": "Activo"},
+    539: {"Nombre": "Federico Arias",   "DNI": "32146958", "Email": "federico.arias@mail.com",   "Telefono": "+54 299 4415-7632",  "Estado": "Inactivo"},
 }

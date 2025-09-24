@@ -1,57 +1,60 @@
+from Inquilinos.datos import inquilinos
+from FuncAux.validaciones import norm, nonempty, parse_int
+
 def crear_inquilino(id_inquilino):
-    nombre = input("Nombre completo: ")
-    dni = int(input("DNI (solo números): "))
-    mail = input("Mail: ")
-    telefono = int(input("Teléfono: "))
-    estado = "Activo" 
-    
-    return [id_inquilino, nombre, dni, mail, telefono, estado]
+    if id_inquilino in inquilinos:
+        print("Ese ID ya existe. Elija otro.\n")
+        return None
+
+    nombre = input("Nombre y Apellido: ")
+    while not nonempty(nombre):
+        print("El nombre no puede estar vacío.")
+        nombre = input("Nombre y Apellido: ")
+    nombre = norm(nombre)
+
+    while True:
+        dni_raw = input("DNI (solo números): ")
+        dni = parse_int(dni_raw)
+        if dni is None or dni <= 0:
+            print("Ingrese un DNI válido por favor.")
+            continue
+        if any(p["DNI"] == dni for p in inquilinos.values()):
+            print("Ese DNI ya está registrado. Ingrese otro.")
+            continue
+        break
+
+    email = norm(input("Mail: "))
+    while not nonempty(email) or ("@" not in email):
+        print("Ingrese un email válido por favor.")
+        email = norm(input("Mail: "))
+
+    while True:
+        tel_raw = input("Teléfono (solo números): ")
+        tel = parse_int(tel_raw)
+        if tel is not None and tel > 0:
+            break
+        print("Ingrese un teléfono válido por favor.")
+
+    # Estado por defecto
+    estado = "Activo"
+
+    inquilinos[id_inquilino] = {
+        "Nombre": nombre,
+        "DNI": dni,
+        "Email": email,
+        "Telefono": tel,
+        "Estado": estado,
+    }
+    print(f"Inquilino con id {id_inquilino} creado exitosamente.\n")
+    return id_inquilino
 
 
 def crear_matriz_inquilinos(cant_inquilinos):
-    inquilinos = []
+    creados = []
     for i in range(cant_inquilinos):
-        id_inquilino = len(inquilinos) + 1
-        inquilino = crear_inquilino(id_inquilino)
-        inquilinos.append(inquilino)
-    return inquilinos
-
-
-'''def generar_id(lista):
-    """Devuelve el siguiente ID basado en la última fila de la lista.
-    Suponemos que cada elemento tiene el ID en la posición 0."""
-    return (lista[-1][0] + 1) if lista else 1
-
-
-def crear_inquilino(id_inquilino):
-    nombre = input("Nombre completo: ")
-    dni = int(input("DNI (solo números): "))
-    mail = input("Mail: ")
-    telefono = int(input("Teléfono: "))
-    estado = "Activo"  # Estado por defecto
-    return [id_inquilino, nombre, dni, mail, telefono, estado]
-
-
-def crear_matriz_inquilinos(cant_inquilinos, inquilinos=None):
-    """Crea 'cant_inquilinos' y los agrega a la lista 'inquilinos' si se proporciona.
-    Si inquilinos es None, crea una nueva lista."""
-    if inquilinos is None:
-        inquilinos = []
-    for _ in range(cant_inquilinos):
-        id_inquilino = generar_id(inquilinos)
-        inquilino = crear_inquilino(id_inquilino)
-        inquilinos.append(inquilino)
-    return inquilinos
-
-
-def agregar_inquilino(inquilinos):
-    """Agrega un único inquilino a la lista existente."""
-    id_inquilino = generar_id(inquilinos)
-    inquilino = crear_inquilino(id_inquilino)
-    inquilinos.append(inquilino)
-
-
-def imprimir_inquilinos(inquilinos):
-    print("{:<4} {:<25} {:<10} {:<25} {:<12} {:<8}".format("ID","NOMBRE","DNI","MAIL","TEL","ESTADO"))
-    for i in inquilinos:
-        print("{:<4} {:<25} {:<10} {:<25} {:<12} {:<8}".format(i[0], i[1], i[2], i[3], i[4], i[5]))'''
+        print(f"--- Ingresando datos del inquilino {i + 1} ---")
+        id_inq = len(inquilinos) + 1
+        nuevo = crear_inquilino(id_inq)
+        creados.append(nuevo)
+    print(f"Inquilinos creados exitosamente: ({len(creados)}) \n")
+    return creados

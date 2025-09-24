@@ -1,8 +1,9 @@
 # --- IMPORTS ---
-from Inquilinos.datos import encabezado_inquilinos, inquilinos as matriz_inquilinos
+from Inquilinos.datos import encabezado_inquilinos, inquilinos
 from Inquilinos.crear import crear_matriz_inquilinos
 from Inquilinos.modificar import modificar_inquilino
 from Inquilinos.busqueda import busqueda_inquilino
+from Inquilinos.mostrar import mostrar_inquilinos
 
 from Propiedades.datos import encabezados_propiedades, propiedades as matriz_propiedades
 from Propiedades.modificar import modificar_propiedad
@@ -65,14 +66,11 @@ def menu_loop(titulo, items):
 # --------- Menús específicos ----------
 def gestion_inqiuilinos():
     items = [
-        ("1", "Crear Inquilinos",         lambda: matriz_inquilinos.extend(
-            crear_matriz_inquilinos(pedir_cantidad("¿Cuántos inquilinos desea crear? "))
-        )),
-        ("2", "Mostrar Inquilinos",       lambda: mostrar_matriz(encabezado_inquilinos, matriz_inquilinos[0:])),
-        ("3", "Modificar Inquilinos",     lambda: modificar_inquilino(matriz_inquilinos[0:])),
-        ("4", "Buscar Inquilinos",        lambda: busqueda_inquilino(matriz_inquilinos)),
-        ("5", "Resumen Estadístico",      lambda: mostrar_resumen(matriz_propiedades, matriz_contratos)),
-        ("6", "Volver",                   lambda: None),
+        ("1", "Crear Inquilinos",         lambda: crear_matriz_inquilinos(pedir_cantidad("¿Cuántos inquilinos desea crear? "))),
+        ("2", "Mostrar Inquilinos",       lambda: mostrar_inquilinos()),
+        ("3", "Modificar Inquilinos",     lambda: modificar_inquilino()),
+        ("4", "Buscar Inquilinos",        lambda: busqueda_inquilino()),
+        ("5", "Volver",                   lambda: None),
     ]
     menu_loop("Gestión de Inquilinos", items)
 
@@ -81,7 +79,6 @@ def gestion_propiedades():
         ("1", "Crear Propiedades",   lambda: crear_matriz_propiedades(pedir_cantidad("¿Cuántas propiedades desea crear? "))),
         ("2", "Mostrar Propiedades", lambda: mostrar_propiedades()),
         ("3", "Modificar Propiedades", lambda: modificar_propiedad()),
-        # Si tu busqueda_propiedad YA está adaptada a dict, llamala sin args:
         ("4", "Buscar Propiedades",  lambda: busqueda_propiedad()),
         ("5", "Volver",              lambda: None),
     ]
