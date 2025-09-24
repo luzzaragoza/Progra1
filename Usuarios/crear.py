@@ -1,10 +1,5 @@
 from Usuarios.datos import usuarios
-
-# Lambdas para validaciones y normalizaciones
-
-norm = lambda s: s.strip().lower() # Normaliza strings para comparaciones
-pwd_ok = lambda s: len(s) >= 4 # Valida que la contraseña tenga al menos 4 caracteres
-nonempty = lambda s: len(s.strip()) > 0 # Valida que el string no esté vacío
+from FuncAux.validaciones import norm, nonempty, pwd_ok
 
 def usuario_existe(usuario):
     return norm(usuario) in (norm(u) for u in usuarios)

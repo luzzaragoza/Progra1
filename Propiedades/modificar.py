@@ -1,8 +1,13 @@
-from Propiedades.datos import propiedades  
+from Propiedades.datos import propiedades
+from FuncAux.validaciones import norm, nonempty, parse_int
 
 def modificar_propiedad():
     print("----- Modificar Propiedad -----")
-    id_prop = int(input("Ingrese el ID de la propiedad a modificar: "))
+    raw_id = input("Ingrese el ID de la propiedad a modificar: ")
+    id_prop = parse_int(norm(raw_id))
+    if id_prop is None:
+        print("ID inválido. Debe ser numérico.\n")
+        return False
 
     if id_prop not in propiedades:
         print("❌ Propiedad no encontrada.\n")
@@ -12,33 +17,35 @@ def modificar_propiedad():
 
     # Dirección
     print(f"\nDirección actual: {p['Direccion']}")
-    nueva_direccion = input("Nueva dirección (Enter para dejar igual): ").strip()
-    if nueva_direccion != "":
-        p["Direccion"] = nueva_direccion
-    elif nueva_direccion == "":
-        pass
+    nueva_direccion = input("Nueva dirección (Enter para dejar igual): ")
+    if nonempty(nueva_direccion):
+        p["Direccion"] = norm(nueva_direccion)
 
-    # Tipo (solo Casa / Departamento, como tu versión original)
+    # Tipo (0/1/2) con Enter para mantener
     print(f"Tipo actual: {p['Tipo']}")
-    nuevo_tipo = input("Nuevo tipo (Casa [0] / Departamento [1] / Otro [2] / Enter para dejar igual): ").strip()
-    if nuevo_tipo == "0":
+    op = input("Nuevo tipo (Casa [0] / Departamento [1] / Otro [2] / Enter para dejar igual): ")
+    op = norm(op)
+    if op == "0":
         p["Tipo"] = "Casa"
-    elif nuevo_tipo == "1":
+    elif op == "1":
         p["Tipo"] = "Departamento"
-    elif nuevo_tipo == "2":
-        otro_tipo = input("Ingrese el tipo de propiedad: ").strip()
-        if otro_tipo != "":
-            p["Tipo"] = otro_tipo
-    elif nuevo_tipo == "":
-        pass
+    elif op == "2":
+        otro = input("Ingrese el tipo de propiedad: ")
+        if nonempty(otro):
+            p["Tipo"] = norm(otro)   # guardo prolijo (sin espacios)
+    elif op != "":
+        print("Opción no válida. Se mantiene el tipo actual.")
 
     # Precio de alquiler
     print(f"Precio actual: ${p['PrecioAlquiler']}")
-    nuevo_precio = input("Nuevo precio de alquiler (Enter para dejar igual): ").strip()
-    if nuevo_precio != "" and nuevo_precio.isdigit():
-        p["PrecioAlquiler"] = nuevo_precio
-    elif nuevo_precio == "":
-        pass
+    raw_precio = input("Nuevo precio de alquiler (Enter para dejar igual): ")
+    raw_precio = norm(raw_precio)
+    if nonempty(raw_precio):
+        nuevo_precio = parse_int(raw_precio)
+        if nuevo_precio is not None and nuevo_precio > 0:
+            p["PrecioAlquiler"] = nuevo_precio
+        else:
+            print("Ingrese un entero positivo. Se mantiene el precio actual.")
 
     print("\n✅ Propiedad modificada exitosamente.\n")
     return True
