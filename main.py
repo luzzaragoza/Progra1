@@ -4,6 +4,7 @@ from Inquilinos.crear import crear_cant_inquilinos
 from Inquilinos.modificar import modificar_inquilino
 from Inquilinos.busqueda import busqueda_inquilino
 from Inquilinos.mostrar import mostrar_inquilinos
+from FuncAux.estadisticas import mostrar_resumen
 
 from Propiedades.datos import propiedades
 from Propiedades.modificar import modificar_propiedad
@@ -72,7 +73,8 @@ def gestion_inqiuilinos():
         ("2", "Mostrar Inquilinos",       lambda: mostrar_inquilinos()),
         ("3", "Modificar Inquilinos",     lambda: modificar_inquilino()),
         ("4", "Buscar Inquilinos",        lambda: busqueda_inquilino()),
-        ("5", "Volver",                   lambda: None),
+        ("5", "Mostrar Estadísticas", mostrar_resumen)
+        ("6", "Volver",                   lambda: None),
     ]
     menu_loop("Gestión de Inquilinos", items)
 
