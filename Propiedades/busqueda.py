@@ -1,6 +1,21 @@
 from Propiedades.datos import propiedades
 from FuncAux.validaciones import norm, parse_int
+from FuncAux.busqueda import busqueda_por_id
 
+def busqueda_propiedad_por_id():
+    """
+    Busca una propiedad por ID exacto.
+    Retorna: lista con el ID encontrado o vacía si no se encontró nada.
+    """
+    opc = input("Ingrese la opción de busqueda: 1- ID")
+
+    if opc 
+
+
+
+
+
+'''''
 def busqueda_propiedad():
     """
     Busca por dirección, tipo o ID dentro de `propiedades`.
@@ -55,3 +70,4 @@ def busqueda_propiedad():
             return seleccionado_id, resultados_ids
         else:
             print("Opción inválida. Intente nuevamente.\n")
+'''
