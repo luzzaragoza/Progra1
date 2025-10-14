@@ -8,7 +8,7 @@ from FuncAux.estadisticas import mostrar_resumen
 
 from Propiedades.datos import propiedades
 from Propiedades.modificar import modificar_propiedad
-from Propiedades.busqueda import busqueda_propiedad  
+#from Propiedades.busqueda import busqueda_propiedad  
 from Propiedades.crear import crear_cant_propiedades
 from Propiedades.mostrar import mostrar_propiedades
 
@@ -73,7 +73,6 @@ def gestion_inqiuilinos():
         ("2", "Mostrar Inquilinos",       lambda: mostrar_inquilinos()),
         ("3", "Modificar Inquilinos",     lambda: modificar_inquilino()),
         ("4", "Buscar Inquilinos",        lambda: busqueda_inquilino()),
-        ("5", "Mostrar Estadísticas", mostrar_resumen)
         ("6", "Volver",                   lambda: None),
     ]
     menu_loop("Gestión de Inquilinos", items)
@@ -83,7 +82,7 @@ def gestion_propiedades():
         ("1", "Crear Propiedades",   lambda: crear_cant_propiedades(pedir_cantidad("¿Cuántas propiedades desea crear? "))),
         ("2", "Mostrar Propiedades", lambda: mostrar_propiedades()),
         ("3", "Modificar Propiedades", lambda: modificar_propiedad()),
-        ("4", "Buscar Propiedades",  lambda: busqueda_propiedad()),
+        #("4", "Buscar Propiedades",  lambda: busqueda_propiedad()),
         ("5", "Volver",              lambda: None),
     ]
     menu_loop("Gestión de Propiedades", items)

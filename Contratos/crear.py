@@ -22,7 +22,7 @@ def crear_contrato(id_contrato):
     # Monto del contrato
     while True:
         raw_monto = input("Monto mensual (en USD): ")
-        monto = parse_float(raw_monto)
+        monto = parse_int(raw_monto)
         if monto is not None and monto > 0:
             break
         print("Ingrese un monto válido por favor.")
@@ -44,7 +44,7 @@ def crear_contrato(id_contrato):
         print("Ingrese una fecha válida por favor.")
 
     # Estado por defecto
-    estado = "Vigente"
+    estado = "Activo"
 
     contratos[id_contrato] = {
         "ID_Inquilino": id_inq,

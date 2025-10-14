@@ -4,7 +4,7 @@ from FuncAux.validaciones import norm, nonempty, parse_int
 def tipo_estado(opcion):
     estado = ""
     if opcion == "0":
-        estado = "Vigente"
+        estado = "Activo"
     elif opcion == "1":
         estado = "Finalizado"
     elif opcion == "2":
@@ -31,7 +31,7 @@ def modificar_estado_contrato():
     # Estado (0/1/2) con Enter para mantener
     print(f"Estado actual: {c['Estado']}")
     op = tipo_estado(input("Nuevo estado (0 - Vigente, 1 - Finalizado, 2 - Cancelado, Enter para dejar igual): ").strip())
-    if op in ["Vigente", "Finalizado", "Cancelado"]:
+    if op in ["Activo", "Finalizado", "Cancelado"]:
         c["Estado"] = op
     elif nonempty(op):
         print("Opción no válida. Se mantiene el estado actual.")

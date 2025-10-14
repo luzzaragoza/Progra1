@@ -1,7 +1,9 @@
 from Pagos.datos import pagos
 from Pagos.crear import tipo_metodo_pago
 from FuncAux.validaciones import parse_int, parse_float, parse_date
+ 
 
+""""
 def modificar_pago():
     print("\n--- Modificar Pago ---")
     id_pago = parse_int(input("Ingrese el ID del pago a modificar: ").strip())
@@ -28,3 +30,5 @@ def modificar_pago():
     print(f"Pago con ID {id_pago} modificado exitosamente.\n")
 
     return pagos
+
+"""
