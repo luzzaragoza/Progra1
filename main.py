@@ -4,6 +4,8 @@ from Inquilinos.crear import crear_cant_inquilinos
 from Inquilinos.modificar import modificar_inquilino
 from Inquilinos.busqueda import busqueda_inquilino
 from Inquilinos.mostrar import mostrar_inquilinos
+from Inquilinos.baja import baja_inquilino
+
 from FuncAux.estadisticas import mostrar_resumen
 
 from Propiedades.datos import propiedades
@@ -11,6 +13,7 @@ from Propiedades.modificar import modificar_propiedad
 #from Propiedades.busqueda import busqueda_propiedad  
 from Propiedades.crear import crear_cant_propiedades
 from Propiedades.mostrar import mostrar_propiedades
+from Propiedades.baja import baja_propiedad
 
 from Contratos.datos import contratos
 from Contratos.crear import crear_cant_contratos
@@ -19,7 +22,6 @@ from Contratos.mostrar import mostrar_contratos
 
 from Pagos.datos import pagos
 from Pagos.crear import crear_cant_pagos
-from Pagos.modificar import modificar_pago
 from Pagos.mostrar import mostrar_pagos
 
 from FuncAux.login import iniciar_sesion
@@ -73,6 +75,7 @@ def gestion_inqiuilinos():
         ("2", "Mostrar Inquilinos",       lambda: mostrar_inquilinos()),
         ("3", "Modificar Inquilinos",     lambda: modificar_inquilino()),
         ("4", "Buscar Inquilinos",        lambda: busqueda_inquilino()),
+        ("5", "Baja de Inquilinos",       lambda: baja_inquilino()),
         ("6", "Volver",                   lambda: None),
     ]
     menu_loop("Gestión de Inquilinos", items)
@@ -82,6 +85,7 @@ def gestion_propiedades():
         ("1", "Crear Propiedades",   lambda: crear_cant_propiedades(pedir_cantidad("¿Cuántas propiedades desea crear? "))),
         ("2", "Mostrar Propiedades", lambda: mostrar_propiedades()),
         ("3", "Modificar Propiedades", lambda: modificar_propiedad()),
+        ("4", "Baja de Propiedades", lambda: baja_propiedad()),
         #("4", "Buscar Propiedades",  lambda: busqueda_propiedad()),
         ("5", "Volver",              lambda: None),
     ]
@@ -100,8 +104,7 @@ def gestion_pagos():
     items = [
         ("1", "Crear Pagos", lambda: crear_cant_pagos(pedir_cantidad("¿Cuántos pagos desea crear? "))),
         ("2", "Mostrar Pagos", lambda: mostrar_pagos()),
-        ("3", "Modificar Pagos", lambda: modificar_pago()),
-        ("4", "Volver", lambda: None),
+        ("3", "Volver", lambda: None),
     ]
     menu_loop("Gestión de Pagos", items)
 

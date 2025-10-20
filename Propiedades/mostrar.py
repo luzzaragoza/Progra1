@@ -12,3 +12,9 @@ def mostrar_propiedades():
         print(f"  Tipo: {datos['Tipo']}")
         print(f"  Precio Alquiler (USD): {datos['PrecioAlquiler']}")
         print(f"  Estado: {datos['Estado']}\n")
+
+def mostrar_propiedad(pid, p):
+    print(
+        f"ID: {pid} | Dirección: {p.get('Direccion','')} | Tipo: {p.get('Tipo','')} | "
+        f"Precio: {p.get('PrecioAlquiler','')} | Estado: {p.get('Estado','')}"
+    )

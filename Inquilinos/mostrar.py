@@ -13,3 +13,11 @@ def mostrar_inquilinos():
         print(f"  Email: {datos['Email']}")
         print(f"  Teléfono: {datos['Telefono']}")
         print(f"  Estado: {datos['Estado']}\n")
+
+
+def mostrar_inquilino(iid, q):
+    """Muestra los datos principales del inquilino."""
+    print(
+        f"ID: {iid} | Nombre: {q.get('Nombre','')} | DNI: {q.get('DNI','')} | "
+        f"Email: {q.get('Email','')} | Telefono: {q.get('Telefono','')} | Estado: {q.get('Estado','')}"
+    )
