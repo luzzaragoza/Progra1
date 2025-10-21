@@ -6,7 +6,6 @@ from Inquilinos.busqueda import busqueda_inquilino
 from Inquilinos.mostrar import mostrar_inquilinos
 from Inquilinos.baja import baja_inquilino
 
-from FuncAux.estadisticas import mostrar_resumen
 
 from Propiedades.datos import propiedades
 from Propiedades.modificar import modificar_propiedad
@@ -31,7 +30,7 @@ from Usuarios.crear import crear_cant_usuario
 from Usuarios.modificar import cambiar_contrasenia as modificar_usuario
 from Usuarios.mostrar import mostrar_usuarios
 
-from FuncAux.estadisticas import mostrar_resumen
+#from FuncAux.estadistica import mostrar_resumen
 
 
 # --------- helpers genéricos (con lambdas/funcs) ----------
@@ -126,7 +125,7 @@ def menu():
         ("3", "Gestión de Contratos",   gestion_contratos),
         ("4", "Gestión de Pagos",       gestion_pagos),
         ("5", "Gestión de Usuarios",    gestion_usuarios),
-        ("6", "Resumen Estadístico",    lambda: mostrar_resumen(propiedades, contratos)),
+       # ("6", "Resumen Estadístico",    lambda: mostrar_resumen(propiedades, contratos)),
         ("7", "Salir",                  lambda: None),
     ]
     menu_loop("Menú de Gestión de Alquileres", items)

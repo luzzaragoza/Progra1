@@ -2,45 +2,98 @@ from Propiedades.datos import propiedades
 from FuncAux.validaciones import norm, nonempty, parse_int
 from Propiedades.crear import tipo_propiedad
 
+def estado_ocupacion(opcion):
+    """
+    Ocupación de la propiedad dentro de las activas.
+    0 -> Libre
+    1 -> Ocupada
+    "" (Enter) -> mantener
+    Lanza ValueError si es inválido.
+    """
+    if opcion == "0":
+        return "Libre"
+    elif opcion == "1":
+        return "Ocupada"
+    elif opcion == "":
+        return ""  # mantener
+    else:
+        raise ValueError("Opción no válida. Ingrese 0, 1 o Enter para mantener.")
+
+
 def modificar_propiedad():
     print("----- Modificar Propiedad -----")
-    raw_id = input("Ingrese el ID de la propiedad a modificar: ")
-    id_prop = parse_int(norm(raw_id))
-    if id_prop is None:
-        print("ID inválido. Debe ser numérico.\n")
-        return False
+    try:
+        raw_id = input("Ingrese el ID de la propiedad a modificar: ")
+        id_prop = parse_int(norm(raw_id))
+        if id_prop is None:
+            raise ValueError("ID inválido. Debe ser numérico.")
 
-    if id_prop not in propiedades:
-        print("❌ Propiedad no encontrada.\n")
-        return False
+        if id_prop not in propiedades:
+            raise LookupError("❌ Propiedad no encontrada.")
 
-    p = propiedades[id_prop]
+        p = propiedades[id_prop]
 
-    # Dirección
-    print(f"\nDirección actual: {p['Direccion']}")
-    nueva_direccion = input("Nueva dirección (Enter para dejar igual): ")
-    if nonempty(nueva_direccion):
-        p["Direccion"] = norm(nueva_direccion)
+        # Dirección
+        print(f"\nDirección actual: {p['Direccion']}")
+        nueva_direccion = input("Nueva dirección (Enter para dejar igual): ")
+        if nonempty(nueva_direccion):
+            p["Direccion"] = norm(nueva_direccion)
 
-    # Tipo (0/1/2) con Enter para mantener
-    print(f"Tipo actual: {p['Tipo']}")
-    op = tipo_propiedad(input("Nuevo tipo (0 - Casa, 1 - Departamento, 2 - Otro, Enter para dejar igual): ").strip())
-    if op == "Casa" or op == "Departamento":
-        p["Tipo"] = op
-    elif nonempty(op):
-        p["Tipo"] = op
-    # Si op está vacío, se mantiene el tipo actual
+        # Tipo (0/1/2 o Enter) con reintento por ValueError
+        print(f"Tipo actual: {p['Tipo']}")
+        continuar_tipo = True
+        while continuar_tipo:
+            try:
+                opcion_tipo = input("Nuevo tipo (0 - Casa, 1 - Departamento, 2 - Otro, Enter para dejar igual): ").strip()
+                nuevo_tipo = tipo_propiedad(opcion_tipo)  # usa tu función separada
+                if nuevo_tipo != "":
+                    p["Tipo"] = nuevo_tipo
+                continuar_tipo = False
+            except ValueError as e:
+                print(f"⚠️ {e}\nIntentá de nuevo.\n")
 
-    # Precio de alquiler
-    print(f"Precio actual: ${p['PrecioAlquiler']}")
-    raw_precio = input("Nuevo precio de alquiler (Enter para dejar igual): ")
-    raw_precio = norm(raw_precio)
-    if nonempty(raw_precio):
-        nuevo_precio = parse_int(raw_precio)
-        if nuevo_precio is not None and nuevo_precio > 0:
-            p["PrecioAlquiler"] = nuevo_precio
+        # Precio de alquiler (un intento; si es inválido, mantiene)
+        print(f"Precio actual: ${p['PrecioAlquiler']}")
+        raw_precio = input("Nuevo precio de alquiler (Enter para dejar igual): ").strip()
+        if nonempty(raw_precio):
+            nuevo_precio = parse_int(norm(raw_precio))
+            if nuevo_precio is not None and nuevo_precio > 0:
+                p["PrecioAlquiler"] = nuevo_precio
+            else:
+                print("Ingrese un entero positivo. Se mantiene el precio actual.")
+
+        # Estado de ocupación (solo si NO está Inactiva)
+        print(f"Estado actual: {p['Estado']}")
+        if str(p.get("Estado","")).lower() == "inactiva":
+            print("La propiedad está Inactiva. Para activarla usá alta_propiedad().")
         else:
-            print("Ingrese un entero positivo. Se mantiene el precio actual.")
+            continuar_estado = True
+            while continuar_estado:
+                try:
+                    op_est = input("Nuevo estado (0 - Libre, 1 - Ocupada, Enter para mantener): ").strip()
+                    nuevo_est = estado_ocupacion(op_est)  # validador de ocupación
+                    if nuevo_est != "":
+                        p["Estado"] = nuevo_est
+                    continuar_estado = False
+                except ValueError as e:
+                    print(f"⚠️ {e}\nIntentá de nuevo.\n")
 
-    print("\n✅ Propiedad modificada exitosamente.\n")
-    return True
+        print("\n✅ Propiedad modificada exitosamente.\n")
+        return True
+
+    except ValueError as e:
+        print(f"⚠️ Error de valor: {e}\n")
+        return False
+    except LookupError as e:
+        print(f"{e}\n")
+        return False
+    except KeyError:
+        print("⚠️ Error: falta algún campo en la propiedad (ej. 'Direccion', 'Tipo', 'PrecioAlquiler' o 'Estado').\n")
+        return False
+    except TypeError:
+        print("⚠️ Error de tipo: los datos de la propiedad no son válidos.\n")
+        return False
+    except Exception as e:
+        print(f"⚠️ Error inesperado: {e}\n")
+        return False
+
