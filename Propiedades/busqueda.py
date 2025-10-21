@@ -1,6 +1,5 @@
 from Propiedades.datos import propiedades
 from FuncAux.validaciones import norm, parse_int
-from FuncAux.busqueda import busqueda_por_id
 
 """"""""
 

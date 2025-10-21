@@ -28,5 +28,275 @@ propiedades = {
         "Tipo": "Casa",
         "PrecioAlquiler": 98000,
         "Estado": "Disponible"
+    },
+    106: {
+        "Direccion": "Rivadavia 999",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 76000,
+        "Estado": "Ocupado"
+    },
+    107: {
+        "Direccion": "Lavalle 230",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 87000,
+        "Estado": "Disponible"
+    },
+    108: {
+        "Direccion": "Sarmiento 1875",
+        "Tipo": "Oficina",
+        "PrecioAlquiler": 110000,
+        "Estado": "Disponible"
+    },
+    109: {
+        "Direccion": "Corrientes 1020",
+        "Tipo": "Local",
+        "PrecioAlquiler": 130000,
+        "Estado": "Ocupado"
+    },
+    110: {
+        "Direccion": "Tucumán 315",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 77000,
+        "Estado": "Disponible"
+    },
+    111: {
+        "Direccion": "Alsina 720",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 89000,
+        "Estado": "Ocupado"
+    },
+    112: {
+        "Direccion": "Independencia 1430",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 83000,
+        "Estado": "Disponible"
+    },
+    113: {
+        "Direccion": "Perú 560",
+        "Tipo": "Oficina",
+        "PrecioAlquiler": 105000,
+        "Estado": "Disponible"
+    },
+    114: {
+        "Direccion": "Chile 340",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 94000,
+        "Estado": "Ocupado"
+    },
+    115: {
+        "Direccion": "Defensa 678",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 81000,
+        "Estado": "Disponible"
+    },
+    116: {
+        "Direccion": "Paraguay 910",
+        "Tipo": "Local",
+        "PrecioAlquiler": 125000,
+        "Estado": "Ocupado"
+    },
+    117: {
+        "Direccion": "Uruguay 1122",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 97000,
+        "Estado": "Disponible"
+    },
+    118: {
+        "Direccion": "Santa Fe 459",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 84000,
+        "Estado": "Ocupado"
+    },
+    119: {
+        "Direccion": "Pueyrredón 1330",
+        "Tipo": "Oficina",
+        "PrecioAlquiler": 108000,
+        "Estado": "Disponible"
+    },
+    120: {
+        "Direccion": "Viamonte 870",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 96000,
+        "Estado": "Disponible"
+    },
+    121: {
+        "Direccion": "Callao 1100",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 78000,
+        "Estado": "Ocupado"
+    },
+    122: {
+        "Direccion": "Junín 450",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 91000,
+        "Estado": "Disponible"
+    },
+    123: {
+        "Direccion": "Ayacucho 690",
+        "Tipo": "Local",
+        "PrecioAlquiler": 128000,
+        "Estado": "Disponible"
+    },
+    124: {
+        "Direccion": "French 1540",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 83000,
+        "Estado": "Ocupado"
+    },
+    125: {
+        "Direccion": "Charcas 2001",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 93000,
+        "Estado": "Disponible"
+    },
+    126: {
+        "Direccion": "Arenales 905",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 85000,
+        "Estado": "Disponible"
+    },
+    127: {
+        "Direccion": "Juncal 1234",
+        "Tipo": "Oficina",
+        "PrecioAlquiler": 102000,
+        "Estado": "Ocupado"
+    },
+    128: {
+        "Direccion": "Montevideo 320",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 94000,
+        "Estado": "Disponible"
+    },
+    129: {
+        "Direccion": "Rodríguez Peña 870",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 82000,
+        "Estado": "Disponible"
+    },
+    130: {
+        "Direccion": "Laprida 670",
+        "Tipo": "Local",
+        "PrecioAlquiler": 126000,
+        "Estado": "Ocupado"
+    },
+    131: {
+        "Direccion": "Anchorena 510",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 95000,
+        "Estado": "Disponible"
+    },
+    132: {
+        "Direccion": "Agüero 1250",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 81000,
+        "Estado": "Disponible"
+    },
+    133: {
+        "Direccion": "Billinghurst 340",
+        "Tipo": "Depósito",
+        "PrecioAlquiler": 140000,
+        "Estado": "Ocupado"
+    },
+    134: {
+        "Direccion": "Scalabrini Ortiz 770",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 96000,
+        "Estado": "Disponible"
+    },
+    135: {
+        "Direccion": "Gascón 455",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 83000,
+        "Estado": "Ocupado"
+    },
+    136: {
+        "Direccion": "Medrano 230",
+        "Tipo": "Oficina",
+        "PrecioAlquiler": 107000,
+        "Estado": "Disponible"
+    },
+    137: {
+        "Direccion": "Gaspar Campos 980",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 92000,
+        "Estado": "Ocupado"
+    },
+    138: {
+        "Direccion": "Loyola 1450",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 85000,
+        "Estado": "Disponible"
+    },
+    139: {
+        "Direccion": "Thames 789",
+        "Tipo": "Local",
+        "PrecioAlquiler": 127000,
+        "Estado": "Ocupado"
+    },
+    140: {
+        "Direccion": "Costa Rica 2120",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 88000,
+        "Estado": "Disponible"
+    },
+    141: {
+        "Direccion": "Honduras 3450",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 97000,
+        "Estado": "Ocupado"
+    },
+    142: {
+        "Direccion": "Armenia 1555",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 84000,
+        "Estado": "Disponible"
+    },
+    143: {
+        "Direccion": "Malabia 1100",
+        "Tipo": "Oficina",
+        "PrecioAlquiler": 104000,
+        "Estado": "Disponible"
+    },
+    144: {
+        "Direccion": "Gurruchaga 890",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 95000,
+        "Estado": "Ocupado"
+    },
+    145: {
+        "Direccion": "Serrano 720",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 81000,
+        "Estado": "Disponible"
+    },
+    146: {
+        "Direccion": "Jorge Luis Borges 2150",
+        "Tipo": "Local",
+        "PrecioAlquiler": 132000,
+        "Estado": "Ocupado"
+    },
+    147: {
+        "Direccion": "El Salvador 3200",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 99000,
+        "Estado": "Disponible"
+    },
+    148: {
+        "Direccion": "Nicaragua 2700",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 87000,
+        "Estado": "Disponible"
+    },
+    149: {
+        "Direccion": "Guatemala 1850",
+        "Tipo": "Depósito",
+        "PrecioAlquiler": 145000,
+        "Estado": "Ocupado"
+    },
+    150: {
+        "Direccion": "Paraguay 1600",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 86000,
+        "Estado": "Disponible"
     }
 }
