@@ -1,11 +1,18 @@
-from Propiedades.datos import propiedades
+import json
+import os
 from FuncAux.validaciones import norm, parse_int
 
-""""""""
+def cargar_propiedades():
+    ruta = os.path.join('Propiedades', 'datos.json')
+    try:
+        with open(ruta, "r", encoding="utf-8") as archivo:
+            return json.load(archivo)
+    except FileNotFoundError:
+        return {}
+    except json.JSONDecodeError:
+        print("Error: El archivo datos.json está mal formateado.")
+        return {}
 
-
-
-'''''
 def busqueda_propiedad():
     """
     Busca por dirección, tipo o ID dentro de `propiedades`.
@@ -14,6 +21,8 @@ def busqueda_propiedad():
       * id_seleccionado: int o None si no se seleccionó nada válido
       * lista_ids_resultados: list[int] con todos los IDs que matchearon
     """
+    propiedades = cargar_propiedades()
+    
     while True:  # reintentos
         termino = input("Ingrese dirección, tipo o ID a buscar: ")
         termino_norm = norm(termino)
@@ -60,4 +69,3 @@ def busqueda_propiedad():
             return seleccionado_id, resultados_ids
         else:
             print("Opción inválida. Intente nuevamente.\n")
-'''

@@ -1,7 +1,18 @@
 # Inquilinos/baja.py
-from Inquilinos.datos import inquilinos
+import json
+import os
 from FuncAux.validaciones import parse_int, norm
 from Inquilinos.mostrar import mostrar_inquilino
+
+def cargar_inquilinos():
+    ruta = os.path.join('Inquilinos', 'datos.json')
+    with open(ruta, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def guardar_inquilinos(inquilinos):
+    ruta = os.path.join('Inquilinos', 'datos.json')
+    with open(ruta, 'w', encoding='utf-8') as f:
+        json.dump(inquilinos, f, indent=2, ensure_ascii=False)
 
 def baja_inquilino():
     """
@@ -16,6 +27,8 @@ def baja_inquilino():
         entrada = input("Ingrese el ID del inquilino a dar de baja (0 para cancelar): ").strip()
         iid = parse_int(entrada)
 
+        inquilinos = cargar_inquilinos()
+        
         # condición de salida: cancelar o ID inválido
         if iid is None:
             print("ID inválido. Intente nuevamente.\n")
@@ -36,6 +49,7 @@ def baja_inquilino():
                 confirma = norm(input("¿Confirmar baja lógica? (s/n): "))
                 if confirma in ("s", "si", "sí"):
                     q["Estado"] = "Inactivo"
+                    guardar_inquilinos(inquilinos)
                     print("Baja realizada correctamente.\n")
                     exito = True
                     continuar = False

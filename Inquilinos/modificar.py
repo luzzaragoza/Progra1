@@ -1,5 +1,16 @@
-from Inquilinos.datos import inquilinos
+import json
+import os
 from FuncAux.validaciones import norm, nonempty, parse_int
+
+def cargar_inquilinos():
+    ruta = os.path.join('Inquilinos', 'datos.json')
+    with open(ruta, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def guardar_inquilinos(inquilinos):
+    ruta = os.path.join('Inquilinos', 'datos.json')
+    with open(ruta, 'w', encoding='utf-8') as f:
+        json.dump(inquilinos, f, indent=2, ensure_ascii=False)
 
 def modificar_inquilino():
     print("----- Modificar Inquilino -----")
@@ -9,6 +20,8 @@ def modificar_inquilino():
         print("ID inválido. Debe ser numérico.\n")
         return False
 
+    inquilinos = cargar_inquilinos()
+    
     if id_inq not in inquilinos:
         print("❌ Inquilino no encontrado.\n")
         return False
@@ -56,5 +69,6 @@ def modificar_inquilino():
         else:
             print("Ingrese un teléfono válido. Se mantiene el teléfono actual.")
     
+    guardar_inquilinos(inquilinos)
     print ("\n✅ Inquilino modificado exitosamente.\n")
     return True

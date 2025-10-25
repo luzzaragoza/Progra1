@@ -1,5 +1,16 @@
-from Contratos.datos import contratos
+import json
+import os
 from FuncAux.validaciones import norm, nonempty, parse_int
+
+def cargar_contratos():
+    ruta = os.path.join('Contratos', 'datos.json')
+    with open(ruta, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def guardar_contratos(contratos):
+    ruta = os.path.join('Contratos', 'datos.json')
+    with open(ruta, 'w', encoding='utf-8') as f:
+        json.dump(contratos, f, indent=2, ensure_ascii=False)
 
 def tipo_estado(opcion):
     """
@@ -27,6 +38,8 @@ def modificar_estado_contrato():
         if id_contrato is None:
             raise ValueError("ID inválido. Debe ser numérico.")
 
+        contratos = cargar_contratos()
+        
         if id_contrato not in contratos:
             raise LookupError("❌ Contrato no encontrado.")
 
@@ -45,6 +58,7 @@ def modificar_estado_contrato():
                     print("Se mantiene el estado actual.\n")
                 else:
                     c["Estado"] = nuevo_estado
+                    guardar_contratos(contratos)
                     print("\n✅ Estado del contrato modificado exitosamente.\n")
 
                 exito = True

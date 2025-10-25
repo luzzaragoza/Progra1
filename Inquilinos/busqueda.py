@@ -1,5 +1,11 @@
-from Inquilinos.datos import inquilinos
+import json
+import os
 from FuncAux.validaciones import norm, nonempty, parse_int
+
+def cargar_inquilinos():
+    ruta = os.path.join('Inquilinos', 'datos.json')
+    with open(ruta, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 def busqueda_inquilino():
     """
@@ -13,6 +19,8 @@ def busqueda_inquilino():
         termino = input("Ingrese nombre, apellido o ID a buscar: ")
         termino_norm = norm(termino)
 
+        inquilinos = cargar_inquilinos()
+        
         # Si ingresan un ID exacto, lo priorizamos como búsqueda directa
         posible_id = parse_int(termino_norm)
         if posible_id is not None:
@@ -55,4 +63,3 @@ def busqueda_inquilino():
             return seleccionado_id, resultados_ids
         else:
             print("Opción inválida. Intente nuevamente.\n")
-        

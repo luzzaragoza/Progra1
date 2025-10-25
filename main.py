@@ -1,30 +1,39 @@
+import json
+import os
+
+def cargar_json(modulo, archivo="datos.json"):
+    ruta = os.path.join(modulo, archivo)
+    try:
+        with open(ruta, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
+    except json.JSONDecodeError:
+        print(f"Error: El archivo {ruta} está mal formateado.")
+        return {}
+
 # --- IMPORTS ---
-from Inquilinos.datos import inquilinos
 from Inquilinos.crear import crear_cant_inquilinos
 from Inquilinos.modificar import modificar_inquilino
 from Inquilinos.busqueda import busqueda_inquilino
 from Inquilinos.mostrar import mostrar_inquilinos
 from Inquilinos.baja import baja_inquilino
 
-
-from Propiedades.datos import propiedades
 from Propiedades.modificar import modificar_propiedad
 #from Propiedades.busqueda import busqueda_propiedad  
 from Propiedades.crear import crear_cant_propiedades
 from Propiedades.mostrar import mostrar_propiedades
 from Propiedades.baja import baja_propiedad
 
-from Contratos.datos import contratos
 from Contratos.crear import crear_cant_contratos
 from Contratos.modificar import modificar_estado_contrato
 from Contratos.mostrar import mostrar_contratos
 
-from Pagos.datos import pagos
 from Pagos.crear import crear_cant_pagos
 from Pagos.mostrar import mostrar_pagos
 
 from FuncAux.login import iniciar_sesion
-from FuncAux.validaciones import parse_int, nonempty, norm   # <- lambdas/funcs de validación
+from FuncAux.validaciones import parse_int, nonempty, norm
 
 from Usuarios.crear import crear_cant_usuario
 from Usuarios.modificar import cambiar_contrasenia as modificar_usuario

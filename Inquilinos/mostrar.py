@@ -1,7 +1,15 @@
-from Inquilinos.datos import inquilinos
+import json
+import os
+
+def cargar_inquilinos():
+    ruta = os.path.join('Inquilinos', 'datos.json')
+    with open(ruta, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 def mostrar_inquilinos():
     print("----- Lista de Inquilinos -----")
+    inquilinos = cargar_inquilinos()
+    
     if not inquilinos:  # Si el diccionario está vacío
         print("No hay inquilinos registrados.\n")
         return

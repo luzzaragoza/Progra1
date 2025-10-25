@@ -1,6 +1,23 @@
-from Propiedades.datos import propiedades
+import json
+import os
 from FuncAux.validaciones import norm, nonempty, parse_int
 from Propiedades.crear import tipo_propiedad
+
+def cargar_propiedades():
+    ruta = os.path.join('Propiedades', 'datos.json')
+    try:
+        with open(ruta, "r", encoding="utf-8") as archivo:
+            return json.load(archivo)
+    except FileNotFoundError:
+        return {}
+    except json.JSONDecodeError:
+        print("Error: El archivo datos.json está mal formateado.")
+        return {}
+
+def guardar_propiedades(propiedades):
+    ruta = os.path.join('Propiedades', 'datos.json')
+    with open(ruta, "w", encoding="utf-8") as archivo:
+        json.dump(propiedades, archivo, indent=4, ensure_ascii=False)
 
 def estado_ocupacion(opcion):
     """
@@ -21,6 +38,8 @@ def estado_ocupacion(opcion):
 
 
 def modificar_propiedad():
+    propiedades = cargar_propiedades()
+    
     print("----- Modificar Propiedad -----")
     try:
         raw_id = input("Ingrese el ID de la propiedad a modificar: ")
@@ -28,10 +47,11 @@ def modificar_propiedad():
         if id_prop is None:
             raise ValueError("ID inválido. Debe ser numérico.")
 
-        if id_prop not in propiedades:
+        id_prop_str = str(id_prop)
+        if id_prop_str not in propiedades:
             raise LookupError("❌ Propiedad no encontrada.")
 
-        p = propiedades[id_prop]
+        p = propiedades[id_prop_str]
 
         # Dirección
         print(f"\nDirección actual: {p['Direccion']}")
@@ -78,6 +98,7 @@ def modificar_propiedad():
                 except ValueError as e:
                     print(f"⚠️ {e}\nIntentá de nuevo.\n")
 
+        guardar_propiedades(propiedades)
         print("\n✅ Propiedad modificada exitosamente.\n")
         return True
 
@@ -96,4 +117,3 @@ def modificar_propiedad():
     except Exception as e:
         print(f"⚠️ Error inesperado: {e}\n")
         return False
-

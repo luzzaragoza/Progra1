@@ -1,5 +1,22 @@
-from Propiedades.datos import propiedades
+import json
+import os
 from FuncAux.validaciones import norm, nonempty, parse_int
+
+def cargar_propiedades():
+    ruta = os.path.join('Propiedades', 'datos.json')
+    try:
+        with open(ruta, "r", encoding="utf-8") as archivo:
+            return json.load(archivo)
+    except FileNotFoundError:
+        return {}
+    except json.JSONDecodeError:
+        print("Error: El archivo datos.json está mal formateado.")
+        return {}
+
+def guardar_propiedades(propiedades):
+    ruta = os.path.join('Propiedades', 'datos.json')
+    with open(ruta, "w", encoding="utf-8") as archivo:
+        json.dump(propiedades, archivo, indent=4, ensure_ascii=False)
 
 def tipo_propiedad(opcion):
     tipo = ""
@@ -14,6 +31,8 @@ def tipo_propiedad(opcion):
     return tipo
 
 def crear_propiedad(id_propiedad):
+    propiedades = cargar_propiedades()
+    
     direccion = input("Dirección de la propiedad (Calle y número): ").strip()
     while not nonempty(direccion):
         print("La dirección no puede estar vacía. Intente nuevamente.")
@@ -26,22 +45,22 @@ def crear_propiedad(id_propiedad):
     opcion = input("Opción: ").strip()
     tipo = tipo_propiedad(opcion)
     
-    
     precio_alquiler = int(input("Precio de alquiler (USD): "))
     while precio_alquiler <= 0:
         print("El precio de alquiler debe ser un número positivo. Intente nuevamente.")
         precio_alquiler = int(input("Precio de alquiler (USD): "))
 
     propiedades[id_propiedad] = {f"Direccion": direccion, "Tipo": tipo, "PrecioAlquiler": precio_alquiler, "Estado": "Disponible"}
+    guardar_propiedades(propiedades)
     print(f"Propiedad con ID {id_propiedad} creada exitosamente.\n")
     
     return propiedades
-
 
 def crear_cant_propiedades(cant_propiedades):
     creados = []
     for i in range(cant_propiedades):
         print(f"--- Ingresando datos de la propiedad {i + 1} ---")
+        propiedades = cargar_propiedades()
         id_propiedad = len(propiedades) + 1
         nuevo = crear_propiedad(id_propiedad)
         creados.append(nuevo)

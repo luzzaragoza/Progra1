@@ -1,0 +1,302 @@
+{
+  "9001": {
+    "ID Contrato": 5001,
+    "Fecha": "2025-04-01",
+    "Monto": 75000,
+    "Método": "Transferencia"
+  },
+  "9002": {
+    "ID Contrato": 5002,
+    "Fecha": "2024-06-01",
+    "Monto": 95000,
+    "Método": "Efectivo"
+  },
+  "9003": {
+    "ID Contrato": 5003,
+    "Fecha": "2025-02-01",
+    "Monto": 80000,
+    "Método": "Transferencia"
+  },
+  "9004": {
+    "ID Contrato": 5004,
+    "Fecha": "2025-08-01",
+    "Monto": 120000,
+    "Método": "Tarjeta"
+  },
+  "9005": {
+    "ID Contrato": 5005,
+    "Fecha": "2024-12-01",
+    "Monto": 98000,
+    "Método": "Transferencia"
+  },
+  "9006": {
+    "ID Contrato": 5006,
+    "Fecha": "2025-01-01",
+    "Monto": 87000,
+    "Método": "Efectivo"
+  },
+  "9007": {
+    "ID Contrato": 5007,
+    "Fecha": "2025-03-01",
+    "Monto": 91000,
+    "Método": "Tarjeta"
+  },
+  "9008": {
+    "ID Contrato": 5008,
+    "Fecha": "2024-09-01",
+    "Monto": 77000,
+    "Método": "Transferencia"
+  },
+  "9009": {
+    "ID Contrato": 5009,
+    "Fecha": "2025-06-01",
+    "Monto": 115000,
+    "Método": "Efectivo"
+  },
+  "9010": {
+    "ID Contrato": 5010,
+    "Fecha": "2024-10-01",
+    "Monto": 93000,
+    "Método": "Débito"
+  },
+  "9011": {
+    "ID Contrato": 5011,
+    "Fecha": "2025-02-15",
+    "Monto": 89000,
+    "Método": "Transferencia"
+  },
+  "9012": {
+    "ID Contrato": 5012,
+    "Fecha": "2025-05-01",
+    "Monto": 104000,
+    "Método": "Efectivo"
+  },
+  "9013": {
+    "ID Contrato": 5013,
+    "Fecha": "2024-08-01",
+    "Monto": 78000,
+    "Método": "Transferencia"
+  },
+  "9014": {
+    "ID Contrato": 5014,
+    "Fecha": "2025-07-01",
+    "Monto": 112000,
+    "Método": "Tarjeta"
+  },
+  "9015": {
+    "ID Contrato": 5015,
+    "Fecha": "2025-03-15",
+    "Monto": 97000,
+    "Método": "Transferencia"
+  },
+  "9016": {
+    "ID Contrato": 5016,
+    "Fecha": "2024-05-01",
+    "Monto": 86000,
+    "Método": "Efectivo"
+  },
+  "9017": {
+    "ID Contrato": 5017,
+    "Fecha": "2025-01-15",
+    "Monto": 91000,
+    "Método": "Débito"
+  },
+  "9018": {
+    "ID Contrato": 5018,
+    "Fecha": "2025-04-10",
+    "Monto": 99000,
+    "Método": "Transferencia"
+  },
+  "9019": {
+    "ID Contrato": 5019,
+    "Fecha": "2024-11-01",
+    "Monto": 102000,
+    "Método": "Efectivo"
+  },
+  "9020": {
+    "ID Contrato": 5020,
+    "Fecha": "2025-06-15",
+    "Monto": 108000,
+    "Método": "Transferencia"
+  },
+  "9021": {
+    "ID Contrato": 5021,
+    "Fecha": "2025-07-01",
+    "Monto": 93000,
+    "Método": "Efectivo"
+  },
+  "9022": {
+    "ID Contrato": 5022,
+    "Fecha": "2024-09-10",
+    "Monto": 87000,
+    "Método": "Débito"
+  },
+  "9023": {
+    "ID Contrato": 5023,
+    "Fecha": "2025-02-01",
+    "Monto": 95000,
+    "Método": "Transferencia"
+  },
+  "9024": {
+    "ID Contrato": 5024,
+    "Fecha": "2025-04-20",
+    "Monto": 113000,
+    "Método": "Tarjeta"
+  },
+  "9025": {
+    "ID Contrato": 5025,
+    "Fecha": "2024-12-10",
+    "Monto": 98000,
+    "Método": "Transferencia"
+  },
+  "9026": {
+    "ID Contrato": 5026,
+    "Fecha": "2025-05-01",
+    "Monto": 101000,
+    "Método": "Efectivo"
+  },
+  "9027": {
+    "ID Contrato": 5027,
+    "Fecha": "2024-06-01",
+    "Monto": 88000,
+    "Método": "Transferencia"
+  },
+  "9028": {
+    "ID Contrato": 5028,
+    "Fecha": "2025-01-01",
+    "Monto": 97000,
+    "Método": "Débito"
+  },
+  "9029": {
+    "ID Contrato": 5029,
+    "Fecha": "2025-03-01",
+    "Monto": 110000,
+    "Método": "Tarjeta"
+  },
+  "9030": {
+    "ID Contrato": 5030,
+    "Fecha": "2025-08-01",
+    "Monto": 125000,
+    "Método": "Efectivo"
+  },
+  "9031": {
+    "ID Contrato": 5031,
+    "Fecha": "2024-10-01",
+    "Monto": 92000,
+    "Método": "Transferencia"
+  },
+  "9032": {
+    "ID Contrato": 5032,
+    "Fecha": "2025-06-01",
+    "Monto": 114000,
+    "Método": "Tarjeta"
+  },
+  "9033": {
+    "ID Contrato": 5033,
+    "Fecha": "2024-07-01",
+    "Monto": 89000,
+    "Método": "Efectivo"
+  },
+  "9034": {
+    "ID Contrato": 5034,
+    "Fecha": "2025-04-01",
+    "Monto": 102000,
+    "Método": "Transferencia"
+  },
+  "9035": {
+    "ID Contrato": 5035,
+    "Fecha": "2025-02-01",
+    "Monto": 96000,
+    "Método": "Tarjeta"
+  },
+  "9036": {
+    "ID Contrato": 5036,
+    "Fecha": "2025-03-15",
+    "Monto": 109000,
+    "Método": "Transferencia"
+  },
+  "9037": {
+    "ID Contrato": 5037,
+    "Fecha": "2024-08-10",
+    "Monto": 86000,
+    "Método": "Efectivo"
+  },
+  "9038": {
+    "ID Contrato": 5038,
+    "Fecha": "2025-05-10",
+    "Monto": 98000,
+    "Método": "Transferencia"
+  },
+  "9039": {
+    "ID Contrato": 5039,
+    "Fecha": "2025-07-01",
+    "Monto": 112000,
+    "Método": "Tarjeta"
+  },
+  "9040": {
+    "ID Contrato": 5040,
+    "Fecha": "2025-06-15",
+    "Monto": 104000,
+    "Método": "Transferencia"
+  },
+  "9041": {
+    "ID Contrato": 5041,
+    "Fecha": "2024-09-01",
+    "Monto": 91000,
+    "Método": "Efectivo"
+  },
+  "9042": {
+    "ID Contrato": 5042,
+    "Fecha": "2025-01-20",
+    "Monto": 95000,
+    "Método": "Débito"
+  },
+  "9043": {
+    "ID Contrato": 5043,
+    "Fecha": "2025-02-10",
+    "Monto": 107000,
+    "Método": "Transferencia"
+  },
+  "9044": {
+    "ID Contrato": 5044,
+    "Fecha": "2025-04-25",
+    "Monto": 120000,
+    "Método": "Tarjeta"
+  },
+  "9045": {
+    "ID Contrato": 5045,
+    "Fecha": "2025-05-01",
+    "Monto": 108000,
+    "Método": "Transferencia"
+  },
+  "9046": {
+    "ID Contrato": 5046,
+    "Fecha": "2024-07-15",
+    "Monto": 87000,
+    "Método": "Efectivo"
+  },
+  "9047": {
+    "ID Contrato": 5047,
+    "Fecha": "2025-06-01",
+    "Monto": 102000,
+    "Método": "Débito"
+  },
+  "9048": {
+    "ID Contrato": 5048,
+    "Fecha": "2025-03-10",
+    "Monto": 97000,
+    "Método": "Transferencia"
+  },
+  "9049": {
+    "ID Contrato": 5049,
+    "Fecha": "2025-04-01",
+    "Monto": 113000,
+    "Método": "Efectivo"
+  },
+  "9050": {
+    "ID Contrato": 5050,
+    "Fecha": "2025-07-15",
+    "Monto": 125000,
+    "Método": "Tarjeta"
+  }
+}

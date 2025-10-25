@@ -1,7 +1,15 @@
-from Propiedades.datos import propiedades
+import json
+import os
+
+def cargar_propiedades():
+    ruta = os.path.join('Propiedades', 'datos.json')
+    with open(ruta, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 def mostrar_propiedades():
     print("----- Lista de Propiedades -----")
+    propiedades = cargar_propiedades()
+    
     if not propiedades:  # Si el diccionario está vacío
         print("No hay propiedades registradas.\n")
         return

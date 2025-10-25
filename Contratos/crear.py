@@ -1,8 +1,24 @@
-from Contratos.datos import contratos
+import json
+import os
 from FuncAux.validaciones import norm, nonempty, parse_int, parse_float, parse_date
 
-def crear_contrato(id_contrato):
+# Cargar contratos desde JSON
+def cargar_contratos():
+    ruta = os.path.join('Contratos', 'datos.json')
+    if not os.path.exists(ruta):  # Si no existe, crear uno vacío
+        with open(ruta, 'w', encoding='utf-8') as f:
+            json.dump({}, f, indent=2, ensure_ascii=False)
+    with open(ruta, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
+# Guardar contratos en JSON
+def guardar_contratos(contratos):
+    ruta = os.path.join('Contratos', 'datos.json')
+    with open(ruta, 'w', encoding='utf-8') as f:
+        json.dump(contratos, f, indent=2, ensure_ascii=False)
+
+# Crear un contrato
+def crear_contrato(contratos, id_contrato):
     # ID de inquilino
     while True:
         raw_id_inq = input("ID de inquilino: ")
@@ -11,7 +27,7 @@ def crear_contrato(id_contrato):
             break
         print("Ingrese un ID válido por favor.")
 
-    #ID de propiedad
+    # ID de propiedad
     while True:
         raw_id_prop = input("ID de propiedad: ")
         id_prop = parse_int(raw_id_prop)
@@ -19,7 +35,7 @@ def crear_contrato(id_contrato):
             break
         print("Ingrese un ID válido por favor.")
 
-    # Monto del contrato
+    # Monto mensual
     while True:
         raw_monto = input("Monto mensual (en USD): ")
         monto = parse_int(raw_monto)
@@ -43,10 +59,11 @@ def crear_contrato(id_contrato):
             break
         print("Ingrese una fecha válida por favor.")
 
-    # Estado por defecto
+    # Estado
     estado = "Activo"
 
-    contratos[id_contrato] = {
+    # Crear el contrato
+    contrato = {
         "ID_Inquilino": id_inq,
         "ID_Propiedad": id_prop,
         "Monto": monto,
@@ -54,15 +71,22 @@ def crear_contrato(id_contrato):
         "Fecha_Fin": fecha_fin,
         "Estado": estado,
     }
-    print(f"Contrato con id {id_contrato} creado exitosamente.\n")
-    return id_contrato
 
+    contratos[str(id_contrato)] = contrato  # <-- clave como string para JSON
+
+    print(f"Contrato con id {id_contrato} creado exitosamente.\n")
+    return contrato
+
+
+# Crear varios contratos
 def crear_cant_contratos(cant_contratos):
+    contratos = cargar_contratos()
     creados = []
     for i in range(cant_contratos):
         print(f"--- Ingresando datos del contrato {i + 1} ---")
         id_con = len(contratos) + 1
-        nuevo = crear_contrato(id_con)
+        nuevo = crear_contrato(contratos, id_con)
         creados.append(nuevo)
+    guardar_contratos(contratos)
     print(f"Contratos creados exitosamente: ({len(creados)}) \n")
     return creados

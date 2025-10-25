@@ -6,7 +6,7 @@ from Propiedades.datos import propiedades
 from Contratos.datos import contratos
 from Pagos.datos import pagos
 
-
+#en estadística debe haber: cantidad de inmuebles, cuantos ocupados y cuantos libres, sin opción de compra ya que es solo para alquileres; hacer una estadística para pagos aobre cuantos pagan en efvo, cuantos en tarjeta y cuantos en trasnferencia; contratos vigentes, dados de baja; cantidad de casas y cantidad de departamentos; 
 # --- FUNCIONES AUXILIARES ---
 def calcular_ocupacion(propiedades):
     total = len(propiedades)

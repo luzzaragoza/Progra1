@@ -1,0 +1,402 @@
+{
+  "5001": {
+    "ID_Propiedad": 101,
+    "ID_Inquilino": 505,
+    "Fecha_Inicio": "2025-03-01",
+    "Fecha_Fin": "2026-02-28",
+    "Monto": 250000,
+    "Estado": "Vigente"
+  },
+  "5002": {
+    "ID_Propiedad": 102,
+    "ID_Inquilino": 506,
+    "Fecha_Inicio": "2024-05-15",
+    "Fecha_Fin": "2025-05-14",
+    "Monto": 270000,
+    "Estado": "Vigente"
+  },
+  "5003": {
+    "ID_Propiedad": 103,
+    "ID_Inquilino": 507,
+    "Fecha_Inicio": "2025-01-10",
+    "Fecha_Fin": "2026-01-09",
+    "Monto": 220000,
+    "Estado": "Vigente"
+  },
+  "5004": {
+    "ID_Propiedad": 104,
+    "ID_Inquilino": 508,
+    "Fecha_Inicio": "2025-07-01",
+    "Fecha_Fin": "2026-06-30",
+    "Monto": 300000,
+    "Estado": "Vigente"
+  },
+  "5005": {
+    "ID_Propiedad": 105,
+    "ID_Inquilino": 509,
+    "Fecha_Inicio": "2024-11-20",
+    "Fecha_Fin": "2025-11-19",
+    "Monto": 180000,
+    "Estado": "Vigente"
+  },
+  "5006": {
+    "ID_Propiedad": 106,
+    "ID_Inquilino": 510,
+    "Fecha_Inicio": "2025-04-01",
+    "Fecha_Fin": "2026-03-31",
+    "Monto": 260000,
+    "Estado": "Vigente"
+  },
+  "5007": {
+    "ID_Propiedad": 107,
+    "ID_Inquilino": 511,
+    "Fecha_Inicio": "2025-02-15",
+    "Fecha_Fin": "2026-02-14",
+    "Monto": 245000,
+    "Estado": "Pendiente"
+  },
+  "5008": {
+    "ID_Propiedad": 108,
+    "ID_Inquilino": 512,
+    "Fecha_Inicio": "2024-08-01",
+    "Fecha_Fin": "2025-07-31",
+    "Monto": 275000,
+    "Estado": "Finalizado"
+  },
+  "5009": {
+    "ID_Propiedad": 109,
+    "ID_Inquilino": 513,
+    "Fecha_Inicio": "2025-05-01",
+    "Fecha_Fin": "2026-04-30",
+    "Monto": 290000,
+    "Estado": "Vigente"
+  },
+  "5010": {
+    "ID_Propiedad": 110,
+    "ID_Inquilino": 514,
+    "Fecha_Inicio": "2024-10-10",
+    "Fecha_Fin": "2025-10-09",
+    "Monto": 210000,
+    "Estado": "Finalizado"
+  },
+  "5011": {
+    "ID_Propiedad": 111,
+    "ID_Inquilino": 515,
+    "Fecha_Inicio": "2025-06-01",
+    "Fecha_Fin": "2026-05-31",
+    "Monto": 280000,
+    "Estado": "Vigente"
+  },
+  "5012": {
+    "ID_Propiedad": 112,
+    "ID_Inquilino": 516,
+    "Fecha_Inicio": "2024-09-01",
+    "Fecha_Fin": "2025-08-31",
+    "Monto": 240000,
+    "Estado": "Pendiente"
+  },
+  "5013": {
+    "ID_Propiedad": 113,
+    "ID_Inquilino": 517,
+    "Fecha_Inicio": "2025-01-20",
+    "Fecha_Fin": "2026-01-19",
+    "Monto": 255000,
+    "Estado": "Vigente"
+  },
+  "5014": {
+    "ID_Propiedad": 114,
+    "ID_Inquilino": 518,
+    "Fecha_Inicio": "2025-03-01",
+    "Fecha_Fin": "2026-02-28",
+    "Monto": 230000,
+    "Estado": "Vigente"
+  },
+  "5015": {
+    "ID_Propiedad": 115,
+    "ID_Inquilino": 519,
+    "Fecha_Inicio": "2024-12-01",
+    "Fecha_Fin": "2025-11-30",
+    "Monto": 265000,
+    "Estado": "Finalizado"
+  },
+  "5016": {
+    "ID_Propiedad": 116,
+    "ID_Inquilino": 520,
+    "Fecha_Inicio": "2025-04-15",
+    "Fecha_Fin": "2026-04-14",
+    "Monto": 310000,
+    "Estado": "Vigente"
+  },
+  "5017": {
+    "ID_Propiedad": 117,
+    "ID_Inquilino": 521,
+    "Fecha_Inicio": "2025-07-01",
+    "Fecha_Fin": "2026-06-30",
+    "Monto": 275000,
+    "Estado": "Vigente"
+  },
+  "5018": {
+    "ID_Propiedad": 118,
+    "ID_Inquilino": 522,
+    "Fecha_Inicio": "2025-05-10",
+    "Fecha_Fin": "2026-05-09",
+    "Monto": 320000,
+    "Estado": "Pendiente"
+  },
+  "5019": {
+    "ID_Propiedad": 119,
+    "ID_Inquilino": 523,
+    "Fecha_Inicio": "2024-06-01",
+    "Fecha_Fin": "2025-05-31",
+    "Monto": 260000,
+    "Estado": "Finalizado"
+  },
+  "5020": {
+    "ID_Propiedad": 120,
+    "ID_Inquilino": 524,
+    "Fecha_Inicio": "2025-03-01",
+    "Fecha_Fin": "2026-02-28",
+    "Monto": 285000,
+    "Estado": "Vigente"
+  },
+  "5021": {
+    "ID_Propiedad": 121,
+    "ID_Inquilino": 525,
+    "Fecha_Inicio": "2025-04-01",
+    "Fecha_Fin": "2026-03-31",
+    "Monto": 295000,
+    "Estado": "Vigente"
+  },
+  "5022": {
+    "ID_Propiedad": 122,
+    "ID_Inquilino": 526,
+    "Fecha_Inicio": "2024-11-01",
+    "Fecha_Fin": "2025-10-31",
+    "Monto": 250000,
+    "Estado": "Finalizado"
+  },
+  "5023": {
+    "ID_Propiedad": 123,
+    "ID_Inquilino": 527,
+    "Fecha_Inicio": "2025-06-01",
+    "Fecha_Fin": "2026-05-31",
+    "Monto": 310000,
+    "Estado": "Vigente"
+  },
+  "5024": {
+    "ID_Propiedad": 124,
+    "ID_Inquilino": 528,
+    "Fecha_Inicio": "2025-02-01",
+    "Fecha_Fin": "2026-01-31",
+    "Monto": 245000,
+    "Estado": "Vigente"
+  },
+  "5025": {
+    "ID_Propiedad": 125,
+    "ID_Inquilino": 529,
+    "Fecha_Inicio": "2024-07-01",
+    "Fecha_Fin": "2025-06-30",
+    "Monto": 230000,
+    "Estado": "Finalizado"
+  },
+  "5026": {
+    "ID_Propiedad": 126,
+    "ID_Inquilino": 530,
+    "Fecha_Inicio": "2025-01-15",
+    "Fecha_Fin": "2026-01-14",
+    "Monto": 270000,
+    "Estado": "Vigente"
+  },
+  "5027": {
+    "ID_Propiedad": 127,
+    "ID_Inquilino": 531,
+    "Fecha_Inicio": "2025-05-01",
+    "Fecha_Fin": "2026-04-30",
+    "Monto": 295000,
+    "Estado": "Vigente"
+  },
+  "5028": {
+    "ID_Propiedad": 128,
+    "ID_Inquilino": 532,
+    "Fecha_Inicio": "2024-09-10",
+    "Fecha_Fin": "2025-09-09",
+    "Monto": 250000,
+    "Estado": "Finalizado"
+  },
+  "5029": {
+    "ID_Propiedad": 129,
+    "ID_Inquilino": 533,
+    "Fecha_Inicio": "2025-04-01",
+    "Fecha_Fin": "2026-03-31",
+    "Monto": 280000,
+    "Estado": "Vigente"
+  },
+  "5030": {
+    "ID_Propiedad": 130,
+    "ID_Inquilino": 534,
+    "Fecha_Inicio": "2025-03-20",
+    "Fecha_Fin": "2026-03-19",
+    "Monto": 310000,
+    "Estado": "Pendiente"
+  },
+  "5031": {
+    "ID_Propiedad": 131,
+    "ID_Inquilino": 535,
+    "Fecha_Inicio": "2025-07-10",
+    "Fecha_Fin": "2026-07-09",
+    "Monto": 335000,
+    "Estado": "Vigente"
+  },
+  "5032": {
+    "ID_Propiedad": 132,
+    "ID_Inquilino": 536,
+    "Fecha_Inicio": "2024-12-05",
+    "Fecha_Fin": "2025-12-04",
+    "Monto": 260000,
+    "Estado": "Finalizado"
+  },
+  "5033": {
+    "ID_Propiedad": 133,
+    "ID_Inquilino": 537,
+    "Fecha_Inicio": "2025-02-01",
+    "Fecha_Fin": "2026-01-31",
+    "Monto": 295000,
+    "Estado": "Vigente"
+  },
+  "5034": {
+    "ID_Propiedad": 134,
+    "ID_Inquilino": 538,
+    "Fecha_Inicio": "2025-05-15",
+    "Fecha_Fin": "2026-05-14",
+    "Monto": 320000,
+    "Estado": "Vigente"
+  },
+  "5035": {
+    "ID_Propiedad": 135,
+    "ID_Inquilino": 539,
+    "Fecha_Inicio": "2025-04-01",
+    "Fecha_Fin": "2026-03-31",
+    "Monto": 285000,
+    "Estado": "Pendiente"
+  },
+  "5036": {
+    "ID_Propiedad": 136,
+    "ID_Inquilino": 540,
+    "Fecha_Inicio": "2024-10-01",
+    "Fecha_Fin": "2025-09-30",
+    "Monto": 250000,
+    "Estado": "Finalizado"
+  },
+  "5037": {
+    "ID_Propiedad": 137,
+    "ID_Inquilino": 541,
+    "Fecha_Inicio": "2025-03-01",
+    "Fecha_Fin": "2026-02-28",
+    "Monto": 310000,
+    "Estado": "Vigente"
+  },
+  "5038": {
+    "ID_Propiedad": 138,
+    "ID_Inquilino": 542,
+    "Fecha_Inicio": "2025-06-01",
+    "Fecha_Fin": "2026-05-31",
+    "Monto": 280000,
+    "Estado": "Vigente"
+  },
+  "5039": {
+    "ID_Propiedad": 139,
+    "ID_Inquilino": 543,
+    "Fecha_Inicio": "2025-01-01",
+    "Fecha_Fin": "2025-12-31",
+    "Monto": 270000,
+    "Estado": "Finalizado"
+  },
+  "5040": {
+    "ID_Propiedad": 140,
+    "ID_Inquilino": 544,
+    "Fecha_Inicio": "2025-05-01",
+    "Fecha_Fin": "2026-04-30",
+    "Monto": 300000,
+    "Estado": "Vigente"
+  },
+  "5041": {
+    "ID_Propiedad": 141,
+    "ID_Inquilino": 545,
+    "Fecha_Inicio": "2025-03-01",
+    "Fecha_Fin": "2026-02-28",
+    "Monto": 275000,
+    "Estado": "Vigente"
+  },
+  "5042": {
+    "ID_Propiedad": 142,
+    "ID_Inquilino": 546,
+    "Fecha_Inicio": "2024-07-15",
+    "Fecha_Fin": "2025-07-14",
+    "Monto": 290000,
+    "Estado": "Finalizado"
+  },
+  "5043": {
+    "ID_Propiedad": 143,
+    "ID_Inquilino": 547,
+    "Fecha_Inicio": "2025-02-01",
+    "Fecha_Fin": "2026-01-31",
+    "Monto": 325000,
+    "Estado": "Vigente"
+  },
+  "5044": {
+    "ID_Propiedad": 144,
+    "ID_Inquilino": 548,
+    "Fecha_Inicio": "2025-04-10",
+    "Fecha_Fin": "2026-04-09",
+    "Monto": 300000,
+    "Estado": "Pendiente"
+  },
+  "5045": {
+    "ID_Propiedad": 145,
+    "ID_Inquilino": 549,
+    "Fecha_Inicio": "2025-01-15",
+    "Fecha_Fin": "2026-01-14",
+    "Monto": 295000,
+    "Estado": "Vigente"
+  },
+  "5046": {
+    "ID_Propiedad": 146,
+    "ID_Inquilino": 550,
+    "Fecha_Inicio": "2024-09-01",
+    "Fecha_Fin": "2025-08-31",
+    "Monto": 310000,
+    "Estado": "Finalizado"
+  },
+  "5047": {
+    "ID_Propiedad": 147,
+    "ID_Inquilino": 551,
+    "Fecha_Inicio": "2025-05-01",
+    "Fecha_Fin": "2026-04-30",
+    "Monto": 330000,
+    "Estado": "Vigente"
+  },
+  "5048": {
+    "ID_Propiedad": 148,
+    "ID_Inquilino": 552,
+    "Fecha_Inicio": "2025-06-15",
+    "Fecha_Fin": "2026-06-14",
+    "Monto": 340000,
+    "Estado": "Vigente"
+  },
+  "5049": {
+    "ID_Propiedad": 149,
+    "ID_Inquilino": 553,
+    "Fecha_Inicio": "2025-03-01",
+    "Fecha_Fin": "2026-02-28",
+    "Monto": 350000,
+    "Estado": "Pendiente"
+  },
+  "5050": {
+    "ID_Propiedad": 150,
+    "ID_Inquilino": 554,
+    "Fecha_Inicio": "2024-12-01",
+    "Fecha_Fin": "2025-11-30",
+    "Monto": 325000,
+    "Estado": "Vigente"
+  }
+}

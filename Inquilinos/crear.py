@@ -1,7 +1,19 @@
-from Inquilinos.datos import inquilinos
+import json
+import os
 from FuncAux.validaciones import norm, nonempty, parse_int
 
+def cargar_inquilinos():
+    ruta = os.path.join('Inquilinos', 'datos.json')
+    with open(ruta, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def guardar_inquilinos(inquilinos):
+    ruta = os.path.join('Inquilinos', 'datos.json')
+    with open(ruta, 'w', encoding='utf-8') as f:
+        json.dump(inquilinos, f, indent=2, ensure_ascii=False)
+
 def crear_inquilino(id_inquilino):
+    inquilinos = cargar_inquilinos()
 
     nombre = input("Nombre y Apellido: ")
     while not nonempty(nombre):
@@ -42,6 +54,7 @@ def crear_inquilino(id_inquilino):
         "Telefono": tel,
         "Estado": estado,
     }
+    guardar_inquilinos(inquilinos)
     print(f"Inquilino con id {id_inquilino} creado exitosamente.\n")
     return id_inquilino
 
@@ -50,6 +63,7 @@ def crear_cant_inquilinos(cant_inquilinos):
     creados = []
     for i in range(cant_inquilinos):
         print(f"--- Ingresando datos del inquilino {i + 1} ---")
+        inquilinos = cargar_inquilinos()
         id_inq = len(inquilinos) + 1
         nuevo = crear_inquilino(id_inq)
         creados.append(nuevo)

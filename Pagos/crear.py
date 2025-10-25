@@ -1,5 +1,22 @@
-from Pagos.datos import pagos
-from FuncAux.validaciones import parse_int, nonempty, norm, parse_date, parse_float  # <- lambdas/funcs de validación
+import json
+import os
+from FuncAux.validaciones import parse_int, nonempty, norm, parse_date, parse_float
+
+def cargar_pagos():
+    ruta = os.path.join('Pagos', 'datos.json')
+    try:
+        with open(ruta, "r", encoding="utf-8") as archivo:
+            return json.load(archivo)
+    except FileNotFoundError:
+        return {}
+    except json.JSONDecodeError:
+        print("Error: El archivo datos.json está mal formateado.")
+        return {}
+
+def guardar_pagos(pagos):
+    ruta = os.path.join('Pagos', 'datos.json')
+    with open(ruta, "w", encoding="utf-8") as archivo:
+        json.dump(pagos, archivo, indent=4, ensure_ascii=False)
 
 def tipo_metodo_pago(opcion):
     tipo = ""
@@ -17,6 +34,8 @@ def tipo_metodo_pago(opcion):
 
 
 def crear_pagos(id_pago):
+    pagos = cargar_pagos()
+    
     print(f"\n--- Creando Pago ID {id_pago} ---")
     id_contrato = parse_int(input("Ingrese ID Contrato asociado: ").strip())
     fecha_pago = parse_date(input("Ingrese Fecha de Pago (YYYY-MM-DD): ").strip())
@@ -31,6 +50,7 @@ def crear_pagos(id_pago):
     tipo_mpago = tipo_metodo_pago(opcion)
 
     pagos[id_pago] = {"ID Contrato": id_contrato, "Fecha": fecha_pago, "Monto": monto, "Método": tipo_mpago}
+    guardar_pagos(pagos)
     print(f"Pago con ID {id_pago} creado exitosamente.\n")
 
     return pagos
@@ -39,6 +59,7 @@ def crear_cant_pagos(cant_pagos):
     creados = []
     for i in range(cant_pagos):
         print(f"--- Ingresando datos del pago {i + 1} ---")
+        pagos = cargar_pagos()
         id_pago = len(pagos) + 1
         nuevo = crear_pagos(id_pago)
         creados.append(nuevo)
