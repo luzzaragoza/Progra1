@@ -243,5 +243,12 @@
     "Email": "federico.arias@mail.com",
     "Telefono": "+54 299 4415-7632",
     "Estado": "Inactivo"
+  },
+  "540": {
+    "Nombre": "M Luz Zara",
+    "DNI": 42116328,
+    "Email": "marina@gmail.com",
+    "Telefono": 1124749519,
+    "Estado": "Activo"
   }
 }

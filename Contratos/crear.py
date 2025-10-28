@@ -84,7 +84,7 @@ def crear_cant_contratos(cant_contratos):
     creados = []
     for i in range(cant_contratos):
         print(f"--- Ingresando datos del contrato {i + 1} ---")
-        id_con = len(contratos) + 1
+        id_con = int(max((contratos.keys()))) + 1
         nuevo = crear_contrato(contratos, id_con)
         creados.append(nuevo)
     guardar_contratos(contratos)

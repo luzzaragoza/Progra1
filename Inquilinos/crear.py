@@ -64,7 +64,7 @@ def crear_cant_inquilinos(cant_inquilinos):
     for i in range(cant_inquilinos):
         print(f"--- Ingresando datos del inquilino {i + 1} ---")
         inquilinos = cargar_inquilinos()
-        id_inq = len(inquilinos) + 1
+        id_inq = int(max(inquilinos.keys())) + 1
         nuevo = crear_inquilino(id_inq)
         creados.append(nuevo)
     print(f"Inquilinos creados exitosamente: ({len(creados)}) \n")

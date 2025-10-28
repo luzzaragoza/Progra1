@@ -53,7 +53,7 @@
     "Fecha_Inicio": "2025-02-15",
     "Fecha_Fin": "2026-02-14",
     "Monto": 245000,
-    "Estado": "Pendiente"
+    "Estado": "Cancelado"
   },
   "5008": {
     "ID_Propiedad": 108,
@@ -93,7 +93,7 @@
     "Fecha_Inicio": "2024-09-01",
     "Fecha_Fin": "2025-08-31",
     "Monto": 240000,
-    "Estado": "Pendiente"
+    "Estado": "Cancelado"
   },
   "5013": {
     "ID_Propiedad": 113,
@@ -141,7 +141,7 @@
     "Fecha_Inicio": "2025-05-10",
     "Fecha_Fin": "2026-05-09",
     "Monto": 320000,
-    "Estado": "Pendiente"
+    "Estado": "Cancelado"
   },
   "5019": {
     "ID_Propiedad": 119,
@@ -237,7 +237,7 @@
     "Fecha_Inicio": "2025-03-20",
     "Fecha_Fin": "2026-03-19",
     "Monto": 310000,
-    "Estado": "Pendiente"
+    "Estado": "Cancelado"
   },
   "5031": {
     "ID_Propiedad": 131,
@@ -277,7 +277,7 @@
     "Fecha_Inicio": "2025-04-01",
     "Fecha_Fin": "2026-03-31",
     "Monto": 285000,
-    "Estado": "Pendiente"
+    "Estado": "Cancelado"
   },
   "5036": {
     "ID_Propiedad": 136,
@@ -349,7 +349,7 @@
     "Fecha_Inicio": "2025-04-10",
     "Fecha_Fin": "2026-04-09",
     "Monto": 300000,
-    "Estado": "Pendiente"
+    "Estado": "Cancelado"
   },
   "5045": {
     "ID_Propiedad": 145,
@@ -389,7 +389,7 @@
     "Fecha_Inicio": "2025-03-01",
     "Fecha_Fin": "2026-02-28",
     "Monto": 350000,
-    "Estado": "Pendiente"
+    "Estado": "Cancelado"
   },
   "5050": {
     "ID_Propiedad": 150,

@@ -1,65 +1,90 @@
-import json
-import os
-from FuncAux.validaciones import norm, nonempty, parse_int
-
-def cargar_inquilinos():
-    ruta = os.path.join('Inquilinos', 'datos.json')
-    with open(ruta, 'r', encoding='utf-8') as f:
-        return json.load(f)
-
-def busqueda_inquilino():
+def buscar_inquilinos(inquilinos, norm, parse_int):
     """
-    Busca por nombre, apellido o ID dentro de `inquilinos`.
-    - Muestra resultados y permite seleccionar uno por número de lista o por ID.
-    - Retorna: (id_seleccionado, lista_ids_resultados)
-      * id_seleccionado: int o None si no se seleccionó nada válido
-      * lista_ids_resultados: list[int] con todos los IDs que matchearon
+    Reintenta hasta que haya resultados o el usuario presione Enter en vacío.
+    - Si se ingresa un ID exacto presente, devuelve [ID].
+    - Si no, busca por texto en Nombre / Telefono / Email / DNI.
+    Devuelve: list (vacía si se cancela).
     """
-    while True:  # reintentos
-        termino = input("Ingrese nombre, apellido o ID a buscar: ")
-        termino_norm = norm(termino)
+    while True:
+        termino = input("Ingrese nombre, teléfono, email, DNI o ID (Enter para cancelar): ")
+        if termino.strip() == "":
+            return []  # cancelación
 
-        inquilinos = cargar_inquilinos()
-        
-        # Si ingresan un ID exacto, lo priorizamos como búsqueda directa
-        posible_id = parse_int(termino_norm)
+        t = norm(termino)
+
+        # --- ID exacto: chequear ambas variantes (int y str) ---
+        posible_id = parse_int(t)
         if posible_id is not None:
-            resultados_ids = [posible_id] if posible_id in inquilinos else []
+            # si las claves del dict son int
+            if posible_id in inquilinos:
+                return [posible_id]
+            # si las claves del dict son str (típico al cargar JSON)
+            id_str = str(posible_id)
+            if id_str in inquilinos:
+                return [id_str]
 
+        # --- Búsqueda por texto ---
+        resultados = []
+        for iid, i in inquilinos.items():
+            try:
+                nombre = norm(str(i.get("Nombre", "")))
+                tel    = norm(str(i.get("Telefono", "")))
+                email  = norm(str(i.get("Email", "")))
+                dni    = norm(str(i.get("DNI", "")))
+                texto  = f"{nombre} {tel} {email} {dni}"
+                if t in texto:
+                    resultados.append(iid)  # respetamos el TIPO real de la clave
+            except (KeyError, AttributeError):
+                pass
+
+        if resultados:
+            return resultados
         else:
-            # Búsqueda por texto en Nombre / Apellido / Teléfono / Email
-            resultados_ids = []
-            for iid, i in inquilinos.items():
-                texto = f"{i.get('Nombre','')} {i.get('Telefono','')} {i.get('Email','')}"
-                if termino_norm in norm(texto):
-                    resultados_ids.append(iid)
-
-        if not resultados_ids:
             print("No se encontraron coincidencias. Intente nuevamente.\n")
-            continue
 
-        # Mostrar resultados
-        print("\nResultados encontrados:")
-        for i, iid in enumerate(resultados_ids, start=1):
-            i_data = inquilinos[iid]
-            print(f"{i} - ID: {iid} | Nombre: {i_data['Nombre']} | Teléfono: {i_data['Telefono']} | Email: {i_data['Email']}")
 
-        # Permitir selección por número de la lista o por ID
-        opcion = norm(input("\nSeleccione el inquilino (número de la lista o ID): "))
-        seleccionado_id = None
+def seleccionar_inquilino(inquilinos, resultados_ids, norm):
+    """
+    Muestra la lista y permite elegir por ID.
+    Reintenta hasta elección válida o Enter vacío (cancela).
+    Devuelve: la clave del ID con su TIPO original (int o str) o None.
+    """
+    print("\nResultados encontrados:")
+    idx = 0
+    total = len(resultados_ids)
+    while idx < total:
+        iid = resultados_ids[idx]
+        try:
+            i = inquilinos[iid]
+            nombre = i.get("Nombre", "")
+            tel = i.get("Telefono", "")
+            email = i.get("Email", "")
+            print(f"ID: {iid} | Nombre: {nombre} | Teléfono: {tel} | Email: {email}")
+        except (KeyError, AttributeError):
+            print(f"ID: {iid} | [Error en lectura de datos del inquilino]")
+        idx += 1
 
-        # 1) Si eligió un número de la lista
-        num_lista = parse_int(opcion)
-        if num_lista is not None and 1 <= num_lista <= len(resultados_ids):
-            seleccionado_id = resultados_ids[num_lista - 1]
-        else:
-            # 2) Si escribió un ID directamente
-            id_directo = parse_int(opcion)  # Corregido aquí
-            if id_directo in resultados_ids:
-                seleccionado_id = id_directo
-        
-        if seleccionado_id is not None:
-            i_data = inquilinos[seleccionado_id]
-            return seleccionado_id, resultados_ids
-        else:
-            print("Opción inválida. Intente nuevamente.\n")
+    while True:
+        opcion_raw = input("\nSeleccione (número de ID, Enter para cancelar): ")
+        if opcion_raw.strip() == "":
+            return None  # cancelación
+        opcion = norm(opcion_raw)
+
+        # Aceptamos que el usuario escriba número; comparamos por TEXTO
+        try:
+            id_directo_int = int(opcion)
+            id_directo_str = str(id_directo_int)
+        except ValueError:
+            # también permitir IDs no numéricos (poco común, pero seguro)
+            id_directo_int = None
+            id_directo_str = opcion
+
+        # Buscar en resultados por comparación textual
+        k = 0
+        while k < len(resultados_ids):
+            rid = resultados_ids[k]
+            if str(rid) == id_directo_str:
+                return rid  # devolvemos el ID con su tipo original
+            k += 1
+
+        print("Opción inválida. Intente nuevamente.")

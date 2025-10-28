@@ -61,7 +61,7 @@ def crear_cant_propiedades(cant_propiedades):
     for i in range(cant_propiedades):
         print(f"--- Ingresando datos de la propiedad {i + 1} ---")
         propiedades = cargar_propiedades()
-        id_propiedad = len(propiedades) + 1
+        id_propiedad = int(max(propiedades.keys())) + 1
         nuevo = crear_propiedad(id_propiedad)
         creados.append(nuevo)
     print(f"Propiedades creadas exitosamente: ({len(creados)}) \n")

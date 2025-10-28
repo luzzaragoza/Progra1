@@ -1,6 +1,6 @@
 import json
 import os
-from FuncAux.validaciones import norm, parse_int
+
 
 def cargar_propiedades():
     ruta = os.path.join('Propiedades', 'datos.json')
@@ -13,59 +13,94 @@ def cargar_propiedades():
         print("Error: El archivo datos.json está mal formateado.")
         return {}
 
-def busqueda_propiedad():
+def buscar_propiedades(propiedades, norm, parse_int):
     """
-    Busca por dirección, tipo o ID dentro de `propiedades`.
-    - Muestra resultados y permite seleccionar uno por número de lista o por ID.
-    - Retorna: (id_seleccionado, lista_ids_resultados)
-      * id_seleccionado: int o None si no se seleccionó nada válido
-      * lista_ids_resultados: list[int] con todos los IDs que matchearon
+    Reintenta hasta que haya resultados o el usuario presione Enter en vacío.
+    - Si se ingresa un ID exacto presente, devuelve [ID].
+    - Si no, busca por texto en Dirección / Tipo / Estado / PrecioAlquiler.
+    Devuelve: list (vacía si se cancela).
     """
-    propiedades = cargar_propiedades()
-    
-    while True:  # reintentos
-        termino = input("Ingrese dirección, tipo o ID a buscar: ")
-        termino_norm = norm(termino)
+    while True:
+        termino = input("Ingrese dirección, tipo, estado, precio o ID (Enter para cancelar): ")
+        if termino.strip() == "":
+            return []  # cancelación
 
-        # Si ingresan un ID exacto, lo priorizamos como búsqueda directa
-        posible_id = parse_int(termino_norm)
+        t = norm(termino)
+
+        # --- ID exacto: chequear ambas variantes (int y str) ---
+        posible_id = parse_int(t)
         if posible_id is not None:
-            resultados_ids = [posible_id] if posible_id in propiedades else []
+            if posible_id in propiedades:
+                return [posible_id]
+            pid_str = str(posible_id)
+            if pid_str in propiedades:
+                return [pid_str]
 
+        # --- Búsqueda por texto ---
+        resultados = []
+        for pid, p in propiedades.items():
+            try:
+                direccion = norm(str(p.get("Direccion", "")))
+                tipo = norm(str(p.get("Tipo", "")))
+                estado = norm(str(p.get("Estado", "")))
+                precio = norm(str(p.get("PrecioAlquiler", "")))
+                texto = f"{direccion} {tipo} {estado} {precio}"
+                if t in texto:
+                    resultados.append(pid)  # respetamos el tipo real de la clave
+            except (KeyError, AttributeError):
+                pass
+
+        if resultados:
+            return resultados
         else:
-            # Búsqueda por texto en Dirección / Tipo / Estado / Precio
-            resultados_ids = []
-            for pid, p in propiedades.items():
-                texto = f"{p.get('Direccion','')} {p.get('Tipo','')} {p.get('Estado','')} {p.get('PrecioAlquiler','')}"
-                if termino_norm in norm(texto):
-                    resultados_ids.append(pid)
-
-        if not resultados_ids:
             print("No se encontraron coincidencias. Intente nuevamente.\n")
-            continue
 
-        # Mostrar resultados
-        print("\nResultados encontrados:")
-        for i, pid in enumerate(resultados_ids, start=1):
+
+def seleccionar_propiedad(propiedades, resultados_ids, norm):
+    """
+    Muestra la lista y permite elegir por ID.
+    Reintenta hasta elección válida o Enter vacío (cancela).
+    Devuelve: la clave del ID con su tipo original (int o str) o None.
+    """
+    if not resultados_ids:
+        print("No hay resultados para seleccionar.")
+        return None
+
+    print("\nResultados encontrados:")
+    idx = 0
+    total = len(resultados_ids)
+    while idx < total:
+        pid = resultados_ids[idx]
+        try:
             p = propiedades[pid]
-            print(f"{i} - ID: {pid} | Dirección: {p['Direccion']} | Tipo: {p['Tipo']} | Precio: {p['PrecioAlquiler']} | Estado: {p['Estado']}")
+            direccion = p.get("Direccion", "")
+            tipo = p.get("Tipo", "")
+            precio = p.get("PrecioAlquiler", "")
+            estado = p.get("Estado", "")
+            print(f"ID: {pid} | Dirección: {direccion} | Tipo: {tipo} | Precio: {precio} | Estado: {estado}")
+        except (KeyError, AttributeError):
+            print(f"ID: {pid} | [Error en lectura de datos de la propiedad]")
+        idx += 1
 
-        # Permitir selección por número de la lista o por ID
-        opcion = norm(input("\nSeleccione la propiedad (número de la lista o ID): "))
-        seleccionado_id = None
+    while True:
+        opcion_raw = input("\nSeleccione (número de ID, Enter para cancelar): ")
+        if opcion_raw.strip() == "":
+            return None  # cancelación
+        opcion = norm(opcion_raw)
 
-        # 1) Si eligió un número de la lista
-        num_lista = parse_int(opcion)
-        if num_lista is not None and 1 <= num_lista <= len(resultados_ids):
-            seleccionado_id = resultados_ids[num_lista - 1]
-        else:
-            # 2) Si escribió un ID directamente
-            id_directo = parse_int(opcion)
-            if id_directo in resultados_ids:
-                seleccionado_id = id_directo
+        # Aceptamos que el usuario escriba número; comparamos por texto
+        try:
+            id_directo_int = int(opcion)
+            id_directo_str = str(id_directo_int)
+        except ValueError:
+            id_directo_int = None
+            id_directo_str = opcion
 
-        if seleccionado_id is not None:
-            p = propiedades[seleccionado_id]
-            return seleccionado_id, resultados_ids
-        else:
-            print("Opción inválida. Intente nuevamente.\n")
+        k = 0
+        while k < len(resultados_ids):
+            rid = resultados_ids[k]
+            if str(rid) == id_directo_str:
+                return rid  # devolvemos el ID con su tipo original
+            k += 1
+
+        print("Opción inválida. Intente nuevamente.")

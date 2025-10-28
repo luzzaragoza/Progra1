@@ -15,7 +15,7 @@ def cargar_json(modulo, archivo="datos.json"):
 # --- IMPORTS ---
 from Inquilinos.crear import crear_cant_inquilinos
 from Inquilinos.modificar import modificar_inquilino
-from Inquilinos.busqueda import busqueda_inquilino
+from Inquilinos.busqueda import buscar_inquilinos as busqueda_inquilino
 from Inquilinos.mostrar import mostrar_inquilinos
 from Inquilinos.baja import baja_inquilino
 

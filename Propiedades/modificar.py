@@ -2,6 +2,7 @@ import json
 import os
 from FuncAux.validaciones import norm, nonempty, parse_int
 from Propiedades.crear import tipo_propiedad
+from Propiedades.busqueda import buscar_propiedades, seleccionar_propiedad
 
 def cargar_propiedades():
     ruta = os.path.join('Propiedades', 'datos.json')
@@ -38,69 +39,133 @@ def estado_ocupacion(opcion):
 
 
 def modificar_propiedad():
+    """
+    Modifica una propiedad usando buscar/seleccionar y muestra resumen de cambios.
+    Retorna:
+      - True  si hubo cambios y se guardó.
+      - False si se canceló o no hubo cambios.
+    """
     propiedades = cargar_propiedades()
-    
     print("----- Modificar Propiedad -----")
     try:
-        raw_id = input("Ingrese el ID de la propiedad a modificar: ")
-        id_prop = parse_int(norm(raw_id))
-        if id_prop is None:
-            raise ValueError("ID inválido. Debe ser numérico.")
+        # 1) Buscar con reintentos (neutral)
+        resultados_ids = buscar_propiedades(propiedades, norm, parse_int)
+        if not resultados_ids:
+            print("Búsqueda cancelada.\n")
+            return False
 
-        id_prop_str = str(id_prop)
-        if id_prop_str not in propiedades:
-            raise LookupError("❌ Propiedad no encontrada.")
+        # 2) Seleccionar por ID (devuelve el mismo tipo que tenga el dict)
+        pid = seleccionar_propiedad(propiedades, resultados_ids, norm)
+        if pid is None:
+            print("Modificación cancelada.\n")
+            return False
 
-        p = propiedades[id_prop_str]
+        # 3) Asegurar existencia (tolerar str/int)
+        if pid not in propiedades:
+            pid_alt = str(pid)
+            if pid_alt in propiedades:
+                pid = pid_alt
+            else:
+                ok = False
+                try:
+                    pid_alt2 = int(pid)
+                    if pid_alt2 in propiedades:
+                        pid = pid_alt2
+                        ok = True
+                except Exception:
+                    ok = False
+                if not ok:
+                    raise LookupError("❌ Propiedad no encontrada (ID inconsistente).")
 
-        # Dirección
-        print(f"\nDirección actual: {p['Direccion']}")
+        p = propiedades[pid]
+
+        # 4) Snapshot para el resumen
+        try:
+            old_dir   = p.get("Direccion", "")
+        except (KeyError, AttributeError):
+            old_dir = "[Error de lectura]"
+        try:
+            old_tipo  = p.get("Tipo", "")
+        except (KeyError, AttributeError):
+            old_tipo = "[Error de lectura]"
+        try:
+            old_prec  = p.get("PrecioAlquiler", "")
+        except (KeyError, AttributeError):
+            old_prec = "[Error de lectura]"
+
+        cambios = {}  # {'Campo': (antes, después)}
+
+        # 5) Dirección
+        try:
+            print(f"\nDirección actual: {p['Direccion']}")
+        except (KeyError, AttributeError):
+            print("\n[Error en lectura de Dirección actual]")
+
         nueva_direccion = input("Nueva dirección (Enter para dejar igual): ")
         if nonempty(nueva_direccion):
-            p["Direccion"] = norm(nueva_direccion)
+            try:
+                p["Direccion"] = norm(nueva_direccion)
+                if p.get("Direccion", "") != old_dir:
+                    cambios["Direccion"] = (old_dir, p.get("Direccion", ""))
+            except (KeyError, AttributeError):
+                print("No se pudo actualizar la Dirección (error de estructura).")
 
-        # Tipo (0/1/2 o Enter) con reintento por ValueError
-        print(f"Tipo actual: {p['Tipo']}")
+        # 6) Tipo (con reintento por ValueError)
+        try:
+            print(f"Tipo actual: {p['Tipo']}")
+        except (KeyError, AttributeError):
+            print("[Error en lectura de Tipo actual]")
+
         continuar_tipo = True
         while continuar_tipo:
             try:
                 opcion_tipo = input("Nuevo tipo (0 - Casa, 1 - Departamento, 2 - Otro, Enter para dejar igual): ").strip()
-                nuevo_tipo = tipo_propiedad(opcion_tipo)  # usa tu función separada
+                nuevo_tipo = tipo_propiedad(opcion_tipo)  # puede lanzar ValueError
                 if nuevo_tipo != "":
                     p["Tipo"] = nuevo_tipo
+                    if p.get("Tipo", "") != old_tipo:
+                        cambios["Tipo"] = (old_tipo, p.get("Tipo", ""))
                 continuar_tipo = False
             except ValueError as e:
                 print(f"⚠️ {e}\nIntentá de nuevo.\n")
 
-        # Precio de alquiler (un intento; si es inválido, mantiene)
-        print(f"Precio actual: ${p['PrecioAlquiler']}")
+        # 7) Precio de alquiler (un intento)
+        try:
+            print(f"Precio actual: ${p['PrecioAlquiler']}")
+        except (KeyError, AttributeError):
+            print("[Error en lectura de Precio actual]")
+
         raw_precio = input("Nuevo precio de alquiler (Enter para dejar igual): ").strip()
         if nonempty(raw_precio):
             nuevo_precio = parse_int(norm(raw_precio))
             if nuevo_precio is not None and nuevo_precio > 0:
-                p["PrecioAlquiler"] = nuevo_precio
+                try:
+                    p["PrecioAlquiler"] = nuevo_precio
+                    if p.get("PrecioAlquiler", "") != old_prec:
+                        cambios["PrecioAlquiler"] = (old_prec, p.get("PrecioAlquiler", ""))
+                except (KeyError, AttributeError):
+                    print("No se pudo actualizar el Precio (error de estructura).")
             else:
                 print("Ingrese un entero positivo. Se mantiene el precio actual.")
 
-        # Estado de ocupación (solo si NO está Inactiva)
-        print(f"Estado actual: {p['Estado']}")
-        if str(p.get("Estado","")).lower() == "inactiva":
-            print("La propiedad está Inactiva. Para activarla usá alta_propiedad().")
+        # 9) Guardado + resumen
+        if cambios:
+            guardar_propiedades(propiedades)
+            print("\nCambios realizados:")
+            # orden amable
+            orden = ["Direccion", "Tipo", "PrecioAlquiler", "Estado"]
+            i = 0
+            while i < len(orden):
+                k = orden[i]
+                if k in cambios:
+                    antes, despues = cambios[k]
+                    print(f" - {k}: {antes}  →  {despues}")
+                i += 1
+            print("\n✅ Propiedad modificada exitosamente.\n")
+            return True
         else:
-            continuar_estado = True
-            while continuar_estado:
-                try:
-                    op_est = input("Nuevo estado (0 - Libre, 1 - Ocupada, Enter para mantener): ").strip()
-                    nuevo_est = estado_ocupacion(op_est)  # validador de ocupación
-                    if nuevo_est != "":
-                        p["Estado"] = nuevo_est
-                    continuar_estado = False
-                except ValueError as e:
-                    print(f"⚠️ {e}\nIntentá de nuevo.\n")
-
-        guardar_propiedades(propiedades)
-        print("\n✅ Propiedad modificada exitosamente.\n")
-        return True
+            print("\nNo se realizaron cambios en los datos. No se guardaron cambios.\n")
+            return False
 
     except ValueError as e:
         print(f"⚠️ Error de valor: {e}\n")

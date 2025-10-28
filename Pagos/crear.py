@@ -60,7 +60,7 @@ def crear_cant_pagos(cant_pagos):
     for i in range(cant_pagos):
         print(f"--- Ingresando datos del pago {i + 1} ---")
         pagos = cargar_pagos()
-        id_pago = len(pagos) + 1
+        id_pago = int(max((pagos.keys()))) + 1
         nuevo = crear_pagos(id_pago)
         creados.append(nuevo)
     print(f"Pagos creados exitosamente: ({len(creados)}) \n")
