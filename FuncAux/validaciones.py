@@ -1,3 +1,5 @@
+import re
+from datetime import datetime
 
 def norm(s: str) -> str:
     """Quita espacios extremos."""
@@ -24,18 +26,29 @@ def parse_float(s: str):
         return float(s.strip())
     except (TypeError, ValueError):
         return None
-    
+
 def parse_date(s: str):
-    """Valida formato de fecha DD-MM-AAAA y devuelve (DD, MM, AAAA) o None."""
-    parts = s.strip().split("-")
-    if len(parts) != 3:
-        return None
+    """
+    Valida formato de fecha AAAA-MM-DD usando datetime.
+    Devuelve la fecha como string si es válida, o None si no lo es.
+    """
     try:
-        dd = int(parts[0])
-        mm = int(parts[1])
-        aaaa = int(parts[2])
-        if not (1 <= dd <= 31 and 1 <= mm <= 12 and aaaa >= 1900):
-            return None
-        return (dd, mm, aaaa)
+        fecha = datetime.strptime(s.strip(), '%Y-%m-%d')
+        return fecha.strftime('%Y-%m-%d')
     except ValueError:
         return None
+
+def validar_fecha(s: str) -> bool:
+    """
+    Valida que la fecha tenga formato AAAA-MM-DD y sea una fecha válida.
+    Retorna True si es válida, False en caso contrario.
+    """
+    return parse_date(s) is not None
+
+def validar_email(email: str) -> bool:
+    """
+    Valida que el email tenga un formato correcto usando regex.
+    Retorna True si es válido, False en caso contrario.
+    """
+    patron = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return bool(re.match(patron, email.strip()))
