@@ -24,6 +24,7 @@ from Propiedades.modificar import modificar_propiedad
 from Propiedades.crear import crear_cant_propiedades
 from Propiedades.mostrar import mostrar_propiedades
 from Propiedades.baja import baja_propiedad
+from Propiedades.tipos_propiedades import baja_tipo_propiedad
 
 from Contratos.crear import crear_cant_contratos
 from Contratos.modificar import modificar_estado_contrato
@@ -94,8 +95,9 @@ def gestion_propiedades():
         ("2", "Mostrar Propiedades", lambda: mostrar_propiedades()),
         ("3", "Modificar Propiedades", lambda: modificar_propiedad()),
         ("4", "Baja de Propiedades", lambda: baja_propiedad()),
+        ("5", "Baja de Tipo de Propiedad", lambda: baja_tipo_propiedad()),
         #("4", "Buscar Propiedades",  lambda: busqueda_propiedad()),
-        ("5", "Volver",              lambda: None),
+        ("6", "Volver",              lambda: None),
     ]
     menu_loop("Gestión de Propiedades", items)
 

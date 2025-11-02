@@ -298,5 +298,65 @@
         "Tipo": "Departamento",
         "PrecioAlquiler": 86000,
         "Estado": "Disponible"
+    },
+    "151": {
+        "Direccion": "Chile 1372",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 1000,
+        "Estado": "Disponible"
+    },
+    "152": {
+        "Direccion": "Lima 1500",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 800,
+        "Estado": "Disponible"
+    },
+    "153": {
+        "Direccion": "San Jose 412",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 2000,
+        "Estado": "Disponible"
+    },
+    "154": {
+        "Direccion": "Av. Sante Fe 7800",
+        "Tipo": "Penthouse",
+        "PrecioAlquiler": 4500,
+        "Estado": "Disponible"
+    },
+    "155": {
+        "Direccion": "Jean Jures 1100",
+        "Tipo": "Cochera",
+        "PrecioAlquiler": 400,
+        "Estado": "Disponible"
+    },
+    "156": {
+        "Direccion": "Venezuela 700",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 900,
+        "Estado": "Disponible"
+    },
+    "157": {
+        "Direccion": "Bartolome Mitre 853",
+        "Tipo": "Oficina",
+        "PrecioAlquiler": 11000,
+        "Estado": "Disponible"
+    },
+    "158": {
+        "Direccion": "Prueba 1",
+        "Tipo": "Departamento",
+        "PrecioAlquiler": 1000,
+        "Estado": "Disponible"
+    },
+    "159": {
+        "Direccion": "Av. San Juan 1032",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 10000,
+        "Estado": "Disponible"
+    },
+    "160": {
+        "Direccion": "Av. de Mayo 100",
+        "Tipo": "Cochera",
+        "PrecioAlquiler": 190,
+        "Estado": "Disponible"
     }
 }

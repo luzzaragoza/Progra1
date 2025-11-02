@@ -1,6 +1,10 @@
 import json
 import os
 from FuncAux.validaciones import parse_int, nonempty, norm, parse_date, parse_float
+from Pagos.tipos_pagos import tipo_pago
+from Contratos.busqueda import buscar_contratos, seleccionar_contrato
+from Contratos.modificar import cargar_contratos
+
 
 def cargar_pagos():
     ruta = os.path.join('Pagos', 'datos.json')
@@ -18,36 +22,31 @@ def guardar_pagos(pagos):
     with open(ruta, "w", encoding="utf-8") as archivo:
         json.dump(pagos, archivo, indent=4, ensure_ascii=False)
 
-def tipo_metodo_pago(opcion):
-    tipo = ""
-    if opcion == "0":
-        tipo = "Efectivo"
-    elif opcion == "1":
-        tipo = "Transferencia"
-    elif opcion == "2":
-        tipo = "Tarjeta"
-    elif opcion == "3":
-        tipo = input("Ingrese el método de pago: ").strip()
-    else:
-        print("Opción no válida, vuelva a intentar.")
-    return tipo
-
 
 def crear_pagos(id_pago):
     pagos = cargar_pagos()
     
     print(f"\n--- Creando Pago ID {id_pago} ---")
-    id_contrato = parse_int(input("Ingrese ID Contrato asociado: ").strip())
+    # Seleccionar contrato asociado
+    contratos = cargar_contratos()
+    resultados_ids = buscar_contratos(contratos, norm, parse_int)
+    if not resultados_ids:
+        print("No se encontraron contratos. Cancelando creación de pago.\n")
+        return None
+    id_contrato = seleccionar_contrato(contratos, resultados_ids, norm)
+    if id_contrato is None:
+        print("Selección de contrato cancelada. Cancelando creación de pago.\n")
+        return None
+
+
     fecha_pago = parse_date(input("Ingrese Fecha de Pago (YYYY-MM-DD): ").strip())
     monto = parse_float(input("Ingrese Monto del Pago: ").strip())
     
-    print("Seleccione el método de pago:")
-    print("0 - Efectivo")
-    print("1 - Transferencia")
-    print("2 - Tarjeta")
-    print("3 - Otro")
+    print("Seleccione:")
+    print("1 - Crear tipo de pago nuevo")
+    print("1 - Seleccionar tipo de pago existente")
     opcion = input("Opción: ").strip()
-    tipo_mpago = tipo_metodo_pago(opcion)
+    tipo_mpago = tipo_pago(opcion)
 
     pagos[id_pago] = {"ID Contrato": id_contrato, "Fecha": fecha_pago, "Monto": monto, "Método": tipo_mpago}
     guardar_pagos(pagos)

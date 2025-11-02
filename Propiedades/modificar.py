@@ -119,7 +119,7 @@ def modificar_propiedad():
         continuar_tipo = True
         while continuar_tipo:
             try:
-                opcion_tipo = input("Nuevo tipo (0 - Casa, 1 - Departamento, 2 - Otro, Enter para dejar igual): ").strip()
+                opcion_tipo = input("Nuevo tipo (1 - Crear nuevo tipo de propiedad, 2 - Seleccionar tipo ya existente, Enter para dejar igual): ").strip()
                 nuevo_tipo = tipo_propiedad(opcion_tipo)  # puede lanzar ValueError
                 if nuevo_tipo != "":
                     p["Tipo"] = nuevo_tipo

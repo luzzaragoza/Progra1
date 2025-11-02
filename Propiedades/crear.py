@@ -1,6 +1,7 @@
 import json
 import os
 from FuncAux.validaciones import norm, nonempty, parse_int
+from Propiedades.tipos_propiedades import tipo_propiedad
 
 def cargar_propiedades():
     ruta = os.path.join('Propiedades', 'datos.json')
@@ -18,17 +19,6 @@ def guardar_propiedades(propiedades):
     with open(ruta, "w", encoding="utf-8") as archivo:
         json.dump(propiedades, archivo, indent=4, ensure_ascii=False)
 
-def tipo_propiedad(opcion):
-    tipo = ""
-    if opcion == "0":
-        tipo = "Casa"
-    elif opcion == "1":
-        tipo = "Departamento"
-    elif opcion == "2":
-        tipo = input("Ingrese el tipo de propiedad: ").strip()
-    else:
-        print("Opción no válida, vuelva a intentar.")
-    return tipo
 
 def crear_propiedad(id_propiedad):
     propiedades = cargar_propiedades()
@@ -39,9 +29,8 @@ def crear_propiedad(id_propiedad):
         direccion = input("Dirección de la propiedad (Calle y número): ").strip()
     
     print("Seleccione el tipo de propiedad:")
-    print("0 - Casa")
-    print("1 - Departamento")
-    print("2 - Otro")
+    print("1 - Crear nuevo tipo de propiedad")
+    print("2 - Seleccionar tipo de propiedad existente")
     opcion = input("Opción: ").strip()
     tipo = tipo_propiedad(opcion)
     
