@@ -130,3 +130,5 @@ def mostrar_resumen():
     estadisticas_pagos()
     estadisticas_contratos()
     input("Presione Enter para continuar...")
+
+
