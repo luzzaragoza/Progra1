@@ -93,3 +93,12 @@ def tipo_pago(opcion):
     else:
         print("Opción no válida.")
         return ""
+
+def devuelve_nombre_tipo():
+
+    sel = seleccionar_tipo_pago()   # devuelve algo como ["P003", "Duplex", "1"] o None
+    if not sel:
+        print("Operación cancelada.")
+        return None
+    nombre = sel[1]  # el nombre está en la segunda posición
+    return nombre

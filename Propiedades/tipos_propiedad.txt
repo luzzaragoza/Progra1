@@ -4,3 +4,4 @@ P003;Penthouse;1
 P004;Cochera;1
 P005;Oficina;1
 P006;Aasdasd;0
+P007;1;0

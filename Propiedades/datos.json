@@ -302,7 +302,7 @@
     "151": {
         "Direccion": "Chile 1372",
         "Tipo": "Departamento",
-        "PrecioAlquiler": 1000,
+        "PrecioAlquiler": 800,
         "Estado": "Disponible"
     },
     "152": {
@@ -357,6 +357,12 @@
         "Direccion": "Av. de Mayo 100",
         "Tipo": "Cochera",
         "PrecioAlquiler": 190,
+        "Estado": "Disponible"
+    },
+    "161": {
+        "Direccion": "1",
+        "Tipo": "",
+        "PrecioAlquiler": 1,
         "Estado": "Disponible"
     }
 }

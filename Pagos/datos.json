@@ -328,5 +328,11 @@
         "Fecha": null,
         "Monto": 1000.0,
         "Método": ""
+    },
+    "9056": {
+        "ID Contrato": "5050",
+        "Fecha": null,
+        "Monto": 1000.0,
+        "Método": "Efectivo"
     }
 }

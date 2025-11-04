@@ -32,9 +32,11 @@ from Contratos.mostrar import mostrar_contratos
 
 from Pagos.crear import crear_cant_pagos
 from Pagos.mostrar import mostrar_pagos
+from Pagos.tipos_pagos import devuelve_nombre_tipo as tipo_pago
 
 from FuncAux.login import iniciar_sesion
 from FuncAux.validaciones import parse_int, nonempty, norm
+from FuncAux.estadistica import total_por_metodo
 
 from Usuarios.crear import crear_cant_usuario
 from Usuarios.modificar import cambiar_contrasenia as modificar_usuario
@@ -96,7 +98,6 @@ def gestion_propiedades():
         ("3", "Modificar Propiedades", lambda: modificar_propiedad()),
         ("4", "Baja de Propiedades", lambda: baja_propiedad()),
         ("5", "Baja de Tipo de Propiedad", lambda: baja_tipo_propiedad()),
-        #("4", "Buscar Propiedades",  lambda: busqueda_propiedad()),
         ("6", "Volver",              lambda: None),
     ]
     menu_loop("Gestión de Propiedades", items)
@@ -114,7 +115,8 @@ def gestion_pagos():
     items = [
         ("1", "Crear Pagos", lambda: crear_cant_pagos(pedir_cantidad("¿Cuántos pagos desea crear? "))),
         ("2", "Mostrar Pagos", lambda: mostrar_pagos()),
-        ("3", "Volver", lambda: None),
+        ("3", "Total por Método de Pago", lambda: total_por_metodo(tipo_pago())),
+        ("4", "Volver", lambda: None),
     ]
     menu_loop("Gestión de Pagos", items)
 
@@ -136,7 +138,7 @@ def menu():
         ("3", "Gestión de Contratos",   gestion_contratos),
         ("4", "Gestión de Pagos",       gestion_pagos),
         ("5", "Gestión de Usuarios",    gestion_usuarios),
-       # ("6", "Resumen Estadístico",    lambda: mostrar_resumen(propiedades, contratos)),
+        #("6", "Resumen Estadístico",    lambda: mostrar_resumen(propiedades, contratos)),
         ("7", "Salir",                  lambda: None),
     ]
     menu_loop("Menú de Gestión de Alquileres", items)

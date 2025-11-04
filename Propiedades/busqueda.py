@@ -26,7 +26,6 @@ def buscar_propiedades(propiedades, norm, parse_int):
             return []  # cancelación
 
         t = norm(termino)
-
         # --- ID exacto: chequear ambas variantes (int y str) ---
         posible_id = parse_int(t)
         if posible_id is not None:
