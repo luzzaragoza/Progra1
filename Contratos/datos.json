@@ -398,5 +398,21 @@
     "Fecha_Fin": "2025-11-30",
     "Monto": 325000,
     "Estado": "Vigente"
+  },
+  "5051": {
+    "ID_Inquilino": 105,
+    "ID_Propiedad": 505,
+    "Monto": 1000,
+    "Fecha_Inicio": "2025-01-01",
+    "Fecha_Fin": "2026-01-01",
+    "Estado": "Activo"
+  },
+  "5052": {
+    "ID_Inquilino": 521,
+    "ID_Propiedad": 151,
+    "Monto": 100,
+    "Fecha_Inicio": "2025-04-03",
+    "Fecha_Fin": "2026-04-02",
+    "Estado": "Activo"
   }
 }

@@ -1,6 +1,10 @@
 import json
 import os
 from FuncAux.validaciones import norm, nonempty, parse_int, parse_float, parse_date
+from Inquilinos.busqueda import buscar_inquilinos, seleccionar_inquilino
+from Inquilinos.crear import cargar_inquilinos
+from Propiedades.busqueda import buscar_propiedades, seleccionar_propiedad
+from Propiedades.crear import cargar_propiedades
 
 # Cargar contratos desde JSON
 def cargar_contratos():
@@ -20,20 +24,49 @@ def guardar_contratos(contratos):
 # Crear un contrato
 def crear_contrato(contratos, id_contrato):
     # ID de inquilino
+# ID de inquilino (busco y selecciono, no escribo ID a mano)
     while True:
-        raw_id_inq = input("ID de inquilino: ")
-        id_inq = parse_int(raw_id_inq)
+        # 1) cargar diccionario actual de inquilinos (ajusta a tu función real)
+        inquilinos = cargar_inquilinos()  # si tu función se llama distinto, cambiala acá
+
+        # 2) buscar por texto o por ID exacto
+        resultados = buscar_inquilinos(inquilinos, norm, parse_int)
+        if not resultados:
+            print("Búsqueda cancelada o sin resultados.\n")
+            continue  # o return None si querés abortar crear_contrato
+
+        # 3) mostrar resultados y dejar elegir
+        elegido = seleccionar_inquilino(inquilinos, resultados, norm)
+        if elegido is None:
+            print("Selección cancelada.\n")
+            continue  # o return None
+
+        # 4) normalizo el tipo (puede volver str o int según JSON)
+        id_inq = parse_int(str(elegido))
         if id_inq is not None and id_inq > 0:
             break
-        print("Ingrese un ID válido por favor.")
+        print("El ID elegido no es válido, reintentá.\n")
+
 
     # ID de propiedad
+# ID de propiedad (busco y selecciono)
     while True:
-        raw_id_prop = input("ID de propiedad: ")
-        id_prop = parse_int(raw_id_prop)
+        propiedades = cargar_propiedades()
+        resultados = buscar_propiedades(propiedades, norm, parse_int)
+        if not resultados:
+            print("Búsqueda cancelada o sin resultados.\n")
+            continue  # o return None
+
+        elegido = seleccionar_propiedad(propiedades, resultados, norm)
+        if elegido is None:
+            print("Selección cancelada.\n")
+            continue  # o return None
+
+        id_prop = parse_int(str(elegido))
         if id_prop is not None and id_prop > 0:
             break
-        print("Ingrese un ID válido por favor.")
+        print("El ID elegido no es válido, reintentá.\n")
+
 
     # Monto mensual
     while True:
@@ -45,7 +78,7 @@ def crear_contrato(contratos, id_contrato):
 
     # Fecha de inicio
     while True:
-        raw_fecha_inicio = input("Fecha de inicio (DD-MM-AAAA): ")
+        raw_fecha_inicio = input("Fecha de inicio (AAAA-MM-DD): ")
         fecha_inicio = parse_date(raw_fecha_inicio)
         if fecha_inicio is not None:
             break
@@ -53,7 +86,7 @@ def crear_contrato(contratos, id_contrato):
 
     # Fecha de fin
     while True:
-        raw_fecha_fin = input("Fecha de fin (DD-MM-AAAA): ")
+        raw_fecha_fin = input("Fecha de fin (AAAA-MM-DD): ")
         fecha_fin = parse_date(raw_fecha_fin)
         if fecha_fin is not None:
             break

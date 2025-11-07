@@ -39,7 +39,7 @@ def crear_pagos(id_pago):
         return None
 
 
-    fecha_pago = parse_date(input("Ingrese Fecha de Pago (YYYY-MM-DD): ").strip())
+    fecha_pago = parse_date(input("Ingrese Fecha de Pago (AAAA-MM-DD): ").strip())
     monto = parse_float(input("Ingrese Monto del Pago: ").strip())
     
     print("Seleccione:")
