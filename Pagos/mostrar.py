@@ -2,7 +2,7 @@ import json
 import os
 
 def cargar_pagos():
-    ruta = os.path.join('Pagos', 'datos.json')
+    ruta = 'Pagos/datos.json'
     with open(ruta, 'r', encoding='utf-8') as f:
         return json.load(f)
 

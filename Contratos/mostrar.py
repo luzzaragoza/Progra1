@@ -2,7 +2,7 @@ import json
 import os
 
 def cargar_json(ruta_carpeta):
-    ruta = os.path.join(ruta_carpeta, 'datos.json')
+    ruta = f'{ruta_carpeta}/datos.json'
     if not os.path.exists(ruta):
         return {}
     with open(ruta, 'r', encoding='utf-8') as f:

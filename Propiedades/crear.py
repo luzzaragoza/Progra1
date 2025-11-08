@@ -4,7 +4,7 @@ from FuncAux.validaciones import norm, nonempty, parse_int
 from Propiedades.tipos_propiedades import tipo_propiedad
 
 def cargar_propiedades():
-    ruta = os.path.join('Propiedades', 'datos.json')
+    ruta = 'Propiedades/datos.json'
     try:
         with open(ruta, "r", encoding="utf-8") as archivo:
             return json.load(archivo)
@@ -15,10 +15,9 @@ def cargar_propiedades():
         return {}
 
 def guardar_propiedades(propiedades):
-    ruta = os.path.join('Propiedades', 'datos.json')
+    ruta = 'Propiedades/datos.json'
     with open(ruta, "w", encoding="utf-8") as archivo:
         json.dump(propiedades, archivo, indent=4, ensure_ascii=False)
-
 
 def crear_propiedad(id_propiedad):
     propiedades = cargar_propiedades()

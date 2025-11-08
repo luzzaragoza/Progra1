@@ -2,7 +2,7 @@ import json
 import os
 
 def cargar_json(modulo, archivo="datos.json"):
-    ruta = os.path.join(modulo, archivo)
+    ruta = f'{modulo}/{archivo}'
     try:
         with open(ruta, "r", encoding="utf-8") as f:
             return json.load(f)
@@ -36,13 +36,11 @@ from Pagos.tipos_pagos import devuelve_nombre_tipo as tipo_pago
 
 from FuncAux.login import iniciar_sesion
 from FuncAux.validaciones import parse_int, nonempty, norm
-from FuncAux.estadistica import total_por_metodo
+from FuncAux.estadistica import total_por_metodo, mostrar_resumen
 
 from Usuarios.crear import crear_cant_usuario
 from Usuarios.modificar import cambiar_contrasenia as modificar_usuario
 from Usuarios.mostrar import mostrar_usuarios
-
-#from FuncAux.estadistica import mostrar_resumen
 
 
 # --------- helpers genéricos (con lambdas/funcs) ----------
@@ -138,7 +136,7 @@ def menu():
         ("3", "Gestión de Contratos",   gestion_contratos),
         ("4", "Gestión de Pagos",       gestion_pagos),
         ("5", "Gestión de Usuarios",    gestion_usuarios),
-        #("6", "Resumen Estadístico",    lambda: mostrar_resumen(propiedades, contratos)),
+        ("6", "Resumen Estadístico",    lambda: mostrar_resumen()),
         ("7", "Salir",                  lambda: None),
     ]
     menu_loop("Menú de Gestión de Alquileres", items)

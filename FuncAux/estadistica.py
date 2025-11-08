@@ -1,11 +1,9 @@
 import json
-import os
+from functools import reduce
 
 def cargar_propiedades():
     """Carga las propiedades desde el archivo JSON."""
-    ruta = os.path.join('Propiedades', 'datos.json')
-    if not os.path.exists(ruta):
-        return {}
+    ruta = 'Propiedades/datos.json'
     try:
         with open(ruta, 'r', encoding='utf-8') as archivo:
             return json.load(archivo)
@@ -14,9 +12,7 @@ def cargar_propiedades():
 
 def cargar_contratos():
     """Carga los contratos desde el archivo JSON."""
-    ruta = os.path.join('Contratos', 'datos.json')
-    if not os.path.exists(ruta):
-        return {}
+    ruta = 'Contratos/datos.json'
     try:
         with open(ruta, 'r', encoding='utf-8') as archivo:
             return json.load(archivo)
@@ -25,14 +21,71 @@ def cargar_contratos():
 
 def cargar_pagos():
     """Carga los pagos desde el archivo JSON."""
-    ruta = os.path.join('Pagos', 'datos.json')
-    if not os.path.exists(ruta):
-        return {}
+    ruta = 'Pagos/datos.json'
     try:
         with open(ruta, 'r', encoding='utf-8') as archivo:
             return json.load(archivo)
     except:
         return {}
+
+def contar_por_estado_recursivo(propiedades_dict, estado_buscado, claves=None):
+    """
+    Cuenta recursivamente cuántas propiedades tienen un estado específico.
+    Usa recursividad para recorrer las claves del diccionario.
+    """
+    if claves is None:
+        claves = list(propiedades_dict.keys())
+    
+    # Caso base: no hay más claves
+    if len(claves) == 0:
+        return 0
+    
+    # Tomar la primera clave y procesar recursivamente el resto
+    primera_clave = claves[0]
+    resto_claves = claves[1:]
+    
+    propiedad = propiedades_dict[primera_clave]
+    cuenta_actual = 1 if propiedad.get('Estado') == estado_buscado else 0
+    
+    # Llamada recursiva con el resto de claves
+    return cuenta_actual + contar_por_estado_recursivo(propiedades_dict, estado_buscado, resto_claves)
+
+def contar_contratos_estado_recursivo(contratos_dict, estado_buscado, claves=None):
+    """
+    Cuenta recursivamente cuántos contratos tienen un estado específico.
+    Usa recursividad para recorrer las claves del diccionario.
+    """
+    if claves is None:
+        claves = list(contratos_dict.keys())
+    
+    # Caso base: no hay más claves
+    if len(claves) == 0:
+        return 0
+    
+    # Tomar la primera clave y procesar recursivamente el resto
+    primera_clave = claves[0]
+    resto_claves = claves[1:]
+    
+    contrato = contratos_dict[primera_clave]
+    cuenta_actual = 1 if contrato.get('Estado') == estado_buscado else 0
+    
+    # Llamada recursiva con el resto de claves
+    return cuenta_actual + contar_contratos_estado_recursivo(contratos_dict, estado_buscado, resto_claves)
+
+def sumar_montos_recursivo(pagos_lista, metodo_buscado, indice=0):
+    """
+    Suma recursivamente los montos de pagos con un método específico.
+    Usa recursividad sobre una lista de pagos.
+    """
+    # Caso base: llegamos al final de la lista
+    if indice >= len(pagos_lista):
+        return 0
+    
+    pago = pagos_lista[indice]
+    monto_actual = float(pago.get('Monto', 0)) if pago.get('Método') == metodo_buscado else 0
+    
+    # Llamada recursiva con el siguiente índice
+    return monto_actual + sumar_montos_recursivo(pagos_lista, metodo_buscado, indice + 1)
 
 def estadisticas_propiedades():
     """Muestra estadísticas de propiedades."""
@@ -62,10 +115,13 @@ def estadisticas_propiedades():
         elif propiedad['Tipo'] == 'Departamento':
             departamentos = departamentos + 1
     
+    ocupados_recursivo = contar_por_estado_recursivo(propiedades, 'Ocupado')
+    libres_recursivo = contar_por_estado_recursivo(propiedades, 'Disponible')
+    
     print("\n----- Estadísticas de Propiedades -----")
     print("Total de inmuebles:", total)
-    print("Inmuebles ocupados:", ocupados)
-    print("Inmuebles libres:", libres)
+    print("Inmuebles ocupados:", ocupados_recursivo)
+    print("Inmuebles libres:", libres_recursivo)
     print("Cantidad de casas:", casas)
     print("Cantidad de departamentos:", departamentos)
     print()
@@ -104,13 +160,14 @@ def estadisticas_contratos():
 
     vigentes = len(list(filter(lambda c: c["Estado"] == "Vigente", valores)))
     finalizados = len(list(filter(lambda c: c["Estado"] == "Finalizado", valores)))
+    
+    vigentes_recursivo = contar_contratos_estado_recursivo(contratos, 'Vigente')
+    finalizados_recursivo = contar_contratos_estado_recursivo(contratos, 'Finalizado')
 
     print("\n----- Estadísticas de Contratos -----")
-    print("Contratos vigentes:", vigentes)
-    print("Contratos dados de baja:", finalizados)
+    print("Contratos vigentes:", vigentes_recursivo)
+    print("Contratos dados de baja:", finalizados_recursivo)
     print()
-
-from functools import reduce
 
 def total_por_metodo(metodo):
     """Devuelve el total de montos de pagos según el método indicado."""
@@ -120,7 +177,9 @@ def total_por_metodo(metodo):
         return 0
 
     # valores del diccionario (sin IDs)
-    valores = pagos.values()
+    valores = list(pagos.values())
+
+    total_recursivo = sumar_montos_recursivo(valores, metodo)
 
     # filtramos solo los del método indicado
     filtrados = filter(lambda p: p["Método"] == metodo, valores)
@@ -131,8 +190,8 @@ def total_por_metodo(metodo):
     # acumulamos la suma total
     total = reduce(lambda acc, m: acc + m, montos, 0)
 
-    print(f"💰 Total en {metodo}: ${total:,.2f}")
-    return total
+    print(f"💰 Total en {metodo}: ${total_recursivo:,.2f}")
+    return total_recursivo
 
 
 def mostrar_resumen():

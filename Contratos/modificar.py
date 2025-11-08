@@ -4,12 +4,12 @@ from FuncAux.validaciones import norm, nonempty, parse_int
 from Contratos.busqueda import buscar_contratos, seleccionar_contrato
 
 def cargar_contratos():
-    ruta = os.path.join('Contratos', 'datos.json')
+    ruta = 'Contratos/datos.json'
     with open(ruta, 'r', encoding='utf-8') as f:
         return json.load(f)
 
 def guardar_contratos(contratos):
-    ruta = os.path.join('Contratos', 'datos.json')
+    ruta = 'Contratos/datos.json'
     with open(ruta, 'w', encoding='utf-8') as f:
         json.dump(contratos, f, indent=2, ensure_ascii=False)
 
@@ -29,7 +29,6 @@ def tipo_estado(opcion):
         return ""
     else:
         raise ValueError("Opción no válida. Ingrese 0, 1, 2 o Enter para mantener.")
-
 
 def modificar_estado_contrato():
     print("----- Modificar Estado del Contrato -----")

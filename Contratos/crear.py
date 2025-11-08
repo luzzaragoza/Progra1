@@ -8,16 +8,19 @@ from Propiedades.crear import cargar_propiedades
 
 # Cargar contratos desde JSON
 def cargar_contratos():
-    ruta = os.path.join('Contratos', 'datos.json')
-    if not os.path.exists(ruta):  # Si no existe, crear uno vacío
+    ruta = 'Contratos/datos.json'
+    try:
+        with open(ruta, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        # Si no existe, crear uno vacío
         with open(ruta, 'w', encoding='utf-8') as f:
             json.dump({}, f, indent=2, ensure_ascii=False)
-    with open(ruta, 'r', encoding='utf-8') as f:
-        return json.load(f)
+        return {}
 
 # Guardar contratos en JSON
 def guardar_contratos(contratos):
-    ruta = os.path.join('Contratos', 'datos.json')
+    ruta = 'Contratos/datos.json'
     with open(ruta, 'w', encoding='utf-8') as f:
         json.dump(contratos, f, indent=2, ensure_ascii=False)
 
@@ -117,7 +120,7 @@ def crear_cant_contratos(cant_contratos):
     creados = []
     for i in range(cant_contratos):
         print(f"--- Ingresando datos del contrato {i + 1} ---")
-        id_con = int(max((contratos.keys()))) + 1
+        id_con = int(max((contratos.keys()))) + 1 if contratos else 1
         nuevo = crear_contrato(contratos, id_con)
         creados.append(nuevo)
     guardar_contratos(contratos)

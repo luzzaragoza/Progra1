@@ -3,7 +3,7 @@ import os
 
 
 def cargar_propiedades():
-    ruta = os.path.join('Propiedades', 'datos.json')
+    ruta = 'Propiedades/datos.json'
     try:
         with open(ruta, "r", encoding="utf-8") as archivo:
             return json.load(archivo)
@@ -12,6 +12,7 @@ def cargar_propiedades():
     except json.JSONDecodeError:
         print("Error: El archivo datos.json está mal formateado.")
         return {}
+
 
 def buscar_propiedades(propiedades, norm, parse_int):
     """

@@ -7,7 +7,7 @@ from Contratos.modificar import cargar_contratos
 
 
 def cargar_pagos():
-    ruta = os.path.join('Pagos', 'datos.json')
+    ruta = 'Pagos/datos.json'
     try:
         with open(ruta, "r", encoding="utf-8") as archivo:
             return json.load(archivo)
@@ -17,8 +17,9 @@ def cargar_pagos():
         print("Error: El archivo datos.json está mal formateado.")
         return {}
 
+
 def guardar_pagos(pagos):
-    ruta = os.path.join('Pagos', 'datos.json')
+    ruta = 'Pagos/datos.json'
     with open(ruta, "w", encoding="utf-8") as archivo:
         json.dump(pagos, archivo, indent=4, ensure_ascii=False)
 
@@ -53,6 +54,7 @@ def crear_pagos(id_pago):
     print(f"Pago con ID {id_pago} creado exitosamente.\n")
 
     return pagos
+
 
 def crear_cant_pagos(cant_pagos):
     creados = []
