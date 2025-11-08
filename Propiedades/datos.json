@@ -364,5 +364,17 @@
         "Tipo": "",
         "PrecioAlquiler": 1,
         "Estado": "Disponible"
+    },
+    "162": {
+        "Direccion": "Plaza  123",
+        "Tipo": "Plaza",
+        "PrecioAlquiler": 500,
+        "Estado": "Disponible"
+    },
+    "163": {
+        "Direccion": "Lavalle 4500",
+        "Tipo": "Cochera",
+        "PrecioAlquiler": 1000,
+        "Estado": "Disponible"
     }
 }

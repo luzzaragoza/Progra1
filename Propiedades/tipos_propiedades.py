@@ -29,54 +29,85 @@ def crear_tipo_propiedad(nombre):
 
 # LISTA los tipos activos y deja seleccionar uno
 def seleccionar_tipo_propiedad():
+    activos = []
     try:
         with open(ARCHIVO_TIPOS, "r", encoding="utf-8") as f:
-            tipos = [l.strip().split(";") for l in f if l.strip()]
+            for linea in f:
+                linea = linea.strip()
+                if not linea:
+                    continue
+                partes = linea.split(";")
+                if len(partes) != 3:
+                    continue
+                cod, nom, act = partes
+                if act == "1":
+                    # guardo SOLO lo necesario para el menú
+                    activos.append((cod, nom))
     except FileNotFoundError:
         print("No hay archivo aún.")
         return None
 
-    activos = [t for t in tipos if len(t) == 3 and t[2] == "1"]
     if not activos:
         print("No hay tipos activos.")
         return None
 
     print("Tipos de propiedad activos:")
-    for i, t in enumerate(activos, 1):
-        print(f"{i}) {t[1]}")
+    for i, (_, nom) in enumerate(activos, 1):
+        print(f"{i}) {nom}")
 
     op = input("Elegí número o Enter para cancelar: ")
     if op.isdigit():
         n = int(op)
         if 1 <= n <= len(activos):
-            return activos[n - 1]
+            cod, nom = activos[n - 1]
+            # Devuelvo con el mismo formato que usabas: ["P###", "Nombre", "1"]
+            return [cod, nom, "1"]
+
     print("Cancelado o inválido.")
     return None
 
-# BAJA lógica de un tipo (marca con 0)
+
 def seleccionar_baja_tipo(codigo):
+    import os
+    ruta_tmp = ARCHIVO_TIPOS + ".tmp"
+    encontrado = False
+
     try:
-        with open(ARCHIVO_TIPOS, "r", encoding="utf-8") as f:
-            lineas = f.readlines()
+        with open(ARCHIVO_TIPOS, "r", encoding="utf-8") as fin, \
+             open(ruta_tmp, "w", encoding="utf-8") as fout:
+            for linea in fin:
+                linea = linea.strip()
+                if not linea:
+                    continue
+                partes = linea.split(";")
+                if len(partes) != 3:
+                    # línea rara: la copio tal cual
+                    fout.write(linea + "\n")
+                    continue
+
+                cod, nom, act = partes
+                if cod == codigo and act == "1":
+                    act = "0"
+                    encontrado = True
+                    print(f"Tipo {codigo} dado de baja.")
+                fout.write(f"{cod};{nom};{act}\n")
     except FileNotFoundError:
         print("No hay archivo aún.")
-        return
+        return False
 
-    with open(ARCHIVO_TIPOS, "w", encoding="utf-8") as f:
-        for linea in lineas:
-            partes = linea.strip().split(";")
-            if partes[0] == codigo:
-                partes[2] = "0"
-                print(f"Tipo {codigo} dado de baja.")
-            f.write(";".join(partes) + "\n")
+    # Reemplazo atómico
+    os.replace(ruta_tmp, ARCHIVO_TIPOS)
+    return encontrado
+
 
 def baja_tipo_propiedad():
-    sel = seleccionar_tipo_propiedad()   # devuelve algo como ["P003", "Duplex", "1"] o None
+    sel = seleccionar_tipo_propiedad()   # ["P003", "Duplex", "1"] o None
     if not sel:
         print("Operación cancelada.")
         return False
-    codigo = sel[0]  # el ID está en la primera posición
+    codigo = sel[0]
     return seleccionar_baja_tipo(codigo)
+
 
 # FUNCIÓN PRINCIPAL (versión adaptada de la tuya)
 def tipo_propiedad(opcion):

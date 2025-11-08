@@ -352,5 +352,29 @@
         "Fecha": "2025-01-01",
         "Monto": 1000.0,
         "Método": "Cupones"
+    },
+    "9060": {
+        "ID Contrato": "5052",
+        "Fecha": "2025-01-01",
+        "Monto": 1000.0,
+        "Método": "Trabajo forzado"
+    },
+    "9061": {
+        "ID Contrato": "5050",
+        "Fecha": "2025-01-01",
+        "Monto": 500.0,
+        "Método": "Tarjeta de credito"
+    },
+    "9062": {
+        "ID Contrato": "5022",
+        "Fecha": "2025-05-06",
+        "Monto": 9000.0,
+        "Método": "Platanos"
+    },
+    "9063": {
+        "ID Contrato": "5008",
+        "Fecha": "2025-06-11",
+        "Monto": 2323.0,
+        "Método": "Trabajo forzado"
     }
 }

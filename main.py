@@ -33,6 +33,7 @@ from Contratos.mostrar import mostrar_contratos
 from Pagos.crear import crear_cant_pagos
 from Pagos.mostrar import mostrar_pagos
 from Pagos.tipos_pagos import devuelve_nombre_tipo as tipo_pago
+from Pagos.tipos_pagos import baja_tipo_pago
 
 from FuncAux.login import iniciar_sesion
 from FuncAux.validaciones import parse_int, nonempty, norm
@@ -116,7 +117,8 @@ def gestion_pagos():
         ("1", "Crear Pagos", lambda: crear_cant_pagos(pedir_cantidad("¿Cuántos pagos desea crear? "))),
         ("2", "Mostrar Pagos", lambda: mostrar_pagos()),
         ("3", "Total por Método de Pago", lambda: total_por_metodo(tipo_pago())),
-        ("4", "Volver", lambda: None),
+        ("4", "Baja de Tipo de Pago", lambda: baja_tipo_pago()),  # Aquí podrías agregar la función correspondiente
+        ("5", "Volver", lambda: None),
     ]
     menu_loop("Gestión de Pagos", items)
 

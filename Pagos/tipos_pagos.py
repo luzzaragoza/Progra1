@@ -36,55 +36,77 @@ def crear_tipo_pago(nombre):
 
     print(f"Tipo de pago creado: {codigo} - {nombre}")
 
-# LISTA los tipos activos y deja seleccionar uno (lo dejo igual que tenías)
+# LISTA los tipos activos y deja seleccionar uno (streaming; buffer mínimo)
 def seleccionar_tipo_pago():
+    activos = []
     try:
         with open(ARCHIVO_TIPOS, "r", encoding="utf-8") as f:
-            tipos = [l.strip().split(";") for l in f if l.strip()]
+            for linea in f:
+                linea = linea.strip()
+                if not linea:
+                    continue
+                partes = linea.split(";")
+                if len(partes) != 3:
+                    continue
+                cod, nom, act = partes
+                if act == "1":
+                    # guardo SOLO lo necesario para el menú
+                    activos.append((cod, nom))
     except FileNotFoundError:
         print("No hay archivo aún.")
         return None
 
-    activos = [t for t in tipos if len(t) == 3 and t[2] == "1"]
     if not activos:
         print("No hay tipos activos.")
         return None
 
     print("Tipos de pagos activos:")
-    for i, t in enumerate(activos, 1):
-        print(f"{i}) {t[1]}")
+    for i, (_, nom) in enumerate(activos, 1):
+        print(f"{i}) {nom}")
 
-    op = input("Elegí número o Enter para cancelar: ")
+    op = input("Elegí número o Enter para cancelar: ").strip()
     if op.isdigit():
         n = int(op)
         if 1 <= n <= len(activos):
-            return activos[n - 1]
+            cod, nom = activos[n - 1]
+            # formato compatible con tu flujo: ["P###", "Nombre", "1"]
+            return [cod, nom, "1"]
     print("Cancelado o inválido.")
     return None
 
-# BAJA lógica por código (renombro a baja_logica_tipo_pago)
+# BAJA lógica por código (streaming + temp; una sola pasada)
 def baja_logica_tipo_pago(codigo):
+    _asegurar_carpeta()
+    ruta_tmp = ARCHIVO_TIPOS + ".tmp"
+    cambiado = False
+
     try:
-        with open(ARCHIVO_TIPOS, "r", encoding="utf-8") as f:
-            lineas = f.readlines()
+        with open(ARCHIVO_TIPOS, "r", encoding="utf-8") as fin, \
+             open(ruta_tmp, "w", encoding="utf-8") as fout:
+            for linea in fin:
+                linea = linea.strip()
+                if not linea:
+                    continue
+                partes = linea.split(";")
+                if len(partes) != 3:
+                    # línea rara: la copio tal cual
+                    fout.write(linea + "\n")
+                    continue
+
+                cod, nom, act = partes
+                if cod == codigo and act == "1":
+                    act = "0"
+                    cambiado = True
+                    print(f"Tipo {nom} dado de baja.")
+                fout.write(f"{cod};{nom};{act}\n")
     except FileNotFoundError:
         print("No hay archivo aún.")
         return False
 
-    cambiado = False
-    with open(ARCHIVO_TIPOS, "w", encoding="utf-8") as f:
-        for linea in lineas:
-            partes = linea.strip().split(";")
-            if len(partes) != 3:
-                continue
-            if partes[0] == codigo and partes[2] == "1":
-                partes[2] = "0"
-                cambiado = True
-                print(f"Tipo {partes[1]} dado de baja.")
-            f.write(";".join(partes) + "\n")
+    os.replace(ruta_tmp, ARCHIVO_TIPOS)
     return cambiado
 
-# Wrapper: usa el selector y luego da la baja por código (corrijo nombre)
+# Wrapper: usa el selector y luego da la baja por código
 def baja_tipo_pago():
     sel = seleccionar_tipo_pago()   # ["P003", "Transferencia", "1"] o None
     if not sel:
