@@ -1,7 +1,15 @@
+import os
+
 ARCHIVO_TIPOS = "Pagos/tipos_pagos.txt"
 
-# CREA un nuevo tipo de propiedad y lo guarda en el archivo
+def _asegurar_carpeta():
+    carpeta = os.path.dirname(ARCHIVO_TIPOS)
+    if carpeta and not os.path.exists(carpeta):
+        os.makedirs(carpeta, exist_ok=True)
+
+# CREA un nuevo tipo de pago y lo guarda en el archivo
 def crear_tipo_pago(nombre):
+    _asegurar_carpeta()
     nombre = nombre.strip()
     if nombre == "":
         print("Nombre vacío.")
@@ -12,6 +20,7 @@ def crear_tipo_pago(nombre):
         with open(ARCHIVO_TIPOS, "r", encoding="utf-8") as f:
             for linea in f:
                 partes = linea.strip().split(";")
+                # mantenemos prefijo "P" en lectura
                 if len(partes) >= 1 and partes[0].startswith("P"):
                     n = int(partes[0][1:])
                     if n > ultimo:
@@ -19,15 +28,15 @@ def crear_tipo_pago(nombre):
     except FileNotFoundError:
         pass
 
-    codigo = f"T{str(ultimo + 1).zfill(3)}"
+    # unificamos prefijo a "P" también en escritura
+    codigo = f"P{str(ultimo + 1).zfill(3)}"
 
     with open(ARCHIVO_TIPOS, "a", encoding="utf-8") as f:
         f.write(f"{codigo};{nombre};1\n")
 
     print(f"Tipo de pago creado: {codigo} - {nombre}")
 
-
-# LISTA los tipos activos y deja seleccionar uno
+# LISTA los tipos activos y deja seleccionar uno (lo dejo igual que tenías)
 def seleccionar_tipo_pago():
     try:
         with open(ARCHIVO_TIPOS, "r", encoding="utf-8") as f:
@@ -53,32 +62,38 @@ def seleccionar_tipo_pago():
     print("Cancelado o inválido.")
     return None
 
-# BAJA lógica de un tipo (marca con 0)
-def seleccionar_baja_tipo_pago(codigo):
+# BAJA lógica por código (renombro a baja_logica_tipo_pago)
+def baja_logica_tipo_pago(codigo):
     try:
         with open(ARCHIVO_TIPOS, "r", encoding="utf-8") as f:
             lineas = f.readlines()
     except FileNotFoundError:
         print("No hay archivo aún.")
-        return
+        return False
 
+    cambiado = False
     with open(ARCHIVO_TIPOS, "w", encoding="utf-8") as f:
         for linea in lineas:
             partes = linea.strip().split(";")
-            if partes[0] == codigo:
+            if len(partes) != 3:
+                continue
+            if partes[0] == codigo and partes[2] == "1":
                 partes[2] = "0"
+                cambiado = True
                 print(f"Tipo {partes[1]} dado de baja.")
             f.write(";".join(partes) + "\n")
+    return cambiado
 
-def baja_tipo_propiedad():
-    sel = seleccionar_tipo_pago()   # devuelve algo como ["P003", "Duplex", "1"] o None
+# Wrapper: usa el selector y luego da la baja por código (corrijo nombre)
+def baja_tipo_pago():
+    sel = seleccionar_tipo_pago()   # ["P003", "Transferencia", "1"] o None
     if not sel:
         print("Operación cancelada.")
         return False
-    codigo = sel[0]  # el ID está en la primera posición
-    return seleccionar_baja_tipo_pago(codigo)
+    codigo = sel[0]
+    return baja_logica_tipo_pago(codigo)
 
-# FUNCIÓN PRINCIPAL (versión adaptada de la tuya)
+# FUNCIÓN PRINCIPAL (igual a la tuya; solo usa las funciones corregidas)
 def tipo_pago(opcion):
     if opcion == "1":
         nuevo = input("Ingrese el tipo de pago nuevo: ").strip()
@@ -95,10 +110,8 @@ def tipo_pago(opcion):
         return ""
 
 def devuelve_nombre_tipo():
-
-    sel = seleccionar_tipo_pago()   # devuelve algo como ["P003", "Duplex", "1"] o None
+    sel = seleccionar_tipo_pago()
     if not sel:
         print("Operación cancelada.")
         return None
-    nombre = sel[1]  # el nombre está en la segunda posición
-    return nombre
+    return sel[1]

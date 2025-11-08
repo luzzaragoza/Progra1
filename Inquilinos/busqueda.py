@@ -6,7 +6,7 @@ def buscar_inquilinos(inquilinos, norm, parse_int):
     Devuelve: list (vacía si se cancela).
     """
     while True:
-        termino = input("Ingrese nombre, teléfono, email, DNI o ID (Enter para cancelar): ")
+        termino = input("Busqueda de Inquilino: Ingrese nombre, teléfono, email, DNI o ID (Enter para cancelar): ")
         if termino.strip() == "":
             return []  # cancelación
 

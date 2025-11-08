@@ -21,7 +21,7 @@ def buscar_propiedades(propiedades, norm, parse_int):
     Devuelve: list (vacía si se cancela).
     """
     while True:
-        termino = input("Ingrese dirección, tipo, estado, precio o ID (Enter para cancelar): ")
+        termino = input("Busqueda de Propiedad: Ingrese dirección, tipo, estado, precio o ID (Enter para cancelar): ")
         if termino.strip() == "":
             return []  # cancelación
 

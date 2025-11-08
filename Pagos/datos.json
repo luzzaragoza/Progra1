@@ -334,5 +334,23 @@
         "Fecha": null,
         "Monto": 1000.0,
         "Método": "Efectivo"
+    },
+    "9057": {
+        "ID Contrato": "5050",
+        "Fecha": "2025-12-12",
+        "Monto": 1000.0,
+        "Método": ""
+    },
+    "9058": {
+        "ID Contrato": "5032",
+        "Fecha": "2024-01-01",
+        "Monto": 1000.0,
+        "Método": "Efectivo"
+    },
+    "9059": {
+        "ID Contrato": "5037",
+        "Fecha": "2025-01-01",
+        "Monto": 1000.0,
+        "Método": "Cupones"
     }
 }

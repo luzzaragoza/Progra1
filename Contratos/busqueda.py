@@ -8,7 +8,7 @@ def buscar_contratos(contratos, norm, parse_int):
     Devuelve: list (vacía si se cancela).
     """
     while True:
-        termino = input("Ingrese fecha (YYYY-MM-DD), estado, monto o ID de contrato (Enter para cancelar): ")
+        termino = input("Busqueda de contratos: Ingrese fecha (YYYY-MM-DD), estado, monto o ID de contrato (Enter para cancelar): ")
         if termino.strip() == "":
             return []  # cancelación
 
