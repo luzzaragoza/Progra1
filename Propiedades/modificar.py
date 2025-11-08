@@ -5,7 +5,7 @@ from Propiedades.crear import tipo_propiedad
 from Propiedades.busqueda import buscar_propiedades, seleccionar_propiedad
 
 def cargar_propiedades():
-    ruta = os.path.join('Propiedades', 'datos.json')
+    ruta = 'Propiedades/datos.json'
     try:
         with open(ruta, "r", encoding="utf-8") as archivo:
             return json.load(archivo)
@@ -16,7 +16,7 @@ def cargar_propiedades():
         return {}
 
 def guardar_propiedades(propiedades):
-    ruta = os.path.join('Propiedades', 'datos.json')
+    ruta = 'Propiedades/datos.json'
     with open(ruta, "w", encoding="utf-8") as archivo:
         json.dump(propiedades, archivo, indent=4, ensure_ascii=False)
 

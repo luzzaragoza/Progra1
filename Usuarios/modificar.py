@@ -3,7 +3,7 @@ import os
 from FuncAux.validaciones import norm, nonempty, pwd_ok
 
 def cargar_usuarios():
-    ruta = os.path.join('Usuarios', 'datos.json')
+    ruta = 'Usuarios/datos.json'
     try:
         with open(ruta, "r", encoding="utf-8") as archivo:
             return json.load(archivo)
@@ -14,7 +14,7 @@ def cargar_usuarios():
         return {}
 
 def guardar_usuarios(usuarios):
-    ruta = os.path.join('Usuarios', 'datos.json')
+    ruta = 'Usuarios/datos.json'
     with open(ruta, "w", encoding="utf-8") as archivo:
         json.dump(usuarios, archivo, indent=4, ensure_ascii=False)
 
