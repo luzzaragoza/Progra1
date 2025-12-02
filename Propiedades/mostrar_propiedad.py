@@ -2,7 +2,7 @@ import json
 import os
 
 def cargar_propiedades():
-    ruta = 'Propiedades/datos_propiedades.json'  
+    ruta = 'Propiedades/datos_propiedad.json'  
     with open(ruta, 'r', encoding='utf-8') as f:
         return json.load(f)
 

@@ -2,7 +2,7 @@ import json
 import os
 
 def cargar_inquilinos():
-    ruta = 'Inquilinos/datos_inquilinos.json'  
+    ruta = 'Inquilinos/datos_inquilino.json'  
     with open(ruta, 'r', encoding='utf-8') as f:
         return json.load(f)
 

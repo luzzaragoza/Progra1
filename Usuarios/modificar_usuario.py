@@ -14,7 +14,7 @@ def cargar_usuarios():
         return {}
 
 def guardar_usuarios(usuarios):
-    ruta = 'Usuarios/datos_usuarios.json'  
+    ruta = 'Usuarios/datos_usuario.json'  
     with open(ruta, "w", encoding="utf-8") as archivo:
         json.dump(usuarios, archivo, indent=4, ensure_ascii=False)
 

@@ -81,7 +81,7 @@ def menu_loop(titulo, items):
 
 
 # --------- Menús específicos ----------
-def gestion_inqiuilinos():
+def gestion_inquilinos():
     items = [
         ("1", "Crear Inquilinos",         lambda: crear_cant_inquilinos(pedir_cantidad("¿Cuántos inquilinos desea crear? "))),
         ("2", "Mostrar Inquilinos",       lambda: mostrar_inquilinos()),
@@ -135,7 +135,7 @@ def gestion_usuarios():
 # --------- Programa principal ----------
 def menu():
     items = [
-        ("1", "Gestión de Inquilinos",  gestion_inqiuilinos),
+        ("1", "Gestión de Inquilinos",  gestion_inquilinos),
         ("2", "Gestión de Propiedades", gestion_propiedades),
         ("3", "Gestión de Contratos",   gestion_contratos),
         ("4", "Gestión de Pagos",       gestion_pagos),

@@ -5,7 +5,7 @@ from Propiedades.crear_propiedad import tipo_propiedad
 from Propiedades.busqueda_propiedad import buscar_propiedades, seleccionar_propiedad
 
 def cargar_propiedades():
-    ruta = 'Propiedades/datos_propiedades.json'  
+    ruta = 'Propiedades/datos_propiedad.json'  
     try:
         with open(ruta, "r", encoding="utf-8") as archivo:
             return json.load(archivo)
