@@ -1,7 +1,9 @@
 import json
 import os
 
-def cargar_json(modulo, archivo="datos.json"):
+def cargar_json(modulo, archivo=None):
+    if archivo is None:
+        archivo = f"datos_{modulo.lower()}.json"
     ruta = f'{modulo}/{archivo}'
     try:
         with open(ruta, "r", encoding="utf-8") as f:
@@ -13,25 +15,25 @@ def cargar_json(modulo, archivo="datos.json"):
         return {}
 
 # --- IMPORTS ---
-from Inquilinos.crear import crear_cant_inquilinos
-from Inquilinos.modificar import modificar_inquilino
-from Inquilinos.busqueda import buscar_inquilinos as busqueda_inquilino
-from Inquilinos.mostrar import mostrar_inquilinos
-from Inquilinos.baja import baja_inquilino
+from Inquilinos.crear_inquilino import crear_cant_inquilinos
+from Inquilinos.modificar_inquilino import modificar_inquilino
+from Inquilinos.busqueda_inquilino import buscar_inquilinos as busqueda_inquilino
+from Inquilinos.mostrar_inquilino import mostrar_inquilinos
+from Inquilinos.baja_inquilino import baja_inquilino
 
-from Propiedades.modificar import modificar_propiedad
-#from Propiedades.busqueda import busqueda_propiedad  
-from Propiedades.crear import crear_cant_propiedades
-from Propiedades.mostrar import mostrar_propiedades
-from Propiedades.baja import baja_propiedad
+from Propiedades.modificar_propiedad import modificar_propiedad
+#from Propiedades.busqueda_propiedad import busqueda_propiedad  
+from Propiedades.crear_propiedad import crear_cant_propiedades
+from Propiedades.mostrar_propiedad import mostrar_propiedades
+from Propiedades.baja_propiedad import baja_propiedad
 from Propiedades.tipos_propiedades import baja_tipo_propiedad
 
-from Contratos.crear import crear_cant_contratos
-from Contratos.modificar import modificar_estado_contrato
-from Contratos.mostrar import mostrar_contratos
+from Contratos.crear_contrato import crear_cant_contratos
+from Contratos.modificar_contrato import modificar_estado_contrato
+from Contratos.mostrar_contrato import mostrar_contratos
 
-from Pagos.crear import crear_cant_pagos
-from Pagos.mostrar import mostrar_pagos
+from Pagos.crear_pago import crear_cant_pagos
+from Pagos.mostrar_pago import mostrar_pagos
 from Pagos.tipos_pagos import devuelve_nombre_tipo as tipo_pago
 from Pagos.tipos_pagos import baja_tipo_pago
 
@@ -39,9 +41,9 @@ from FuncAux.login import iniciar_sesion
 from FuncAux.validaciones import parse_int, nonempty, norm
 from FuncAux.estadistica import total_por_metodo, mostrar_resumen
 
-from Usuarios.crear import crear_cant_usuario
-from Usuarios.modificar import cambiar_contrasenia as modificar_usuario
-from Usuarios.mostrar import mostrar_usuarios
+from Usuarios.crear_usuario import crear_cant_usuario
+from Usuarios.modificar_usuario import cambiar_contrasenia as modificar_usuario
+from Usuarios.mostrar_usuario import mostrar_usuarios
 
 
 # --------- helpers genéricos (con lambdas/funcs) ----------

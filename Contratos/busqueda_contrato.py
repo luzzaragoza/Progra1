@@ -1,5 +1,3 @@
-
-
 def buscar_contratos(contratos, norm, parse_int):
     """
     Reintenta hasta que haya resultados o el usuario presione Enter en vacío.

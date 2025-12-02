@@ -2,7 +2,7 @@ import json
 import os
 
 def cargar_usuarios():
-    ruta = 'Usuarios/datos.json'
+    ruta = 'Usuarios/datos_usuarios.json'  
     with open(ruta, 'r', encoding='utf-8') as f:
         return json.load(f)
 
