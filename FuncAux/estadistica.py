@@ -33,7 +33,7 @@ def cargar_contratos():
 
 def cargar_pagos():
     """Carga los pagos desde el archivo JSON."""
-    ruta = 'Pagos/datos_pago.json'
+    ruta = 'Pagos/datos_pagos.json'
     try:
         with open(ruta, 'r', encoding='utf-8') as archivo:
             return json.load(archivo)
@@ -291,9 +291,4 @@ def mostrar_resumen():
     estadisticas_contratos()
     estadistica_dominios_email(cargar_inquilinos())
     estadistica_dni_inquilinos(cargar_inquilinos())
-    estadistica_pagos_por_inquilino(pagos=cargar_pagos(),
-                                    contratos=cargar_contratos(),
-                                    inquilinos=cargar_inquilinos(),
-                                    norm=norm,
-                                    parse_int=parse_int)
     input("Presione Enter para continuar...")

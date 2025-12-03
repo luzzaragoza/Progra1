@@ -7,7 +7,7 @@ from Contratos.modificar_contrato import cargar_contratos
 
 
 def cargar_pagos():
-    ruta = 'Pagos/datos_pago.json'  
+    ruta = 'Pagos/datos_pagos.json'  
     try:
         with open(ruta, "r", encoding="utf-8") as archivo:
             return json.load(archivo)

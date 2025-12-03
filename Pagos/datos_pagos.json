@@ -382,5 +382,11 @@
         "Fecha": "2025-04-01",
         "Monto": 15000.0,
         "Método": "Efectivo"
+    },
+    "9065": {
+        "ID Contrato": "5001",
+        "Fecha": "2025-05-01",
+        "Monto": 25000.0,
+        "Método": "Platanos"
     }
 }
