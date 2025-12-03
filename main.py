@@ -13,6 +13,21 @@ def cargar_json(modulo, archivo=None):
     except json.JSONDecodeError:
         print(f"Error: El archivo {ruta} está mal formateado.")
         return {}
+    
+def cargar_inquilinos():
+    ruta = 'Inquilinos/datos_inquilino.json' 
+    with open(ruta, 'r', encoding='utf-8') as f:
+        return json.load(f)
+    
+def cargar_propiedades():
+    ruta = 'Propiedades/datos_propiedad.json' 
+    with open(ruta, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def cargar_contratos():
+    ruta = 'Contratos/datos_contrato.json' 
+    with open(ruta, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 # --- IMPORTS ---
 from Inquilinos.crear_inquilino import crear_cant_inquilinos
@@ -20,6 +35,7 @@ from Inquilinos.modificar_inquilino import modificar_inquilino
 from Inquilinos.busqueda_inquilino import buscar_inquilinos as busqueda_inquilino
 from Inquilinos.mostrar_inquilino import mostrar_inquilinos
 from Inquilinos.baja_inquilino import baja_inquilino
+from Inquilinos.busqueda_inquilino import menu_busqueda_inquilino
 
 from Propiedades.modificar_propiedad import modificar_propiedad
 #from Propiedades.busqueda_propiedad import busqueda_propiedad  
@@ -40,10 +56,15 @@ from Pagos.tipos_pagos import baja_tipo_pago
 from FuncAux.login import iniciar_sesion
 from FuncAux.validaciones import parse_int, nonempty, norm
 from FuncAux.estadistica import total_por_metodo, mostrar_resumen
+from FuncAux.busqueda_relacionada import busqueda_relacionada_inq
 
 from Usuarios.crear_usuario import crear_cant_usuario
 from Usuarios.modificar_usuario import cambiar_contrasenia as modificar_usuario
 from Usuarios.mostrar_usuario import mostrar_usuarios
+
+inquilinos = cargar_inquilinos()
+propiedades = cargar_propiedades()
+contratos = cargar_contratos()
 
 
 # --------- helpers genéricos (con lambdas/funcs) ----------
@@ -86,9 +107,10 @@ def gestion_inquilinos():
         ("1", "Crear Inquilinos",         lambda: crear_cant_inquilinos(pedir_cantidad("¿Cuántos inquilinos desea crear? "))),
         ("2", "Mostrar Inquilinos",       lambda: mostrar_inquilinos()),
         ("3", "Modificar Inquilinos",     lambda: modificar_inquilino()),
-        ("4", "Buscar Inquilinos",        lambda: busqueda_inquilino()),
-        ("5", "Baja de Inquilinos",       lambda: baja_inquilino()),
-        ("6", "Volver",                   lambda: None),
+        ("4", "Buscar Inquilinos",        lambda: menu_busqueda_inquilino(inquilinos=inquilinos, norm=norm, parse_int=parse_int)),
+        ("5", "Buscar Contratos por Inquilino", lambda: busqueda_relacionada_inq(propiedades=propiedades, contratos=contratos, inquilinos=inquilinos)),
+        ("6", "Baja de Inquilinos",       lambda: baja_inquilino()),
+        ("7", "Volver",                   lambda: None),
     ]
     menu_loop("Gestión de Inquilinos", items)
 

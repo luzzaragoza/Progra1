@@ -88,3 +88,24 @@ def seleccionar_inquilino(inquilinos, resultados_ids, norm):
             k += 1
 
         print("Opción inválida. Intente nuevamente.")
+
+def menu_busqueda_inquilino(inquilinos, norm, parse_int):
+    """
+    Menú para buscar inquilinos.
+    Usa buscar_inquilinos + seleccionar_inquilino.
+    """
+    print("----- Búsqueda de Inquilinos -----")
+    resultados_ids = buscar_inquilinos(inquilinos, norm, parse_int)
+    if not resultados_ids:
+        print("Operación cancelada o no se encontraron inquilinos.")
+        return
+
+    id_inq = seleccionar_inquilino(inquilinos, resultados_ids, norm)
+    if id_inq is None:
+        print("Operación cancelada.")
+        return
+
+    datos_inq = inquilinos.get(id_inq, {})
+    print(f"\nInquilino seleccionado: [{id_inq}]")
+    for k, v in datos_inq.items():
+        print(f"  {k}: {v}")
