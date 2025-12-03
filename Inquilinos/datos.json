@@ -252,10 +252,17 @@
     "Estado": "Activo"
   },
   "541": {
-    "Nombre": "Agus Barbero",
+    "Nombre": "Membrillo 2",
     "DNI": 43111222,
-    "Email": "agus@gmail.com",
+    "Email": "membri2@icloud.com",
     "Telefono": 123445,
+    "Estado": "Activo"
+  },
+  "542": {
+    "Nombre": "Membrillo con lenteja",
+    "DNI": 12345678,
+    "Email": "membri@gmail.com",
+    "Telefono": 1234567,
     "Estado": "Activo"
   }
 }
