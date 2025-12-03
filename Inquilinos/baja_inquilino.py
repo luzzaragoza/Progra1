@@ -1,16 +1,16 @@
-# Inquilinos/baja.py
+# Inquilinos/baja_inquilino.py
 import json
 import os
 from FuncAux.validaciones import parse_int, norm
-from Inquilinos.mostrar import mostrar_inquilino
+from Inquilinos.mostrar_inquilino import mostrar_inquilino
 
 def cargar_inquilinos():
-    ruta = 'Inquilinos/datos.json'
+    ruta = 'Inquilinos/datos_inquilinos.json'  
     with open(ruta, 'r', encoding='utf-8') as f:
         return json.load(f)
 
 def guardar_inquilinos(inquilinos):
-    ruta = 'Inquilinos/datos.json'
+    ruta = 'Inquilinos/datos_inquilinos.json'  
     with open(ruta, 'w', encoding='utf-8') as f:
         json.dump(inquilinos, f, indent=2, ensure_ascii=False)
 

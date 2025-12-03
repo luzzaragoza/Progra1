@@ -1,15 +1,15 @@
 import json
 import os
 from FuncAux.validaciones import norm, nonempty, parse_int
-from Contratos.busqueda import buscar_contratos, seleccionar_contrato
+from Contratos.busqueda_contrato import buscar_contratos, seleccionar_contrato
 
 def cargar_contratos():
-    ruta = 'Contratos/datos.json'
+    ruta = 'Contratos/datos_contrato.json'
     with open(ruta, 'r', encoding='utf-8') as f:
         return json.load(f)
 
 def guardar_contratos(contratos):
-    ruta = 'Contratos/datos.json'
+    ruta = 'Contratos/datos_contratos.json'
     with open(ruta, 'w', encoding='utf-8') as f:
         json.dump(contratos, f, indent=2, ensure_ascii=False)
 

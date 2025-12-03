@@ -2,24 +2,24 @@ import json
 import os
 from FuncAux.validaciones import parse_int, nonempty, norm, parse_date, parse_float
 from Pagos.tipos_pagos import tipo_pago
-from Contratos.busqueda import buscar_contratos, seleccionar_contrato
-from Contratos.modificar import cargar_contratos
+from Contratos.busqueda_contrato import buscar_contratos, seleccionar_contrato
+from Contratos.modificar_contrato import cargar_contratos
 
 
 def cargar_pagos():
-    ruta = 'Pagos/datos.json'
+    ruta = 'Pagos/datos_pago.json'  
     try:
         with open(ruta, "r", encoding="utf-8") as archivo:
             return json.load(archivo)
     except FileNotFoundError:
         return {}
     except json.JSONDecodeError:
-        print("Error: El archivo datos.json está mal formateado.")
+        print("Error: El archivo datos_pagos.json está mal formateado.")  
         return {}
 
 
 def guardar_pagos(pagos):
-    ruta = 'Pagos/datos.json'
+    ruta = 'Pagos/datos_pagos.json' 
     with open(ruta, "w", encoding="utf-8") as archivo:
         json.dump(pagos, archivo, indent=4, ensure_ascii=False)
 

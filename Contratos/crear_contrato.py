@@ -1,14 +1,14 @@
 import json
 import os
 from FuncAux.validaciones import norm, nonempty, parse_int, parse_float, parse_date
-from Inquilinos.busqueda import buscar_inquilinos, seleccionar_inquilino
-from Inquilinos.crear import cargar_inquilinos
-from Propiedades.busqueda import buscar_propiedades, seleccionar_propiedad
-from Propiedades.crear import cargar_propiedades
+from Inquilinos.busqueda_inquilino import buscar_inquilinos, seleccionar_inquilino
+from Inquilinos.crear_inquilino import cargar_inquilinos
+from Propiedades.busqueda_propiedad import buscar_propiedades, seleccionar_propiedad
+from Propiedades.crear_propiedad import cargar_propiedades
 
 # Cargar contratos desde JSON
 def cargar_contratos():
-    ruta = 'Contratos/datos.json'
+    ruta = 'Contratos/datos_contratos.json'
     try:
         with open(ruta, 'r', encoding='utf-8') as f:
             return json.load(f)
@@ -20,14 +20,13 @@ def cargar_contratos():
 
 # Guardar contratos en JSON
 def guardar_contratos(contratos):
-    ruta = 'Contratos/datos.json'
+    ruta = 'Contratos/datos_contratos.json'
     with open(ruta, 'w', encoding='utf-8') as f:
         json.dump(contratos, f, indent=2, ensure_ascii=False)
 
 # Crear un contrato
 def crear_contrato(contratos, id_contrato):
     # ID de inquilino
-# ID de inquilino (busco y selecciono, no escribo ID a mano)
     while True:
         # 1) cargar diccionario actual de inquilinos (ajusta a tu función real)
         inquilinos = cargar_inquilinos()  # si tu función se llama distinto, cambiala acá
@@ -52,7 +51,6 @@ def crear_contrato(contratos, id_contrato):
 
 
     # ID de propiedad
-# ID de propiedad (busco y selecciono)
     while True:
         propiedades = cargar_propiedades()
         resultados = buscar_propiedades(propiedades, norm, parse_int)

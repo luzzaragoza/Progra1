@@ -3,18 +3,18 @@ import os
 from FuncAux.validaciones import norm, nonempty, pwd_ok
 
 def cargar_usuarios():
-    ruta = 'Usuarios/datos.json'
+    ruta = 'Usuarios/datos_usuarios.json'  # Updated to specific filename
     try:
         with open(ruta, "r", encoding="utf-8") as archivo:
             return json.load(archivo)
     except FileNotFoundError:
         return {}
     except json.JSONDecodeError:
-        print("Error: El archivo datos.json está mal formateado.")
+        print("Error: El archivo datos_usuarios.json está mal formateado.")  # Updated error message
         return {}
 
 def guardar_usuarios(usuarios):
-    ruta = 'Usuarios/datos.json'
+    ruta = 'Usuarios/datos_usuarios.json'  # Updated to specific filename
     with open(ruta, "w", encoding="utf-8") as archivo:
         json.dump(usuarios, archivo, indent=4, ensure_ascii=False)
 
