@@ -8,4 +8,3 @@ P007;1;0
 P008;Plaza;0
 
 
-crud más tipo propiedades, alta, baja, listado, eliminación, modificación 
