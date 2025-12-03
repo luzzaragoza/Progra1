@@ -14,20 +14,6 @@ def cargar_json(modulo, archivo=None):
         print(f"Error: El archivo {ruta} está mal formateado.")
         return {}
     
-def cargar_inquilinos():
-    ruta = 'Inquilinos/datos_inquilino.json' 
-    with open(ruta, 'r', encoding='utf-8') as f:
-        return json.load(f)
-    
-def cargar_propiedades():
-    ruta = 'Propiedades/datos_propiedad.json' 
-    with open(ruta, 'r', encoding='utf-8') as f:
-        return json.load(f)
-
-def cargar_contratos():
-    ruta = 'Contratos/datos_contrato.json' 
-    with open(ruta, 'r', encoding='utf-8') as f:
-        return json.load(f)
 
 # --- IMPORTS ---
 from Inquilinos.crear_inquilino import crear_cant_inquilinos
@@ -56,6 +42,8 @@ from FuncAux.login import iniciar_sesion
 from FuncAux.validaciones import parse_int, nonempty, norm
 from FuncAux.estadistica import total_por_metodo, mostrar_resumen
 from FuncAux.busqueda_relacionada import busqueda_relacionada_inq
+from FuncAux.estadistica_relacionada import estadistica_pagos_por_inquilino
+from FuncAux.estadistica import cargar_contratos, cargar_pagos, cargar_inquilinos, cargar_propiedades
 
 from Usuarios.crear_usuario import crear_cant_usuario
 from Usuarios.modificar_usuario import cambiar_contrasenia as modificar_usuario
@@ -64,6 +52,7 @@ from Usuarios.mostrar_usuario import mostrar_usuarios
 inquilinos = cargar_inquilinos()
 propiedades = cargar_propiedades()
 contratos = cargar_contratos()
+pagos = cargar_pagos()
 
 
 # --------- helpers genéricos (con lambdas/funcs) ----------
@@ -139,7 +128,12 @@ def gestion_pagos():
         ("2", "Mostrar Pagos", lambda: mostrar_pagos()),
         ("3", "Total por Método de Pago", lambda: total_por_metodo(tipo_pago())),
         ("4", "Baja de Tipo de Pago", lambda: baja_tipo_pago()),  # Aquí podrías agregar la función correspondiente
-        ("5", "Volver", lambda: None),
+        ("5", "Estadísticas de Pagos por Inquilino", lambda: estadistica_pagos_por_inquilino(pagos=cargar_pagos(),
+                                    contratos=cargar_contratos(),
+                                    inquilinos=cargar_inquilinos(),
+                                    norm=norm,
+                                    parse_int=parse_int)),
+        ("6", "Volver", lambda: None),
     ]
     menu_loop("Gestión de Pagos", items)
 

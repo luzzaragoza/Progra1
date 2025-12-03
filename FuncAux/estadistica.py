@@ -1,7 +1,8 @@
 import json
 from functools import reduce
 import re
-from FuncAux.validaciones import validar_dni
+from FuncAux.validaciones import validar_dni, norm, parse_int
+from FuncAux.estadistica_relacionada import estadistica_pagos_por_inquilino
 
 def cargar_inquilinos():
     """Carga los inquilinos desde el archivo JSON."""
@@ -290,4 +291,9 @@ def mostrar_resumen():
     estadisticas_contratos()
     estadistica_dominios_email(cargar_inquilinos())
     estadistica_dni_inquilinos(cargar_inquilinos())
+    estadistica_pagos_por_inquilino(pagos=cargar_pagos(),
+                                    contratos=cargar_contratos(),
+                                    inquilinos=cargar_inquilinos(),
+                                    norm=norm,
+                                    parse_int=parse_int)
     input("Presione Enter para continuar...")
