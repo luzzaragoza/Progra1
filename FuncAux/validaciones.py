@@ -52,3 +52,13 @@ def validar_email(email: str) -> bool:
     """
     patron = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
     return bool(re.match(patron, email.strip()))
+
+
+def validar_dni(dni: str) -> bool:
+    """
+    Valida un DNI argentino:
+    - Debe tener 7 u 8 dígitos.
+    - No permite puntos ni letras.
+    """
+    patron = r'^[0-9]{7,8}$'
+    return bool(re.match(patron, dni.strip()))

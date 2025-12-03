@@ -1,9 +1,20 @@
 import json
 from functools import reduce
+import re
+from FuncAux.validaciones import validar_dni
+
+def cargar_inquilinos():
+    """Carga los inquilinos desde el archivo JSON."""
+    ruta = 'Inquilinos/datos_inquilino.json'
+    try:
+        with open(ruta, 'r', encoding='utf-8') as archivo:
+            return json.load(archivo)
+    except:
+        return {}
 
 def cargar_propiedades():
     """Carga las propiedades desde el archivo JSON."""
-    ruta = 'Propiedades/datos.json'
+    ruta = 'Propiedades/datos_propiedad.json'
     try:
         with open(ruta, 'r', encoding='utf-8') as archivo:
             return json.load(archivo)
@@ -12,7 +23,7 @@ def cargar_propiedades():
 
 def cargar_contratos():
     """Carga los contratos desde el archivo JSON."""
-    ruta = 'Contratos/datos.json'
+    ruta = 'Contratos/datos_contrato.json'
     try:
         with open(ruta, 'r', encoding='utf-8') as archivo:
             return json.load(archivo)
@@ -21,7 +32,7 @@ def cargar_contratos():
 
 def cargar_pagos():
     """Carga los pagos desde el archivo JSON."""
-    ruta = 'Pagos/datos.json'
+    ruta = 'Pagos/datos_pago.json'
     try:
         with open(ruta, 'r', encoding='utf-8') as archivo:
             return json.load(archivo)
@@ -194,10 +205,89 @@ def total_por_metodo(metodo):
     return total_recursivo
 
 
+
+def estadistica_dominios_email(inquilinos):
+    """Genera estadísticas de dominios de email usando expresiones regulares."""
+    patron = r"@([a-zA-Z0-9.-]+)$"   # captura el dominio del email
+    
+    dominios = {}                    # diccionario {dominio: cantidad}
+
+    for iid, datos in inquilinos.items():
+        email = str(datos.get("Email", "")).strip()
+
+        m = re.search(patron, email)
+
+        if m:
+            dominio = m.group(1)    # ejemplo: "gmail.com"
+        else:
+            dominio = "(email inválido)"
+
+        # contamos a mano
+        if dominio in dominios:
+            dominios[dominio] += 1
+        else:
+            dominios[dominio] = 1
+
+    # Mostrar el resultado
+    print("\n--- Estadística de dominios de email ---")
+    for dominio, cantidad in sorted(dominios.items(), key=lambda x: x[1], reverse=True):
+        print(f"{dominio:20} → {cantidad} inquilinos")
+
+    return dominios
+
+def estadistica_dni_inquilinos(inquilinos):
+    """
+    Estadística completa:
+    - DNI válidos
+    - DNI inválidos
+    - Porcentajes
+    - Detalle de los inválidos
+    """
+    validos = 0
+    invalidos = 0
+    invalidos_detalle = []
+
+    for iid, datos in inquilinos.items():
+        dni = str(datos.get("DNI", "")).strip()
+
+        if validar_dni(dni):
+            validos += 1
+        else:
+            invalidos += 1
+            nombre = datos.get("Nombre", "(sin nombre)")
+            invalidos_detalle.append((iid, nombre, dni))
+
+    total = validos + invalidos
+
+    print("\n--- Estadística de DNI de Inquilinos ---")
+    print(f"Total de inquilinos:    {total}")
+    print(f"DNI válidos:            {validos}")
+    print(f"DNI inválidos:          {invalidos}")
+
+    if total > 0:
+        porc_validos = validos * 100 / total
+        porc_invalidos = invalidos * 100 / total
+        print(f"Porcentaje válidos:     {porc_validos:.2f}%")
+        print(f"Porcentaje inválidos:   {porc_invalidos:.2f}%")
+
+    if invalidos_detalle:
+        print("\nInquilinos con DNI inválido:")
+        for iid, nombre, dni in invalidos_detalle:
+            print(f"- ID {iid} | {nombre} | DNI: '{dni}'")
+
+    return {
+        "total": total,
+        "validos": validos,
+        "invalidos": invalidos,
+        "invalidos_detalle": invalidos_detalle
+    }
+
 def mostrar_resumen():
     """Muestra un resumen completo de todas las estadísticas."""
     print("\n========== RESUMEN ESTADÍSTICO ==========\n")
     estadisticas_propiedades()
     estadisticas_pagos()
     estadisticas_contratos()
+    estadistica_dominios_email(cargar_inquilinos())
+    estadistica_dni_inquilinos(cargar_inquilinos())
     input("Presione Enter para continuar...")

@@ -38,7 +38,6 @@ from Inquilinos.baja_inquilino import baja_inquilino
 from Inquilinos.busqueda_inquilino import menu_busqueda_inquilino
 
 from Propiedades.modificar_propiedad import modificar_propiedad
-#from Propiedades.busqueda_propiedad import busqueda_propiedad  
 from Propiedades.crear_propiedad import crear_cant_propiedades
 from Propiedades.mostrar_propiedad import mostrar_propiedades
 from Propiedades.baja_propiedad import baja_propiedad
