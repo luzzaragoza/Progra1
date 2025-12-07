@@ -283,6 +283,73 @@ def estadistica_dni_inquilinos(inquilinos):
         "invalidos_detalle": invalidos_detalle
     }
 
+
+def estadisticas_tipos_propiedad():
+    """
+    Agrupa las propiedades por tipo usando conjuntos y verifica que no haya duplicados.
+    """
+    propiedades = cargar_propiedades()
+    
+    if len(propiedades) == 0:
+        print("\nNo hay propiedades registradas.")
+        return
+    
+    # Crear conjuntos para cada tipo
+    casas = set()
+    departamentos = set()
+    locales = set()
+    oficinas = set()
+    cocheras = set()
+    depositos = set()
+    otros = set()
+    
+    # Recorrer todas las propiedades y agregar cada ID al conjunto correcto
+    for id_propiedad in propiedades:
+        propiedad = propiedades[id_propiedad]
+        tipo = propiedad.get('Tipo', '').lower()
+        
+        if tipo == 'casa':
+            casas.add(id_propiedad)
+        elif tipo == 'departamento':
+            departamentos.add(id_propiedad)
+        elif tipo == 'local':
+            locales.add(id_propiedad)
+        elif tipo == 'oficina':
+            oficinas.add(id_propiedad)
+        elif tipo == 'cochera':
+            cocheras.add(id_propiedad)
+        elif tipo == 'depósito' or tipo == 'deposito':
+            depositos.add(id_propiedad)
+        else:
+            otros.add(id_propiedad)
+    
+    # Mostrar estadísticas solo con cantidades
+    print("\n----- Estadísticas por Tipo de Propiedad -----")
+    print(f"Casas: {len(casas)}")
+    print(f"Departamentos: {len(departamentos)}")
+    print(f"Locales: {len(locales)}")
+    print(f"Oficinas: {len(oficinas)}")
+    print(f"Cocheras: {len(cocheras)}")
+    print(f"Depósitos: {len(depositos)}")
+    print(f"Otros: {len(otros)}")
+    
+    # Verificación de duplicados
+    todos_los_conjuntos = [casas, departamentos, locales, oficinas, cocheras, depositos, otros]
+    errores_encontrados = False
+    nombres_conjuntos = ['casas', 'departamentos', 'locales', 'oficinas', 'cocheras', 'depositos', 'otros']
+    
+    print("\n----- Verificación de Integridad -----")
+    for i in range(len(todos_los_conjuntos)):
+        for j in range(i + 1, len(todos_los_conjuntos)):
+            interseccion = todos_los_conjuntos[i].intersection(todos_los_conjuntos[j])
+            if len(interseccion) > 0:
+                errores_encontrados = True
+                print(f"ERROR: IDs duplicados entre {nombres_conjuntos[i]} y {nombres_conjuntos[j]}: {interseccion}")
+    
+    if not errores_encontrados:
+        print("No se encontraron problemas de duplicación.\n")
+
+
 def mostrar_resumen():
     """Muestra un resumen completo de todas las estadísticas."""
     print("\n========== RESUMEN ESTADÍSTICO ==========\n")
@@ -291,4 +358,5 @@ def mostrar_resumen():
     estadisticas_contratos()
     estadistica_dominios_email(cargar_inquilinos())
     estadistica_dni_inquilinos(cargar_inquilinos())
+    estadisticas_tipos_propiedad()
     input("Presione Enter para continuar...")
