@@ -10,9 +10,19 @@ def mostrar_inquilinos():
     print("----- Lista de Inquilinos -----")
     inquilinos = cargar_inquilinos()
     
-    if not inquilinos:  # Si el diccionario está vacío
+    if not inquilinos:  
         print("No hay inquilinos registrados.\n")
         return
+
+    # normalización de emails en minúsculas para mostrar
+    emails_normalizados = list(
+        map(lambda d: d["Email"].lower(), inquilinos.values())
+    )
+
+    print("Emails normalizados (map aplicado):")
+    for email in emails_normalizados:
+        print(f"  - {email}")
+    print()  
 
     for id_inquilino, datos in inquilinos.items():
         print(f"ID Inquilino: {id_inquilino}")

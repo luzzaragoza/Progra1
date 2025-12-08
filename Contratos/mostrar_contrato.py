@@ -18,6 +18,16 @@ def mostrar_contratos():
         print("No hay contratos para mostrar.\n")
         return
 
+    #filtrar solo contratos "activos"
+    contratos_activos = list(
+        filter(lambda c: c.get("Estado", "").lower() == "activo", contratos.values())
+    )
+
+    print("Contratos activos (filter aplicado):")
+    for c in contratos_activos:
+        print(f"  - ID Inquilino {c.get('ID_Inquilino')} | Propiedad {c.get('ID_Propiedad')}")
+    print()
+
     print("----- Lista de Contratos -----")
     for id_contrato, c in contratos.items():
         id_inquilino = str(c.get("ID_Inquilino", ""))
