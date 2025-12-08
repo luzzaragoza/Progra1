@@ -323,7 +323,6 @@ def estadisticas_tipos_propiedad():
         else:
             otros.add(id_propiedad)
     
-    # Mostrar estadísticas solo con cantidades
     print("\n----- Estadísticas por Tipo de Propiedad -----")
     print(f"Casas: {len(casas)}")
     print(f"Departamentos: {len(departamentos)}")
@@ -336,7 +335,6 @@ def estadisticas_tipos_propiedad():
     # Verificación de duplicados
     todos_los_conjuntos = [casas, departamentos, locales, oficinas, cocheras, depositos, otros]
     errores_encontrados = False
-    nombres_conjuntos = ['casas', 'departamentos', 'locales', 'oficinas', 'cocheras', 'depositos', 'otros']
     
     print("\n----- Verificación de Integridad -----")
     for i in range(len(todos_los_conjuntos)):
@@ -344,10 +342,13 @@ def estadisticas_tipos_propiedad():
             interseccion = todos_los_conjuntos[i].intersection(todos_los_conjuntos[j])
             if len(interseccion) > 0:
                 errores_encontrados = True
+                nombres_conjuntos = ['casas', 'departamentos', 'locales', 'oficinas', 'cocheras', 'depositos', 'otros']
                 print(f"ERROR: IDs duplicados entre {nombres_conjuntos[i]} y {nombres_conjuntos[j]}: {interseccion}")
     
     if not errores_encontrados:
-        print("No se encontraron problemas de duplicación.\n")
+        print("No se encontraron problemas de duplicación.")
+    
+    print()
 
 
 def mostrar_resumen():
