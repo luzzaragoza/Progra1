@@ -376,5 +376,11 @@
         "Tipo": "Cochera",
         "PrecioAlquiler": 1000,
         "Estado": "Disponible"
+    },
+    "164": {
+        "Direccion": "av. panchito 2000",
+        "Tipo": "casa",
+        "PrecioAlquiler": 800,
+        "Estado": "Disponible"
     }
 }

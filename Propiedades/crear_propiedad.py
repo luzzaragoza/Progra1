@@ -4,18 +4,18 @@ from FuncAux.validaciones import norm, nonempty, parse_int
 from Propiedades.tipos_propiedades import tipo_propiedad
 
 def cargar_propiedades():
-    ruta = 'Propiedades/datos_propiedades.json'  
+    ruta = 'Propiedades/datos_propiedad.json'  
     try:
         with open(ruta, "r", encoding="utf-8") as archivo:
             return json.load(archivo)
     except FileNotFoundError:
         return {}
     except json.JSONDecodeError:
-        print("Error: El archivo datos_propiedades.json está mal formateado.")  
+        print("Error: El archivo datos_propiedad.json está mal formateado.")  
         return {}
 
 def guardar_propiedades(propiedades):
-    ruta = 'Propiedades/datos_propiedades.json'  
+    ruta = 'Propiedades/datos_propiedad.json'  
     with open(ruta, "w", encoding="utf-8") as archivo:
         json.dump(propiedades, archivo, indent=4, ensure_ascii=False)
 
