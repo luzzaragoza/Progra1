@@ -9,10 +9,37 @@ def cargar_json(ruta_carpeta):
     with open(ruta, 'r', encoding='utf-8') as f:
         return json.load(f)
 
+def cargar_contratos():
+    """Carga los contratos desde el archivo JSON."""
+    ruta = 'Contratos/datos_contrato.json'
+    try:
+        with open(ruta, 'r', encoding='utf-8') as archivo:
+            return json.load(archivo)
+    except:
+        return {}
+
+def cargar_inquilinos():
+    """Carga los inquilinos desde el archivo JSON."""
+    ruta = 'Inquilinos/datos_inquilino.json'
+    try:
+        with open(ruta, 'r', encoding='utf-8') as archivo:
+            return json.load(archivo)
+    except:
+        return {}
+
+def cargar_propiedades():
+    """Carga las propiedades desde el archivo JSON."""
+    ruta = 'Propiedades/datos_propiedad.json'
+    try:
+        with open(ruta, 'r', encoding='utf-8') as archivo:
+            return json.load(archivo)
+    except:
+        return {}
+
 def mostrar_contratos():
-    contratos = cargar_json('Contratos')
-    inquilinos = cargar_json('Inquilinos')
-    propiedades = cargar_json('Propiedades')
+    contratos = cargar_contratos()
+    inquilinos = cargar_inquilinos()
+    propiedades = cargar_propiedades()
 
     if not contratos:
         print("No hay contratos para mostrar.\n")
@@ -20,7 +47,7 @@ def mostrar_contratos():
 
     #filtrar solo contratos "activos"
     contratos_activos = list(
-        filter(lambda c: c.get("Estado", "").lower() == "activo", contratos.values())
+        filter(lambda c: c.get("Estado", "").lower() == "vigente", contratos.values())
     )
 
     print("Contratos activos (filter aplicado):")

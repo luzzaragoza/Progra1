@@ -388,5 +388,17 @@
         "Fecha": "2025-05-01",
         "Monto": 25000.0,
         "Método": "Platanos"
+    },
+    "9066": {
+        "ID Contrato": "5054",
+        "Fecha": "2026-01-01",
+        "Monto": 1000.0,
+        "Método": "Efectivo"
+    },
+    "9067": {
+        "ID Contrato": "5054",
+        "Fecha": "2026-01-02",
+        "Monto": 1000.0,
+        "Método": "Tarjeta de credito"
     }
 }
