@@ -8,7 +8,7 @@ from Propiedades.crear_propiedad import cargar_propiedades
 
 # Cargar contratos desde JSON
 def cargar_contratos():
-    ruta = 'Contratos/datos_contratos.json'
+    ruta = 'Contratos/datos_contrato.json'
     try:
         with open(ruta, 'r', encoding='utf-8') as f:
             return json.load(f)
@@ -20,7 +20,7 @@ def cargar_contratos():
 
 # Guardar contratos en JSON
 def guardar_contratos(contratos):
-    ruta = 'Contratos/datos_contratos.json'
+    ruta = 'Contratos/datos_contrato.json'
     with open(ruta, 'w', encoding='utf-8') as f:
         json.dump(contratos, f, indent=2, ensure_ascii=False)
 

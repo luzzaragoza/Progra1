@@ -271,5 +271,26 @@
     "Email": "asjdnkja@gmail.com",
     "Telefono": 554445445,
     "Estado": "Activo"
+  },
+  "544": {
+    "Nombre": "lupita",
+    "DNI": 555555555,
+    "Email": "lupita@outlook.com",
+    "Telefono": 1553336669,
+    "Estado": "Activo"
+  },
+  "545": {
+    "Nombre": "lupe",
+    "DNI": 444444,
+    "Email": "lupe@gmail.com",
+    "Telefono": 1544444,
+    "Estado": "Activo"
+  },
+  "546": {
+    "Nombre": "lupe arri",
+    "DNI": 6666666,
+    "Email": "lupeupe@gmail.com",
+    "Telefono": 1255555,
+    "Estado": "Activo"
   }
 }

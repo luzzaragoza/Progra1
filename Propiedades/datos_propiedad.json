@@ -382,5 +382,11 @@
         "Tipo": "casa",
         "PrecioAlquiler": 800,
         "Estado": "Disponible"
+    },
+    "165": {
+        "Direccion": "av cordoba 1234",
+        "Tipo": "Casa",
+        "PrecioAlquiler": 800,
+        "Estado": "Disponible"
     }
 }

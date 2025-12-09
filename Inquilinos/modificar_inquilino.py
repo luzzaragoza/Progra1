@@ -10,7 +10,7 @@ def cargar_inquilinos():
         return json.load(f)
 
 def guardar_inquilinos(inquilinos):
-    ruta = 'Inquilinos/datos_inquilinos.json'  
+    ruta = 'Inquilinos/datos_inquilino.json'  
     with open(ruta, 'w', encoding='utf-8') as f:
         json.dump(inquilinos, f, indent=2, ensure_ascii=False)
 

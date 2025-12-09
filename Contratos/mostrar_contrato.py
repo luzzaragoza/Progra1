@@ -33,12 +33,16 @@ def mostrar_contratos():
         id_inquilino = str(c.get("ID_Inquilino", ""))
         id_propiedad = str(c.get("ID_Propiedad", ""))
 
-        nombre_inquilino = inquilinos.get(id_inquilino, {}).get("Nombre", "Desconocido")
-        calle_propiedad = propiedades.get(id_propiedad, {}).get("Direccion", "Desconocida")
+        # Buscar el nombre del inquilino y direccion de la propiedad
+        inquilino_data = inquilinos.get(id_inquilino, {})
+        propiedad_data = propiedades.get(id_propiedad, {})
+        
+        nombre_inquilino = inquilino_data.get("Nombre", "Inexistente")
+        calle_propiedad = propiedad_data.get("Direccion", "Inexistente")
 
         print(f"ID Contrato: {id_contrato}")
-        print(f"  Inquilino: {nombre_inquilino}")
-        print(f"  Propiedad: {calle_propiedad}")
+        print(f"  Inquilino (ID: {id_inquilino}): {nombre_inquilino}")
+        print(f"  Propiedad (ID: {id_propiedad}): {calle_propiedad}")
         print(f"  Monto Mensual: ${c['Monto']}")
         print(f"  Fecha Inicio: {c['Fecha_Inicio']}")
         print(f"  Fecha Fin: {c['Fecha_Fin']}")

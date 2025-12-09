@@ -9,7 +9,7 @@ def cargar_contratos():
         return json.load(f)
 
 def guardar_contratos(contratos):
-    ruta = 'Contratos/datos_contratos.json'
+    ruta = 'Contratos/datos_contrato.json'
     with open(ruta, 'w', encoding='utf-8') as f:
         json.dump(contratos, f, indent=2, ensure_ascii=False)
 

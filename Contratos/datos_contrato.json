@@ -414,5 +414,13 @@
     "Fecha_Inicio": "2025-04-03",
     "Fecha_Fin": "2026-04-02",
     "Estado": "Activo"
+  },
+  "5053": {
+    "ID_Inquilino": 546,
+    "ID_Propiedad": 165,
+    "Monto": 800,
+    "Fecha_Inicio": "2004-12-13",
+    "Fecha_Fin": "2005-12-13",
+    "Estado": "Activo"
   }
 }
